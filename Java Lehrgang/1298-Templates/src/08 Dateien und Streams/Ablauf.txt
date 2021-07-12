@@ -1,0 +1,7 @@
+Ablauf Themeneinheit Filehandling:
+----------------------------------
+
+1.) File-Objekte - Dateiorganisation: package file
+2.) RandomAccessDateien: package randomAccess
+3.) Streams: package streams
+4.) Serialisierung: package persistenz

@@ -1,0 +1,145 @@
+﻿ ----- Beginn 1. Tag --- Montag
+
+1. OOP-Konzepte
+	- Klassen (Beschreibung/ Bauplan) und Objekte (Instanzen von Klassen)
+		- Attribute
+		- Methoden
+	- Nachrichten
+	- Kapselung
+	- Vererbung
+	- Polymorphismus
+
+2. Grundlagen UML
+	- Strukturdiagramme
+		- Klassendiagramme
+		- Objektdiagramme (kaum verwendet)
+		- Paketdiagramme
+	- Verhaltensdiagramme
+		- Aktivitätsdiagramm
+		- Anwendungsfalldiagramm (Use-Case)
+		- Sequenzdiagramm
+		- Zustandsdiagramm
+
+3. Klassendefinition in C++
+	-- '02 - Templates/04 - OOP/01 - Klassendefinition/01-konto.h'
+	- Aufteilung in Spezifikation(.h) und Implementation(.cpp)
+	-- class Klassenbezeichner { protected: ... private: ... public: ... };
+
+	-- '02 - Templates/04 - OOP/01-konto.cpp'
+	-- bei Methodenimplementierung Klassenbezeichner::Methodenname
+	- this-Zeiger
+		- konstanter Zeiger auf Adresse des aktuellen Objekts
+		- kann in jeder Elementfunktion verwendet werden
+		- erlaubt somit auch Methodenaufrufe auf aktuelles Objekt
+
+4. Objektdefinition in C++
+	-- '02 - Templates/04 - OOP/01-konto_main.cpp'
+	-- Klassenbezeichner Objektname; --> Speicher wird alloziert
+	- Anlegen von Objekten auf Stack und Heap
+	- Befüllen zunächst mit Methoden (init())
+	- Zugriff auf Attribute und Methoden (Stack mit Punkt-Operator, Heap mit Pfeil-Operator)
+	- Zuweisung von Objekten (mit = wird automatisch Kopie erstellt)
+
+Übungen 1-5
+
+----- Ende 1. Tag ----- Montag
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 2. Tag --- Dienstag
+
+1. Methoden
+	-- '02 - Templates/04 - OOP/02-besondere Methoden/*'
+	- Konstruktoren (Deklaration, Implementierung und Nutzung)
+		--> zur direkten Initialisierung eines neuen Objekts --> Instanziierung
+		- Default-Konstruktor (ohne Parameter)
+		- kurzer Konstruktor mit : und Aufruf (Delegation) bzw. Parameterzuweisung
+	- Destruktoren zum Abbau von Objekten
+		- Deklaration mit ~
+		- Aufruf (am Ende des Blocks, Programms oder mit Aufruf delete)
+	- Zugriffsmethoden
+	-- '02 - Templates/04 - OOP/03-Zugriff/*'
+		- ermöglichen Zugriff auf private Attribute
+		- getAttribut() oder setAttribut
+		--> Abwehr fehlerhafter Zugriffe
+		--> Kapselung, d.h. Verstecken der konkreten Implementierung (Änderungen von außen erschwert)
+	- Read-Only-Methoden für const-Objekte
+		- Anhängen des Schlüsselworts const
+		- gehört zur Signatur, d.h. es kann zwei Versionen der Methode geben (einmal mit und einmal
+		  ohne const)
+	- inline-Methoden
+		- kleine Aufgaben die oft ausgeführt werden
+		--> Textersetzung somit nicht ständiges hin und her springen
+		- Anweisungsblock muss in Header-Datei
+	- Standardmethoden
+	-- '02 - Templates/04 - OOP/04-Standardmethoden/*'
+		- Kopierkonstruktor, Zuweisung standardmäßig definiert
+		- kann aber auch mit = default oder = delete aktiviert und deaktiviert werden
+		--> MyClass(const MyClass& scr) = delete;
+	
+	- Call-by-Reference für Objekte bevorzugen, um Overhead zu minimieren
+	
+2. Operatoren
+	-- '02 - Templates/04 - OOP/05-Operatoren/*'
+	- Überladen von Operatoren
+		- Bezeichner der Funktionen z.B. operator+
+	- friend-Konzept
+	- Typumwandlung für Klassen
+	-- '02 - Templates/04 - OOP/06-Typumwandlung/*'
+		- operator int() const
+
+Übungen 6 - 7
+
+----- Ende 2. Tag ----- Dienstag
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 3. Tag --- Mittwoch
+
+1.Vererbung
+	- Generalisierung
+	- Aggregation, Komposition, Assoziation
+	- Datenabstraktion
+	--> alles an Tafel erklären
+	-- '02 - Templates/04 - OOP/07-Vererbung/*'
+	- Wiederverwendbarkeit
+	- Wiederholung: public, protected, private
+	- Redefinition von Elementen
+		-- Elemente, die in erbenden Klassen definiert werden erweitern/ redefinieren Elemente
+		aus Basisklasse
+		--> Überladung
+	- Kontruktoraufrufe
+		-- Delegation an Konstruktoren der Basisklasse
+	- Destruktoraufrufe
+		-- von erbenden zu Basisklasse
+	- Aufruf von Methoden der Basisklassen
+		-- mit Basisklasse::methodenname()
+
+2. Typumwandlung in Klassenhierarchien
+	-- '02 - Templates/04 - OOP/08-Typumwandlung in Hierarchien/*'
+	- implizite Konvertierung in Basisklasse (bekannten Elemente werden zugewiesen)
+	- static_cast<typ> und dynamic_cast<typ>
+
+Übungen 8 - 10	
+	
+
+----- Ende 3. Tag ----- Mittwoch
+---------------------------------------------------------------------------------------------------------------
+----- Beginn 4. Tag --- Donnerstag
+
+1. Polymorphie
+	-- '02 - Templates/04 - OOP/09-Polymorphie/*'
+	- Deklaration virtueller Methoden
+	- virtuelle Destruktoren
+	- statische vs. dynamische Bindung (VMT)
+
+2. Abstraktion
+	- abstrake Klasse = Klasse mit rein virtueller Methode (= 0 hinter Methode)
+	- Erstellen von Objekten nicht möglich
+	- Zeiger auf abstrakte Klassen schon => Zeiger kann auf gesamte Hierarchie zeigen
+
+3. Mehrfachvererbung
+	- Mehrdeutigkeit bei Mehrfachvererbung => Diamond-Problem
+	- Abhilfe durch virtuelle Basisklassen
+
+Übungen 11 - 13	
+
+----- Ende 4. Tag ----- Donnerstag
+---------------------------------------------------------------------------------------------------------------
+----- Beginn 5. Tag --- Freitag

@@ -1,0 +1,22 @@
+Ablauf Unterrichtseinheit XML-Programmierung:
+
+1. Tag
+------
+- Brainstorming zum Thema XML
+- Definition strukturierte Dokumente
+- Beispiel XML-Datei
+- wohlgeformt und gültig
+- Validierung an Hand DTD und XSD
+- Erwähnen: XPath, XLink, XQuery, XSLT
+- Funktion von XML-Parsern (DOM (bspw. JDOM) und SAX (bspw. XERXES))
+- Ant basiert auf XML
+- Konsistenz mittels JPA (OR-Mapping)
+
+Ausblick:
+- XML-Datenbanken
+- XML-Webservices
+
+Aufgaben:
+	- XML-Dokument einlesen
+	- XML-Dokument schreiben
+	- gültiges XML-Dokument untereinander austauschen

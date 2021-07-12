@@ -1,0 +1,5 @@
+<!ELEMENT root (Child)*>
+<!ELEMENT Child (GrandChild*)>
+<!ATTLIST Child name CDATA #IMPLIED>
+<!ELEMENT GrandChild (#PCDATA)>
+<!ATTLIST GrandChild name CDATA #IMPLIED>

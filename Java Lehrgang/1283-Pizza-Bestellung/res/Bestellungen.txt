@@ -1,0 +1,9 @@
+1;Salami Pizza;mittel;Käse;6.3
+2;Schinken Pizza;Familie;Knoblauch;5.8
+3;Pizza Hawaii;klein;OHNE;6.5
+4;Salami Pizza;mittel;Käse;5.9
+5;Salami Pizza;mittel;Käse;5.9
+6;Salami Pizza;mittel;Käse;6.4
+7;Schinken Pizza;Familie;Knoblauch;7.8
+8;Pizza Hawaii;klein;OHNE;6.5
+9;Salami Pizza;mittel;Käse;5.9

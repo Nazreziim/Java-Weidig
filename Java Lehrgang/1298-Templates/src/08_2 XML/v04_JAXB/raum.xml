@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EinfacherRaum>
+    <LgTlnImRaum>0</LgTlnImRaum>
+    <name>WC</name>
+    <VerbundSoldat>
+        <name>WC-Soldat</name>
+    </VerbundSoldat>
+    <Soldaten>
+        <SoldatenListe>
+            <name>OberAufpasser</name>
+        </SoldatenListe>
+        <SoldatenListe>
+            <name>UnterAufpasser</name>
+        </SoldatenListe>
+    </Soldaten>
+    <kapa>3</kapa>
+</EinfacherRaum>

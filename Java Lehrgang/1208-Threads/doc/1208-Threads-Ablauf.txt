@@ -1,0 +1,429 @@
+##################################################
+# Themengebiet: Threads
+# Timebox:      3,5 Tage
+# Stand:        2017-07-23
+##################################################
+
+Tag 1 --------------------------------------------
+
+// TODO Darstellungen für die Motivation!!
+Motivation:
+- Multitasking: Heute übliche Betriebssysteme sind multitaskingfähig (sie können also mehrere Anwendungen gleichzeitig ausführen) Parallelität / Nebenläufigkeit.
+  Auf einem System mit einem Prozessorkern entspricht dies aber nicht der Wahrheit. Hier kann eben nur eine Anwendung gleichzeitig ausgeführt werden,
+  das Betriebssystem gaukelt uns allerdings eine Parallelität vor indem es die Abarbeitung der Anwendungen alle paar Millisekunden umschaltet.
+  Das heißt der Prozessorkern arbeitet eine sehr kurze Zeitspanne an einer Anwendung, wechselt dann zur nächsten Anwendung usw. usf. Das führt dazu,
+  dass die Anwendungen im großen gesehen zwar gleichzeitig abgearbeitet werden, aber zu einem bestimmten Zeitpunkt immer nur genau eine Anwendung bearbeitet wird.
+  
+  Die Umschaltung zwischen den einzelnen Anwendungen übernimmt ein Teil des Betriebssystems, der sogenannte Scheduler. Jede Anwendung besteht dabei aus Prozessen,
+  die einen eigenen Adressraum und eigenen Speicherbereich besitzen. Damit ist sichergestellt, dass Prozesse nicht auf den Speicher anderer Prozesse zugreifen und
+  diesen Korrumpieren / Verändern. Das Betriebssystem überwacht dabei die Tätigkeiten der Prozesse um Fehlverhalten zu verhindern.   
+  
+- Echte Parallelität: Die Leistungssteigerung von Prozessoren durch Steigerung des Taktes kommt seit einiger Zeit an ihre Grenzen.
+  Als der Takt nicht mehr unbegrenzt erhöht werden konnte, hat man begonnen mehrere Prozessoren in einen Computer zu bauen.
+  Um diese Integration zu verbessern wurden Prozessoren mit mehreren Kernen entwickelt, welche darauf ausgelegt sind mehrere Aufgaben gleichzeitig zu erfüllen.
+  
+  Diese Entwicklung führt dazu, dass mehrere Programme echt parallel und damit schneller arbeiten können. Der einzelne Prozess ist allerdings immer noch an den Takt
+  eines Prozessorkerns gebunden.
+  Damit auch ein einzelner Prozess von mehreren Prozessorkernen profitieren kann, muss der Prozess aufgeteilt werden.
+  Diese Aufteilung findet in sogenannten Threads statt. (Thread = Faden) Dabei kann jeder Thread von einem anderen Prozessorkern verarbeitet werden.
+  Die Threads gehören aber zu einem Prozess und arbeiten damit im gleichen Adressraum auf den selben Daten.
+  
+  Allerdings kann das Aufteilen in Threads auch auf Systemen mit nur einem Prozessorkern zu Leistungssteigerungen eines Prozesses führen. 
+  Wenn zum Beispiel Operationen die den Prozessor nicht auslasten (Lesen von einer langsamen Festplatte in den Speicher) 
+  parallel zu einer Operation die den Prozessor stärker auslastet (Analyse von Daten) geschieht. 
+  BUCH Kapitel Threads 
+  
+  Diese Technik, das Aufteilen in Threads, ist auch in Java möglich. In Java nutzt jedes Programm schon von Hause aus mehrere Threads bei der Abarbeitung.
+  Diese werden von der VM gesteuert und haben unterschiedliche Aufgaben. Einer davon ist zuständig für die Abarbeitung des Hauptprogramms,
+  der main-Methode und allem was direkt aufgerufen wird.
+  
+  Das heißt, normalerweise wird nur ein Thread genutzt um das Hauptprogramm zu verarbeiten.
+  Um nun die Vorteile von mehreren Prozessorkernen zu nutzen müsste das Programm aufgeteilt werden.
+  Allerdings lässt sich nicht jedes Problem in parallel Ablaufende Ereignisse zerlegen, dass heißt der Erfolg hängt sehr stark mit der Art des Problems zusammen.
+  Es gibt allerdings auch Probleme, welche sich sehr gut in parallel Ablaufende Teile zerlegen lassen, zum Beispiel gleiche Operationen auf unabhängigen Daten.
+  
+  Probleme tauchen immer dann auf, wenn unterschiedliche Threads auf den selben Daten arbeiten sollen. Dazu später.
+  
+  Zu erst kümmern wir uns darum wie man neue Threads erstellt und nutzt.
+  
+Was ist ein Thread in Java?
+- Ein Thread ist ein Teil eines Programms, welcher vom Prozessor einzeln abgearbeitet werden kann.
+
+Wie erstellt man einen Thread in Java?
+- Dazu bietet Java 2 Möglichkeiten:
+  - entweder man nutzt das Interface Runnable
+  - oder man erbt von der Klasse Thread.
+  
+- - Runnable
+    - Um einen Thread mit dem Interface Runnable zu realisieren, muss eine neue Klasse das Interface implementieren.
+      Das Interface schreibt vor, dass die Methode run() implementiert werden muss, welche die Tätigkeiten des Threads enthalten muss.
+-- BEISPIEL Runnable implementieren beispiel01.CounterCommand.java + beispiel01.DateCommand.java
+      Es reicht allerdings jetzt nicht aus einfach die run() Methode aufzurufen.
+-- BEISPIEL run() Methode aufrufen: beispiel01.StartRun.java
+      Dies führt einfach nur wieder zu einer sequentiellen Abarbeitung der 2 Methoden.
+      
+      Damit das Runnable jetzt als eigener Thread läuft muss es an ein neu erzeugtes Thread-Objekt übergeben und anschließend gestartet werden.
+-- BEISPIEL neuen Thread erzeugen: beispiel01.ThreadErzeugen.java 
+      Der Thread wird mit start() gestartet, dabei wird intern die run() Methode ausgeführt.
+      Sollte der Thread bereits laufen und die start() Methode ein weiteres Mal ausgeführt werden, wird eine IllegalThreadStateException geworfen.
+      
+      Ausgabe Interpretieren: Die Ausgabe zeigt, selbst wenn der DateCommand Thread vor dem CounterCommand Thread gestartet wird, erst alle Zahlen ausgegeben werden,
+      bevor ein Datum ausgegeben wird. Warum?
+      Das liegt einmal an der längeren Ausführungszeit des DateCommands und an der Zuteilung der Threads an den Prozessor (nicht deterministisch).
+      Um zu zeigen, dass die beiden Threads wirklich parallel und nicht sequentiell bearbeitet werden erhöhen wir die obere Grenze des Counters.
+-- BEISPIEL: Counter erhöhen: beispiel01.CounterCommand.java obere Grenze -> 100_000
+      Auch bei der hohen Grenze kann es vorkommen, dass das Datum erst danach ausgegeben wird. Mehrmals ausführen.
+      
+- - Thread 
+    - Die zweite Möglichkeit besteht darin von der Klasse Thread zu erben. 
+      Diese implementiert selbst das Interface Runnable und stellt die Methode run() mit leerem Block zur Verfügung.
+-- BEISPIEL von Thread erben: beispiel02.DateThread.java
+      Da Thread ein Runnable ist, müssen wir kein Exemplar von Runnable mehr übergeben.
+      Es ist ausreichend das Exemplar von Thread mit der Methode start() zu starten.
+      Daraufhin wird ein neuer Thread erzeugt und die Bearbeitung beginnt.
+      
+- Ein häufiger Fehler bis hierhin ist der Aufruf der Methode run() statt start(). Dies hat zur Folge, dass run() zwar ausgeführt wird, aber nicht nebenläufig.
+  Der Fehler ist auch nicht leicht zu erkennen, weil die Tätigkeiten von run() ja ausgeführt werden, allerdings sequentiell im HauptThread.
+  
+- - Runnable Implementieren oder von Thread erben?
+    - Ein großer Nachteil vom Erben von Thread ist die Einfachvererbung, die somit bereits aufgebraucht ist. Das heißt man verbaut sich die Möglichkeit von einer anderen Klasse zu erben.
+    - Ein Vorteil von Runnable ist, dass man die Runnable Objekte beliebigen Threads zuordnen kann. Das liefert eine Flexibilität für den Fall, 
+      dass man Runnable Objekte dynamisch zu einer bestimmten Anzahl an Threads zuweisen will.
+    - In beiden Fällen muss auf jeden Fall eine neue Klasse geschrieben werden.
+        
+Eigenschaften eines Threads in Java ( Diese Eigenschaften können nur direkt genutzt werden, wenn Thread erweitert wird. )
+- Eigenschaften: Zustand
+                 Priorität
+                 Name
+
+- Konstruktoren: Thread( Runnable target )
+                 - Erzeugt einen Thread mit dem Runnable
+                 Thread( Runnable target, String name )
+                 - Erzeugt einen Thread mit dem Runnable und einem Namen
+
+- Methoden: final String getName()
+            - Liefert den Name des Threads, um ihn zu identifizieren
+            final void setName( String name )
+            - Setzt den Name des Threads
+            public Thread.State getState()
+            - Liefert den aktuellen Zustand des Threads
+			- Zustände: NEW ( Thread wurde noch nicht gestartet )
+			            RUNNABLE ( Wird zur Zeit ausgeführt )
+			            BLOCKED ( Thread ist geblockt und wartet )
+			            WAITING ( Thread wartet unbegrenzt auf einen anderen Thread )
+			            TIMED_WAITING ( Thread wartet bis zu einer maximalen Zeit auf einen anderen Thread )
+			            TERMINATED ( Thread ist beendet )
+            public final boolean isAlive()
+            - true, falls der Thread gestartet wurde und noch nicht beendet ist. ansonsten false.
+            - Das ist eigentlich die Information die man braucht. Meistens muss man nicht zwischen den Zuständen unterscheiden.
+             
+            static Thread currentThread()
+            - Liefert den Thread des aktuellen Programmstücks. Ist nützlich um Methoden auf dem aktuellen Thread aufrufen zu können.
+            static void sleep( long milliseconds ) throws InterruptedException
+            - Legt den Thread für mindestens "milliseconds" schlafen
+            static void sleep( long millis, int nanos ) throws InterruptedException
+            - Legt den Thread für mindestens "milliseconds" + "nanoseconds" schlafen.
+            - - ALTERNATIVE TimeUnit.EINHEIT.sleep( zeit ): hier ist die Zeiteinheit besser zu lesen.
+                                     EINHEIT: NANOSECONDS, MICROSECONDS, MILLISECONDS, SECONDS, MINUTES, HOURS, DAYS
+            static void yield()
+            - Der Thread gibt seine Rechenzeit ab und reit sich entsprechend seiner Priorität wieder in die Liste wartender Threads ein.
+
+   Die beiden Übungen sind ab hier möglich: isAlive ist notwendig:
+-- ÜBUNG 1 & 2 : Schleifen, Threads, Methoden von Threads
+
+- Dämon
+  Threads die dauerhaft eine Funktionalität zur Verfügung stellen sollen (zB. Server) haben oft eine Endlosschleife um nicht immer wieder gestartet werden zu müssen.
+  Standardmäßig wartet allerdings die JavaVM bis alle Threads eines Prozesses beendet wurden um das Programm zu beenden.
+  Das heißt, ein Thread mit einer Endlosschleife verhindert das der Prozess abgeschlossen werden kann. Dies könnte aber gewollt sein.
+  
+  Um zu verhindern, dass ein Thread der dauerhaft einen Dienst bereitstellt, die Anwendung daran hindert beendet zu werden,
+  können Threads in den sogenannten "Dämon" Modus versetzt werden. Dieser Modus bedeutet, dass der Thread die Anwendung nicht mehr am beenden hindert.
+  Sobald alle Nicht-Dämon-Threads beendet wurden, werden alle Dämon-Threads automatisch beendet.
+  
+  Ein Beispiel für einen Dämon ist der Garbage Collector, wenn kein anderer Thread Müll verursacht braucht auch niemand mehr aufräumen. 
+            
+            final void setDaemon( boolean on )
+            - Markiert den Thread als Dämon oder normalen Thread. Die Methode muss aufgerufen werden, bevor der Thread gestartet wurde. Ansonsten: IllegalThreadStateException.
+            final boolean isDaemon()
+            - Liefert zurück, ob der Thread ein Dämon ist.
+-- BEISPIEL beispiel03.DaemonThread.java
+            
+- Wann ist ein Thread beendet?
+  - run()-Methode wurde ohne Fehler beendet.
+  - RuntimeException in run()-Methode. Dies beendet nur diesen Thread, nicht die anderen Threads oder die JVM.
+  - stop()-Methode wurde auf dem Thread aufgerufen. (Problematisch, nicht empfohlen).
+  - JVM wird beendet und nimmt alle Threads mit sich.
+  
+- Einen Thread ordentlich (höflich) beenden:
+  - Wie eben dargestellt ist ein Thread normalerweise beendet, wenn die run()-Methode bis zum Ende durchgelaufen ist.
+  - Enthält ein Thread allerdings eine Endlosschleife (z.B. Serverdienst, der auf Anfragen wartet), muss der Thread von außen beendet werden.
+    - Die stop()-Methode sollte nicht genutzt werden, sie ist deprecated und hat Nebenwirkungen.
+      - Die stop()-Methode stoppt einen Thread sofort, egal was dieser gerade tut.
+        Das kann dazu führen, dass Ressourcen nicht ordentlich freigegeben werden oder Locks für synchrone Zugriffe nicht aufgehoben werden.
+        Außerdem wird beim Aufruf der stop()-Methode ein ThreadDeath-Objekt heworfen. (ThreadDeath ist eine Unterklasse von Error.)
+-- BEISPIEL ThreadDeath ausgelöst durch stop()-Methode beispiel04.ThrowThreadDeath.java
+
+    - Statt ihn brutal von außen zu beenden, ist es besser den Thread zu bitten seine Arbeit einzustellen.
+      - Bei dieser Möglichkeit, hat der Thread Zeit hat alle außstehenden Operationen abzuschließen und Ressourcen wieder frei zu geben.
+  public void interrupt()
+  - Aufgerufen auf einem Thread bewirkt das Setzen eines Flags, welches im Thread abgefragt werden kann.
+  public static boolean interrupted()
+  - Gibt den Wert des interrupted Flag des aktuellen Threads zurück. Gleichzeitig wird das Flag auf false gesetzt.
+  public boolean isInterrupted()
+  - Gibt den Wert des interrupted Flag eines Threads zurück. Das Flag wird nicht geändert.
+-- BEISPIEL interrupt beispiel04.InterruptedThread.java
+
+Tag 2 --------------------------------------------
+
+- Rendezvous mit join()
+  - Wenn Aufgaben aufgeteilt und an mehrere Threads verteilt werden, muss irgendwie sichergestellt werden,
+    dass die Ergebnisse erst verwendet werden, sobald alle Teilergebnisse fertig gestellt wurden, also die Threads beendet sind.
+  - Um auf einen Thread zu warten eignet sich die join()-Methode. Sie wartet solange, bis der Thread beendet ist.
+  public final void join() throws InterruptedException
+  - Wartet bis der Thread beendet wurde, wirft eine InterruptedException, falls ein Interrupt ausgelöst wird, solange der aktuelle Thread wartet.
+  public final void join(long millis) throws InterruptedException 
+  - Wartet maximal millis Millisekunden bis der Thread beendet wurde, wirft eine InterruptedException, falls ein Interrupt ausgelöst wird, solange der aktuelle Thread wartet.
+  public final void join(long millis, int nanos) throws InterruptedException 
+  - Wartet maximal millis Milli- und nanos Nanosekunden bis der Thread beendet wurde, wirft eine InterruptedException, falls ein Interrupt ausgelöst wird, solange der aktuelle Thread wartet.
+-- BEISPIEL Rendezvous mit join(): beispiel5.Rendezvous.java
+
+  - Muss auf mehrere Threads gewartet werden, ist egal in welcher Reihenfolge die join()-Methode aufgerufen wird.
+    Sollte der Thread schon fertig sein, ist join() sofort fertig. 
+-- BEISPIEL Warten auf den Langsamsten: beispiel05.Warten.java
+
+- Prioritäten bei Threads
+  - Java unterstützt eine Priorisierung von Threads.
+    - 1 ist minimal Priorität 
+    - 10 ist maximal Priorität
+    - 5 ist standard Priorität.
+    Threads mit einer höheren Priorität, sollten immer vor Threads mit einer niedrigeren Priorität in die Warteschlange eingereit werden.
+    Ob die JavaVM und das Betriebssystem dieser Vorschift folgen, ist nicht sichergestellt.
+  public final void setPriotity(int newPriority)
+  - Setzt die Priorität auf einen neuen Wert
+  public final int getPriority()
+  - Liefert die aktuelle Priorität zurück
+-- BEISPIEL Thread mit Priorität beispiel06.PriorityThread.java
+  - Im Beispiel sieht man, dass eine höhere Priorität nicht sofort bedeutet, dass der Thread immer Vorrang hat.
+    Das hängt von vielen weiteren Faktoren ab, unter anderem vor allem von der JVM und dem Betriebssystem.
+    
+---- 27.06.2018 ENDE
+
+-- ÜBUNG 3 & 4 : Thread Aufrufe schachteln
+
+---- 18.11.2020 ENDE
+
+- Synchronisation über kritische Bereiche
+  - Das eigenständige Leben der Threads kann beim Zugriff auf gemeinsam genutzte Ressourcen zu Problemen führen:
+    - Gemeinsame Ressourcen können statische Variablen, eine Datenstruktur an einer zentralen Stelle oder gemeinsame Objekte, welche über eine Referenz genutzt wird, sein.
+      Es gibt also mehrere Möglichkeiten, wie Threads Daten austauschen können.
+  - Probleme beim gemeinsamen Zugriff und kritische Abschnitte
+    - Lesender Zugriff auf gemeinsame Daten ist kein Problem
+    - Schreibender Zugriff ist allerdings ein Problem (Vergleich: Drucker im Mehrbenutzerbetrieb, der Informationen nicht auseinander halten kann.
+    
+    - Kritische Abschnitte:
+      - Zusammenhängender Programmblock, bei dem während ein Thread darauf arbeitet, kein anderer Thread rein darf.
+        - Muss also besonders geschützt werden.
+      - Wenn nur ein Thread auf einem Programmteil arbeitet, nennt man das gegenseitigen Ausschluss oder atomar.
+      - Sobald aber mehrere Threads darauf arbeiten und Veränderungen vornehmen wollen, ist ein Schutz notwendig.
+      - Arbeitet ein Programm aufgrund von nebenläufigen Threads falsch, ist es nicht thread-sicher (engl. thread-safe).
+      
+      - Immutable Objekte, sind unveränderlich (zB. String, DateTime, Wrapper-Klassen) und damit thread-sicher. Hier ist keine Synchronisierung nötig.
+      - Methoden die keine Objekteigenschaften ändern: auch hier gilt, sie sind thread-sicher. Keine Synchronisierung nötig.
+        - Thread hat seine eigenen Objektvariablen und seinen eigenen Stack.
+      - Thread-sichere Klassen der Java Bibliothek:
+        - Die meisten Klassen der Java Bibliothek sind nicht thread-sicher. Um sich zu vergewissern, ob eine Klasse thread-sicher ist hilft ein Blick in die Java-API.
+          Zum Beispiel sind StringBuilder, ArrayList und HashMap nicht thread-sicher.
+          Dafür sind aber   StringBuffer,  Vector    und Hashtable thread-sicher.
+          
+      - Punkte parallel Initialisieren:
+        Wenn zwei Threads einen Punkt parallel auf unterschiedliche Werte initialisieren sollen kommt es zu unerwarteten Ergebnissen:
+-- BEISPIEL Punkt initialisieren: beispiel09.PunktInitialisieren.java
+        Die Effekte liegen an unterschiedlichem Laufzeitverhalten (engl. race condition)
+        Das Beispiel ist einleuchtend, weil einzeln gelesen und geschrieben wurde, allerdings können solche Effekte auch zB. bei i++ auftreten.
+          Auch hier wird erst gelesen, dann addiert und dann geschrieben.
+
+      - Kritische Abschnitte schützen:
+        Ein kritischer Abschnitt im realen Leben stellt zum Beispiel eine Toilette dar. Sobald jemand diese nutzt wird die Tür abgeschlossen.
+        Wenn jetzt jemand anderes die Toilette nutzen will, muss er warten. In dieser Art müssen auch kritische Abschnitte in Programmen geschützt werden.
+        
+        Um kritische Abschnitte zu schützen gibt es unterschiedliche Konzepte in Java. Die haben alle ihre Vorteile. 
+        - Synchronized Block
+          Der synchronized Block wird mit dem Schlüsselwort "synchronized" eingeleitet. 
+          Das Schlüsselwort kann vor einer Methode stehen oder einen eigenen Block in einer Methode einleiten.
+          
+          public synchronized void machWas(){ i++; }
+            oder
+          public void machWas(){ synchronized( this ){ i++; } }
+          
+          Der synchronized Block (egal ob Methode oder Block) arbeitet mit einem Monitor (dieser Überwacht den Zugriff auf synchronized Blöcke). 
+          In Java besitzt jedes Objekt einen Monitor. Bei der synchronized Methode wird automatisch der Monitor des jeweiligen Objektes genutzt.
+          Bei synchronized Blöcken muss in der Klammer ein Objekt angegeben werden, dessen Monitor diesen Block überwacht.
+          Die JavaVM sorgt selbst dafür, dass der erste der den Block betreten will den Lock bekommt. Also Zugriff erhält und gibt den Lock auch 
+          automatisch wieder frei, sobald der Block verlassen wird.
+          Sollte man einen zusätzlichen Monitor benötigen, kann man dafür ein Objekt erstellen. 
+          Das ist einer der wenigen Punkte wo ein Objekt der Klasse Object Sinn macht.
+-- BEISPIEL kritischer Abschnitt mit augenscheinlich atomarer Operation i++: beispiel10.UnSynchMethodeMain.java
+   Zeigen, dass hier unerwartete Ergebnisse raus kommen.
+-- BEISPIEL Synchronisiert mit synchronized-Methode: beispiel10.SynchronizedMethodeMain.java
+   Hier sollte nun das erwartete Ergebnis raus kommen.
+
+-- BEISPIEL Synchronisierter Block: beispiel10.SynchronizedBlockMain.java
+   Synchronisierung mit einem Block und this als Monitor
+   
+-- BEISPIEL 2 Synchronisierte Blöcke: beispiel10.SynchronizedBlock2Main.java
+   Synchronisierung mit 2 Blöcken und 2 Monitoren
+   - Zuerst 2 Methoden ohne synchronize
+   - Dann mit synchronize mit einem Monitor (geht noch sehr schnell)
+   - Dann mit synchronize mit 2 Monitor (kein großer Unterschied)
+   - synchronize mit einem Monitor, Verzögerung hinzufügen (Methode dauert länger um abzuarbeiten)
+   - synchronize mit 2 Monitor und Verzögerung (geht wieder schneller)
+   
+Tag 3 --------------------------------------------
+          
+        - Lock / ReentrantLock
+          Neben den Synchronized Blöcken, gibt es noch eine flexiblere Lösung mit dem Interface Lock. Die wichtigste Implementierung des Interfaces ist die Klasse
+          ReentrantLock. Ein Objekt dieser Klasse stellt einen Lock dar, der dem ersten Aufrufer die Möglichkeit gibt in einen kritischen Abschnitt einzusteigen und
+          alle anderen warten lässt. Sobald der Besitzer des Locks den kritischen Abschnitt verlässt, kann der nächste den Abschnitt betreten.
+          Bei der standard Implementierung kann angegeben werden, ob der am längsten wartende Thread der nächste sein soll oder ein Zufälliger.
+          Reentrant bedeutet, dass sobald ein Thread den Lock bekommen hat, kann er immer wieder in den Bereich rein, bis er ihn einmal komplett verlassen hat.
+          Dies ermöglicht rekursive Aufrufe.
+          
+          new ReentrantLock()
+          - einen ReentrantLock erstellen
+          new ReentrantLock(boolean fair)
+          - einen ReentrantLock mit Angabe ob fair oder nicht. (Fair = der am längsten wartende Thread bekommt den Lock.)
+          public void lock()
+          - Versuchen den Lock zu bekommen und warten bis Lock erhalten.
+          public void unlock()
+          - Den Lock abgeben. 
+          
+          public boolean tryLock()
+          - Versuchen den Lock zu bekommen, falls nicht wird direkt false zurück gegeben. Hier wird nicht gewartet.
+          public void lockInterruptibly() throws InterruptedException
+          - Wartet wie lock, lässt sich aber durch einen Interrupt unterbrechen.
+          public boolean isLocked()
+          - Liefert zurück, ob der Lock geschlossen ist.
+          public final int getQueueLength()
+          - Liefert die Anzahl der wartenden Threads. 
+          
+          Nutzt man das Lock Interface (z.B.: mit ReentrantLock) stellt das Lock-Objekt den Monitor dar. Dieser wird nicht automatisch durch die VM gesteuert. Das heißt,
+          falls an einer Stelle die unlock()-Methode nicht ausgeführt wird, bleibt der Lock bestehen und kein anderer Thread kommt in diesen Abschnitt hinein. Dies ist
+          vor allem bei Exceptions zu beachten. Hier eignet sich ein finally-Block in welchem unlock() aufgerufen wird.
+-- BEISPIEL ReentrantLock beispiel11.ReentrantLockNutzenMain.java
+   Nutzt einen ReentrantLock um Laufzeitverhalten zu steuern.
+   Vergleich mit UnSynchMethode.
+-- BEISPIEL mit try catch finally beispiel11.ReentrantLockFinallyMain.java
+   Sollte eine Exception ausgelöst werden und der Rest nicht mehr ausgeführt werden, dann wird der Lock nicht zurückgegeben.
+   Deshalb sollte das unlock() in ein finally, weil dieses immer ausgeführt wird.
+
+          - ReentrantReadWriteLock
+            Es gibt noch eine sozialere Version des Lock Interfaces. Das Interface ReadWriteLock. Dieses wird implementiert von der Klasse ReentrankReadWriteLock.
+            Dieser Typ eines Locks kann unterscheiden in ReadLocks und WriteLocks. Solange nur Zugriffe auf den Read Anteil versucht werden, können alle gleichzeitig zugreifen.
+            Versucht allerdings ein Thread auf den WriteLock zuzugreifen, muss dieser warten bis alle ReadLocks frei sind und bekommt dann Zugriff. Sobald ein Zugriff auf den WriteLock
+            gewährt wurde, bekommt niemand anderes mehr Zugriff auf Read oder WriteLocks.
+-- BEISPIEL ReentrantReadWriteLock beispiel12.ReadWriteLockNutzen.java
+   Lesen und Schreiben bei einer Liste.
+          
+-- ÜBUNG 5 & 6 : Synchronisierung / Lock
+          
+### 28.06.2018, 18.10.2019, 19.11.2020 ENDE         
+
+### Semaphore: Besseres Beispiel notwendig
+        - Semaphore
+          Geht es nicht darum den Zugriff auf genau eine Ressource zu beschränken, sondern auf eine bestimmte abzählbare Menge von Ressourcen (zB. Prozessorkerne oder Schnittstellen),
+          dann stoßen die Locks an ihre Grenze. In diesem Fall wird eine Struktur benötigt, welche mitzählen kann.
+          Die Klasse Semaphore stellt solch eine zählende Struktur dar. Sie besitzt einen Zähler, welcher ermitteln kann wie viele Ressourcen noch zur Verfügung stehen und 
+          Methoden um Ressourcen freizugeben oder zu sperren:
+          
+          new Semaphore(int anzahl, boolean fair)
+          - Erzeugt ein neues Semaphore-Objekt, mit "anzahl" begrenzten Ressourcen und fair oder nicht fair (fair bedeutet wieder, dass der am längsten wartende Thread zuerst 
+            die nächste Ressource bekommt.
+          public void acquire() throws InterruptedException
+          - Holt sich eine Erlaubnis vom Semaphore-Objekt fortfahren zu dürfen, falls keine Ressourcen verfügbar sind blockt die Methode.
+            Kann durch Interrupt unterbrochen werden.
+          public void acquireUninterrubtibly()
+          - wie acquire, lässt sich allerdings nicht mit einem Interrupt abbrechen.
+          public boolean tryAcquire()
+          - versucht eine Ressource zu bekommen, falls nicht möglich liefert die Methode sofort false zurück.
+          public void release()
+          - Gibt die Ressource wieder frei
+          public int availablePermits()
+          - Liefert die Anzhal der zur Verfügung stehenden Ressourcen.
+          public final int getQueueLength()
+          - Liefert die Anzahl der wartenden Threads
+-- BEISPIEL Verwendung einer Semaphore: beispiel13.SemaphoreVerwendung.java 
+   Ressourcen werden geholt und die Semaphore hochgezählt
+   Ressourcen werden wieder freigegeben und die Semaphore runtergezählt.
+  
+- DeadLock
+  - Sobald es mehrere kritische Abschnitte gibt, welche von mehreren Threads gleichzeitig verwendet werden sollen, kann es zu sogenannten DeadLocks führen.
+    DeadLocks bedeuten, dass durch die Reservierung von Ressourcen ein nicht lösbarer Konflikt entstanden ist und das gesamte Programm hängt.
+    
+    DeadLocks entstehen durch Reservierung in unterschiedlicher Reihenfolge und müssen durch Korrektur der Logik gelöst werden.
+-- BEISPIEL Deadlock: beispiel14.DeadLockMain.java
+   Auf Eingabeaufforderung ausführen.
+   Wenn DeadLock erreicht [STRG]+[PAUSE] drücken.
+   DeadLock Erkennung der JVM.
+   
+-- ÜBUNG 7 : Lock auf LinkedList
+
+OPTIONAL ---------------------------------------------------------------------------------------\    
+- Threadverwaltung abgeben:
+  - Um Runnables und auch Threads mehrmals zu starten muss jedes mal ein neues Thread-Objekt erzeugt werden.
+    Diese Tätigkeiten können auch abgegeben werden.
+  - Die Schnittstelle Executor
+    - Executor implementierende Klassen stellen eine execute(Runnable task)-Methode bereit, die ein Runnable entgegen nimmt und es ausführen.
+    - Wichtige Implementierungen
+      - ThreadPoolExecutor: Baut eine Sammlung von Threads auf (Thread-Pool). Ausführungsanfragen werden von freien Threads übernommen.
+      - ScheduledThreadPoolExecutor: Wie oben, unterstützt Ausführung zu einer bestimmten Zeit oder mit Wiederholungen.
+  - Nutzen der Executors
+    static ExecutorService newCachedThreadPool()
+    - Liefert ThreadPool mit wachsender Größe
+    static ExecutorService newFixedThreadPool( int nThreads )
+    - Liefert einen ThreadPool mit maximal nThreads.
+    newSingleThreadScheduledExecutor()
+    newSchedulesThreadPool( int corePoolSize )
+-- BEISPIEL ThreadPools beispiel07.ThreadPoolsNutzen.java
+    void execute(Runnable command)
+    - Führt das Runnable auf einem neuen Thread aus.
+    
+- Threads mit Rückgabe
+  - Threads können nur über Umwege Ergebnisse zurückliefern.
+    - Zum Beispiel könnte man in einer Unterklasse von Thread oder Runnable eine Datenstruktur übergeben,
+      in welche man nach der Berechnung das Ergebnis rein schreibt.
+      Die Datenstruktur kann dann vom Aufrufer auf Änderungen untersucht werden.
+      
+  - Die Java-Bibliothek bietet mit dem Interface Callable<V> eine Möglichkeit, Ergebnisse zurück zu liefern.
+    V call()
+    - wird ausgeführt, wenn der Thread ausgeführt wird und liefert ein Objekt vom Typ V zurück.
+      Es bringt nichts die call()-Methode selbst auszuführen, denn dann wird sie im aktuellen Thread ausgeführt.
+  - Callables können nicht an Threads übergeben werden, sondern nur an Executor-Objekte.
+    Diese erstellen einen Tread dafür und führen call aus.
+-- BEISPIEL Callable für Array Sortieren: beispiel07.SorterCallable.java
+  - Um das Callable auszuführen wird es per submit(Callable<V> task)-Methode an den ExecutorService (ThreadPool) gesendet.
+    Die Methode liefert ein Future-Objekt zurück.
+  - Das Future-Objekt dient dazu zu ermitteln, ob die Aufgabe abgeschlossen wurde und um das Ergebnis zu holen:
+  V get() throws InterruptedException, ExecutionException
+  - Liefert das Ergebnis des Callable zurück, wartet auf die Fertigstellung.
+  boolean isDone()
+  - Liefert, ob das Callable beendet wurde.
+-- BEISPIEL Callable mit Executor und Future verwenden: beispiel07.SorterMain.java
+  - Normalerweise würde man mehrere Callables an den ThreadPool übergeben.
+    Sobald alle gestartet wurden kann man auf die Fertigstellung warten, oder erst etwas anderes machen und später nachsehen ob die Ergebnisse bereit stehen.
+  
+  - Neben der submit()-Methode für Callables gibt es auch noch 2 submit()-Methoden für Runnables,
+    um diese genauso auszuführen und mit einem Future Objekt auf die Fertigstellung warten zu können.
+    
+  - Um mehrere Callables zu starten können die auch in einer Liste verpackt werden und dann einem ThreadPool (ExecutorService) übergeben werden:
+  <T> List<Future<T>> invokeAll( Collection<? extends Callable<T>> tasks ) throws InterruptedException
+  - Die Methode erwartet eine Liste von Callables und führt diese alle aus.
+    Es wird eine Liste von Future-Objekten zurück geliefert.
+  <T> T invokeAny( Collection<? extends Callable<T>> tasks ) throws InterruptedException, ExecutionException
+  - Die Methode erwartet eine Liste von Callables und führt sie aus. Das erste abgeschlossene Callable liefert das Ergebnis zurück.
+  
+- Zeitsteuerung mit ScheduledExecutorService
+  - Die Klasse ScheduledThreadPoolExecutor implementiert ScheduledExecutorService und schreibt damit:
+  scheduleXXX()-Methoden zur Verfügung um ein Callable oder Runnable zu bestimmten Zeiten und Wiederholungen auszuführen.
+-- BEISPIEL Ausgabe mit ScheduledExecutor: beispiel08.ScheduledExecutorServiceBeispiel.java
+
+OPTIONAL ---------------------------------------------------------------------------------------/

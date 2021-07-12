@@ -1,0 +1,175 @@
+Folien zum Lehrgangsbeginn
+	"01 - Grundlagen" Folien 1 - 10
+
+1. Einrichten der Entwicklungsumgebung
+
+1.1. Verwendete Software
+	- jEdit
+	- GNU-Compiler
+	
+1.2. Einrichten der Konsole in jEdit
+	- jEdit starten
+	- Extras -> Globale Optionen -> Proxy-Server
+		- Host: 172.16.63.250
+		- Port: 3128
+		- bei HTTP und SOCKS einstellen
+	- Plugins -> Plugin Manager -> Installieren -> nach "Console" suchen
+	- Console installieren
+	- Konsole ist jetzt unten in jEdit zu finden und kann durch Anklicken geöffnet werden
+	- Extras -> Globale Optionen -> Bearbeiten -> bei "Tabulator"- und "Einrückung Breite" 4 eingeben --> OK
+	
+1.3 Hallo-Welt öffnen
+	- "hallo_welt.cpp" öffnen und erläutern
+	- das erste mal compilieren mit --> g++ 01_hallo_welt.cpp -o hallo_welt.exe
+	- Vorgang der Compilierung/Linkung erläutern
+	- Ausführen mit hallo_welt.exe
+	
+2. Begrifflichkeiten
+	- Betriebssystem
+	- Algorithmus
+	- Befehl
+	- Programm
+	- Programmiersprache
+	- Maschinensprache
+	- Assemblersprache
+	- Höhere Programmiersprachen
+	- Programmierung
+	- Quellcode
+	- Sourcecode
+	- Compiler
+	- Interpreter 
+	- Linker
+
+
+----- Ende 1. Tag ----- Dienstag
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 2. Tag --- Mittwoch
+
+1. Vokabular
+	- Variablen
+	- Konstanten
+	- Bezeichner
+	- Datentyp
+	
+2. Übersicht Datentypen an Tafel gem. '02 - Templates/Datentypen.xmind'
+	-- '02 - Templates/01 - Grundlagen/02_datentypen.cpp'
+
+3. Zahlensysteme
+	- Binär
+	- Dezimal
+	- Oktal mit führender 0
+	- Hexadezimal mit führendem 0x
+
+4. Deklarieren / Initialisieren von Variablen
+	-- '02 - Templates/01 - Grundlagen/03_variablen.cpp'
+
+5. Operatoren
+	- char => Escape-Sequenzen (\a, \t, \n und Schützen von \", \', \\)
+	-- '02 - Templates/01 - Grundlagen/04_operatoren.cpp'
+	
+
+6. Ein-/Ausgabe mit <iostream>
+	- cout-Objekt
+	- cin-Objekt
+	- Modifizieren der Streams
+  - Exkurs <string>
+    - Konkatenation mit +
+    - Konvertierung mit to_string() nur bei C++11
+	-- '02 - Templates/01 - Grundlagen/05_input_output.cpp'
+
+Übungen 1 - 8
+
+----- Ende 2. Tag ----- Mittwoch
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 3. Tag --- Donnerstag
+
+Wiederholung Typen, Variablen, Operatoren
+
+- Formatierte Ein-/Ausgabe von Ganzzahlen, Fließkommazahlen, Strings, Bools
+	--> '02 - Templates/01 - Grundlagen/06_formatierung.cpp'
+	- Ganzzahlen:
+		- oct = Oktale Darstellung
+		- hex = hexadezimale Darstellung
+		- dec = dezimale Darstellung
+		- showpos bzw. noshowpos (Ausgabe von positiven Zahlen mit oder ohne Vorzeichen)
+		- uppercase bzw. nouppercase (Groß- bzw. Kleinbuchstaben von Hex-Zahlen)
+	- Fließkommazahlen:
+		- showpoint bzw. noshowpoint (Anzeigen des Punkts bei der Ausgabe und Anzeigen aller Nullen 					      		      entsprechende der Genauigkeit bzw. wenn keine Nachkommastelle kein
+ 			 		      Punkt bzw. Löschen von Nullen am Ende)
+		- fixed = Darstellung als Festpunktzahl
+		- scientific = Darstellung in Exponentialschreibweise
+		- setprecision = Genauigkeit festlegen
+	- Felder
+		- setw(int n) = Breite festlegen (auch für Eingabe, d.h. nur Anzahl Zeichen wird eigelesen)
+		- setfill(char c) = Füllzeichen festlegen (Standard ' ')
+		- left, right = Links- bzw. Rechtsbündig
+		- internal = Vorzeichen links-, Wert rechtsbündig
+		- cin.sync() = Puffer leeren
+		- cin.clear() = Fehlerflags löschen
+		- cin.get() = Return einlesen aber nicht Speichern
+		- getline(cin, sVar, '!') = Alles bis ! einlesen
+
+Übungen 9 - 18
+	
+----- Ende 3. Tag ----- Donnerstag
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 4. Tag --- Freitag
+
+1. Kontrollstrukturen
+	--> '02 - Templates/01 - Grundlagen/07_kontrollstrukturen.cpp'
+	- Darstellung von Programmabläufen an der Tafel
+	- if, else if, else
+	- switch (Bei Überprüfung auf Gleichheit)
+
+Übungen 19 - 23
+
+----- Ende 4. Tag ----- Freitag
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 5. Tag --- Montag
+
+1. Kontrollstrukturen - Schleifen
+	--> '02 - Templates/01 - Grundlagen/08_schleifen.cpp'
+	- while
+	- do while
+	- for
+2. Exkurs Sprünge bei Kontrollstrukturen
+	- break
+	- continue
+	- goto
+	=> alle 3 möglichst nicht verwenden (Ausnahme break in switch-case) !!!
+	
+Übungen 24 - 32
+
+----- Ende 5. Tag ----- Montag
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 6. Tag --- Dienstag
+
+1. Unterprogramme
+	--> '02 - Templates/01 - Grundlagen/09_unterprogramme.cpp'
+	- Signatur von Unterprogrammen
+		--> Rückgabetyp Funktionname ({Typ Parametername}*)
+	- Prozeduren
+		- Datentyp void
+	- Funktionen
+	- Vorwärtsdeklaration
+
+2. Rekursive Funktionen
+	- allgemeine Erklärung am Bsp. Fakultät
+		- zunächst mathematisch an Tafel
+		- Abbruchbedingung definieren
+		- Rekursionsschritt definieren
+	- Spiel:
+		- jeder LT repräsentiert Fak-Funktion (jeder bekommt Zettel und steht auf)
+		- einer bekommt Aufgabe zu lösen
+		- wenn er nicht lösen kann, muss er anderen LT fragen --> Rekursionsschritt	
+	--> '02 - Templates/01 - Grundlagen/10_rekursion.cpp'
+	
+3. Symbolische Konstanten und Makros
+	--> '02 - Templates/01 - Grundlagen/11_preprozessor.cpp'
+	- #define
+	- Makros
+	
+Übungen 33 - 47
+
+----- Ende Teil 1 ----- Dienstag
+--------------------------------------------------------------------------------------------------------------

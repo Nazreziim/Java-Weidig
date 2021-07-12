@@ -1,0 +1,30 @@
+Die einfache Implementierung von list() mit FilenameFilter
+
+Die Methode list() holt zunächst ein Feld von Dateinamen ein. Nun wird jede Datei mittels der accept()-Methode geprüft und in eine interne ArrayList übernommen. Nach dem Testen jeder Datei wird das Array mit ((String[])(v.toArray(new String[0])) in ein Feld von Strings kopiert. Bei listFiles() steht anstelle von String dann File.
+Dateien aus dem aktuellen Verzeichnis filtern
+
+Wir können somit ein einfaches Verzeichnisprogramm programmieren, indem wir die Funktionen von getProperty() und list() zusammenfügen. Zusätzlich wollen wir nur Dateien mit der Endung .txt angezeigt bekommen.
+
+Listing 12.3   Dir.java
+
+import java.io.*;
+class TxtFilenameFilter implements FilenameFilter
+{
+  public boolean accept( File f, String s )
+  {
+    return s.toLowerCase().endsWith( ".txt" );
+  }
+}
+public class Dir
+{
+  public static void main( String[] args )
+  {
+    File userdir = new File( System.getProperty("user.dir") );
+    System.out.println( userdir );
+    for ( String entry : userdir.list(new TxtFilenameFilter()) )
+      System.out.println( entry );
+  }
+}
+
+
+Hinweis   Die zusätzliche Java-Biblitohek Apache Commons IO (http://jakarta.apache.org/commons/io/) bietet über das Paket org.apache.commons.io.filefilter vielfältige Datei-Filter, wie SuffixFileFilter oder WildcardFilter.

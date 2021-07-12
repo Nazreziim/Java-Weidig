@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!--Watch out: Here we have to define the controller (by passing the classname)! -->
+<GridPane xmlns="http://javafx.com/javafx/8.0.202"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="day4.p3b.controls.loginform.fxml.LoginFormFXMLController">
+	<padding>
+		<Insets top="25" right="25" bottom="25" left="25" />
+	</padding>
+
+	<!--Text, Labels, Textfields.... easy so far... -->
+	<Text id="welcome-text" text="Welcome" GridPane.columnIndex="0"
+		GridPane.rowIndex="0" GridPane.columnSpan="2" />
+
+	<Label text="User Name:" GridPane.columnIndex="0"
+		GridPane.rowIndex="1" />
+
+	<TextField text="Ikke" GridPane.columnIndex="1"
+		GridPane.rowIndex="1" />
+
+	<Label text="Password:" GridPane.columnIndex="0"
+		GridPane.rowIndex="2" />
+
+	<PasswordField fx:id="passwordField"
+		GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+
+	<!--Now we define a HBox with the connecting element to the controller defined 
+		above -->
+	<HBox spacing="10" alignment="bottom_right"
+		GridPane.columnIndex="1" GridPane.rowIndex="4">
+		<Button text="Sign In" onAction="#handleSubmitButtonAction" /> <!--This method should be defined within the controller class -->
+	</HBox>
+
+	<Text fx:id="actiontarget" GridPane.columnIndex="1"
+		GridPane.rowIndex="6" />
+
+	<!-- Just for fun, without any meaning we add some radiobuttons in the end! -->
+	<fx:define>
+		<ToggleGroup fx:id="myToggleGroup" />
+	</fx:define>
+	<RadioButton text="A" toggleGroup="$myToggleGroup"
+		GridPane.columnIndex="0" GridPane.rowIndex="7" />
+	<RadioButton text="B" toggleGroup="$myToggleGroup"
+		GridPane.columnIndex="0" GridPane.rowIndex="8" />
+	<RadioButton text="C" toggleGroup="$myToggleGroup"
+		GridPane.columnIndex="0" GridPane.rowIndex="9" />
+
+	<!-- To refine a CSS stylesheet we have to use the following -->
+	<stylesheets>
+		<URL value="@login.css" />
+	</stylesheets>
+
+</GridPane>

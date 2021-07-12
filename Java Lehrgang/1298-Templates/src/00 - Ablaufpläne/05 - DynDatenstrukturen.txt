@@ -1,0 +1,64 @@
+﻿----- Beginn 1. Tag ---
+
+1. Motivation für Listen
+	--> 1000 Messwerte ( Array mit 1000 Einträgen)
+	--> weitere 50 Messwerte
+	--> vorherigen 1000 müssen kopiert werden und dann können die 50 ins neue Array eingelesen werden
+	
+	double[] messwerte = new double[1000];
+	double[] messwerte_neu = new double[1050];
+	for(int i = 0; i < messwerte.length; i++)
+	{
+		messwerte_neu[i] = messwerte[i];
+	}
+	usw.
+
+2. Einfach verkettete Listen
+	--> Iterieren über Listen (iterativ und rekursiv)
+	--> Ausgeben von Elementen
+	--> Einfügen von Elementen
+	
+	alles mit Hilfe von Übung 1 a-d
+	
+3. Übung 1 e-i LT machen lassen
+
+----- Ende 1. Tag ----- 
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 2. Tag --- 
+
+1. Einfügen von Elementen mit Hilfe von Übung 1 j erklären
+	--> einmal mit Überprüfung des Schlüssels beim nächsten Element
+	--> einmal mit rekursiver Funktion, die Referenz zurückgibt
+	
+2. Übungen 2 und 3
+
+----- Ende 2. Tag ----- 
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 3. Tag --- 
+
+1. Vorstellen Bestandteile von Binärbäumen:
+	- Wurzel
+	- Ast
+	- Blatt
+	- Knoten
+	- Höhe, Tiefe etc.
+	
+2. Umsetzung in Java erarbeiten mit LT
+	- Iterieren über Bäume
+	- Einfügen von Elementen
+	- Ausfügen von Elementen
+	
+Übungen 4 - 8
+
+----- Ende 3. Tag ----- 
+---------------------------------------------------------------------------------------------------------------
+----- Beginn 4. Tag --- 
+
+1. Vormittags
+	- Zeit für Wiederholung und Vorbereitung auf LN geben (Spickzettel etc.)
+	
+2. Nachmittags
+	- Probeklausur
+
+----- Ende 4. Tag ----- 
+---------------------------------------------------------------------------------------------------------------

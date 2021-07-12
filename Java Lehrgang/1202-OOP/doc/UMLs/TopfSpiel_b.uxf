@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>50</y>
+      <w>220</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>TopfSpiel
+--
+-maxMuenzen = 7: int {readonly}
+-sperre = 0: int
+-aktuellerSpieler = 0: int
+--
+_+main(String[] args): void_
++TopfSpiel()
+-runde(): void
+-printMenu(): void
+-printTabelle(): void
+-printAktionError(): void
+-printTauschError(): void
+-reduceSperre(): void
+-nextSpieler(): void
+-getAktuellerSpieler(): int
+-getSieger(): int
+-istBeendet(): boolean
+-tausch(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>130</y>
+      <w>230</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Topf
+--
+-maxMuenzen: int {readonly}
+-muenzen = 0: int
+--
++Topf(int maxMuenzen)
++getMuenzen(): int
++addMuenzen(int muenzen): void
++takeMuenze(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>170</y>
+      <w>180</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=2
+r1=-spieler</panel_attributes>
+    <additional_attributes>160.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+</diagram>

@@ -1,0 +1,17 @@
+public class ListElem {
+	
+	private static int zaehler = 0;
+	public int key;
+	public int info;
+	public ListElem next;
+	
+	public ListElem() {
+		this.key = zaehler++;
+		this.info = 0;
+		this.next = null;
+	}
+	
+	public String toString() {
+		return "Element " + this.key ": " + this.info + "\n" + this.next.toString();
+	}
+}

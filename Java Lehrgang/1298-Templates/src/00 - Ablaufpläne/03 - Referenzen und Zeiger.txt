@@ -1,0 +1,93 @@
+﻿----- Beginn 1. Tag --- Mittwoch
+
+1. Speicher allgmein
+	- Variable deklarieren => Anlegen von Speicher			int i = 5;
+	--> Speicheradresse der Variable (Referenzierungsoperator)	&i
+	--> Wert der Variable						i
+
+2. Referenztypen
+	-- '02 - Templates/03 - Referenzen und Zeiger/01_referenzen.cpp'
+	- Markierung mit &						int& ri = i
+	--> Referenz auf andere Variable, d.h. jede Veränderung wirkt sich auf beide Variablen aus
+	--> Referenz verfügt über keinen eigenen Speicherbereich im Gegensatz zu Zeigern
+
+	-- '02 - Templates/03 - Referenzen und Zeiger/02_referenzen_unterprogramme.cpp'
+	- Referenz als Parameter Vergleich CbR und CbV
+		- Call by Reference
+		--> jede Veränderung in UP verändert auch Ausgangsobjekt
+		- Call by Value
+		--> interne Kopie der Parameter
+		- Read-Only-Referenz
+
+		=> Vorteile von Call by Reference
+			+ Keine Kopie der Parameter -> bessere Laufzeit
+			+ Rückgabe von mehreren Werten möglich -> bei Funktion nur eine Rückgabe mit return
+	- Referenzen als Return-Wert
+		- Exkurs Schlüsselwort static
+			- static int iZahl = 0;
+			- statische Variable, d.h. statische Lebensdauer (nicht auf STACK sondern in 
+			  Datensegment des Programms)
+			--> allozierter Speicher der Unterprogramm-Variable bleibt auch nach UP-Ende erhalten
+		- Objekt auf das Referenz verweist, muss auch nach UP-Ende noch existieren
+		- ggf. statische Variable erzeugen
+
+Übungen 1 - 6
+
+----- Ende 1. Tag ----- Mittwoch
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 2. Tag --- Donnerstag
+
+1. Zeigertypen
+	-- '02 - Templates/03 - Referenzen und Zeiger/03_zeiger.cpp'
+	- Markierung mit *						int* i;
+	- Speichern nur Adressen (Repräsentation der Adresse)
+	- Dereferenzierungsoperator					*i
+	- Adresse einer Zeigervariable					&i	
+	- Zeiger als Parameter
+		--> in UP nicht die Dereferenzierung vergessen
+	-- '02 - Templates/03 - Referenzen und Zeiger/04_zeiger_heap.cpp'
+	- Objekte auf Heap anlegen
+		- new und delete					int* pI = new int(0); delete pI;
+		- beim Löschen von Arrays [] nicht vergessen		delete[] pArr;
+
+Übungen 7 - 11
+
+2. Zeiger und Arrays
+	-- '02 - Templates/03 - Referenzen und Zeiger/05_zeiger_arrays.cpp'
+	- jedes Array ist automatisch ein Zeiger (Zeiger auf erstes Element)
+	- Adressierung von Array-Elementen auch mit Zeigerarithmetik
+		- iArr[0] zeigt auf erstes Element
+		- iArr+1 zeigt auf zweites usw.
+		- d.h. iArr+i zeigt auf i-tes Element
+		--> *(iArr + i) ist das i-te Element
+	- Adressierung mit Zeigervariablen
+		- int* pIArr = iArr; --> zeigt auf iArr[0]
+
+3. Strings und Zeiger auf Zeiger
+	-- '02 - Templates/03 - Referenzen und Zeiger/06_zeiger_strings.cpp'
+	- Aufbau C-Strings erläutern
+	--> char cArr[] = "hallo welt" ===>> 'h''a''l''l''o'' ''w''e''l''t''\0'
+	- char* p = cArr; ==> p zeigt auf 'h'
+
+Übungen ...
+
+
+----- Ende 2. Tag ----- Donnerstag
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 3. Tag --- Freitag
+
+- Exkurs Namensbereiche
+	- Erläuterung Notwendigkeit: Namenskonflikte bei großen Projekten
+	- Definition von Namensbereichen
+		--> Verwendung von Bezeichnern ohne Rücksicht darauf, ob diese außerhalb bereits verwendet wurden
+		--> Ansprechen mit ::
+	- using
+		- using-Deklaration (nur Import des angegeben Bezeichners): using meinNamensbereich::funktion
+		- using-Direktive (Import aller Bezeichner): using namespace meinNamensbereich
+
+---------- NATO-Pause ----------
+
+--> nach der NATO-Pause: Ausgabe und Besprechung Leistungsnachweis
+
+----- Ende 3. Tag ----- Freitag
+---------------------------------------------------------------------------------------------------------------

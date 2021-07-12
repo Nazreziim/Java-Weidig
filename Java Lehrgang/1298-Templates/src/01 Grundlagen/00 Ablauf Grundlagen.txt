@@ -1,0 +1,34 @@
+1. Tag:
+-------
+- Begrüßung, Vorstellung
+- Chef, Spieß, Refü
+- Grundlagen Programmiersprachen: Maschinensprachen, Assembler, Höhere Prog.sprachen (Deskripitiv,
+  sequentiell, objektorientiert)
+- HelloWorld.java schreiben (mit jEdit - NICHT Eclipse!)
+- Java-Compiler (Übersetzer von *.java -> *.class):  javac -cp . <name>.java 
+- JVM (Maschinenabhängiger Interpreter): java -cp . <name>
+- Bestandteile von HelloWorld erklären
+
+Vokabelliste: 
+- Compiler, Interpreter
+- Schlüsselwort, Kommentar, Trennzeichen, Literal, Bezeichner
+- Anweisung = statement = Befehl
+
+
+2. Tag:
+-------
+- Variablen und Datentypen: datentypen.Template_Variablen.java
+  gleichzeitige Darstellung als Baum an der Tafel:
+   
+  primitive Typen:
+  	Zahlen
+  		ganze Zahlen: byte (2^8), short (2^16), int (2^32), long (2^64)
+  		reelle Zahlen float (2^32), double (2^64) 
+  	andere: char(2^16), boolean (2^1)
+  komplexe Typen: String
+  
+  Dabei sind einige Ausflüge ins Zahlensystemsumrechnungen nötig - außerdem sollte der Zahlenkreis
+  erklärt und dargestellt werden!
+
+- Konstanten erklären (geht fix!)
+- Casting: Von klein nach groß geht meistens gut - von groß nach klein nicht immer

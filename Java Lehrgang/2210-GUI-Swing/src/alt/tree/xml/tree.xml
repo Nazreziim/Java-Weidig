@@ -1,0 +1,7 @@
+<root><Child1><GrandSon1><GreatGrandSon1>Inhalt</GreatGrandSon1></GrandSon1></Child1><Child2></Child2><Child3><GrandSon3><GreatGrandSon3></GreatGrandSon3><GreatGrandSon4></GreatGrandSon4></GrandSon3></Child3>
+<Child4 name="unbekannt">
+	<GrandSon5>
+		kein Inhalt
+	</GrandSon5>
+</Child4>
+</root>

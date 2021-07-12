@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Rectangle?>
+
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ausarbeitung.Oberflaeche">
+   <children>
+      <Button fx:id="btn" layoutX="27.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#clicked" text="Bitte klicken Sie mich!" />
+      <ToggleButton fx:id="ToggleBtn3" layoutX="363.0" layoutY="168.0" mnemonicParsing="false" onMouseClicked="#clickedtoggle" text="ToggleButton" />
+      <ToggleButton fx:id="ToggleBtn1" layoutX="363.0" layoutY="233.0" mnemonicParsing="false" onMouseClicked="#clickedtoggle" text="ToggleButton" />
+      <ToggleButton fx:id="ToggleBtn2" layoutX="363.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#clickedtoggle" text="ToggleButton" />
+      <RadioButton fx:id="RadioBtn3" layoutX="480.0" layoutY="237.0" mnemonicParsing="false" onMouseClicked="#clickedradio" text="RadioButton 3" />
+      <RadioButton fx:id="RadioBtn2" layoutX="480.0" layoutY="204.0" mnemonicParsing="false" onMouseClicked="#clickedradio" text="RadioButton 2" />
+      <RadioButton fx:id="RadioBtn1" layoutX="480.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#clickedradio" text="RadioButton 1" />
+      <MenuBar fx:id="MenuBar" layoutX="15.0" layoutY="14.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" text="Open" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem fx:id="Killer" mnemonicParsing="false" onAction="#kill" text="Kill" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <MenuButton fx:id="MenuButton" layoutX="189.0" layoutY="14.0" mnemonicParsing="false" text="MenuButton">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+            <MenuItem mnemonicParsing="false" text="Action 3" />
+        </items>
+      </MenuButton>
+      <ButtonBar layoutX="27.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button fx:id="ButtonBarLinks" mnemonicParsing="false" onAction="#mover" text="Links" />
+            <Button fx:id="ButtonBarHoch" mnemonicParsing="false" onAction="#mover" text="Hoch" />
+            <Button fx:id="ButtonBarRunter" mnemonicParsing="false" onAction="#mover" text="Runter" />
+            <Button fx:id="ButtonBarRechts" mnemonicParsing="false" onAction="#mover" text="Rechts" />
+        </buttons>
+      </ButtonBar>
+      <SplitMenuButton fx:id="SplitMenuButton" layoutX="313.0" layoutY="14.0" mnemonicParsing="false" text="SplitMenuButton">
+        <items>
+          <MenuItem fx:id="SplitMenuKreis" mnemonicParsing="false" onAction="#formChoice" text="Kreis" />
+          <MenuItem fx:id="SplitMenuEllipse" mnemonicParsing="false" onAction="#formChoice1" text="Ellipse" />
+            <MenuItem fx:id="SplitMenuViereck" mnemonicParsing="false" onAction="#formChoice2" text="Viereck" />
+        </items>
+      </SplitMenuButton>
+      <ToggleButton fx:id="ToggleBtnBW" layoutX="212.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#toggle" text="Toggle" />
+      <Rectangle fx:id="Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="68.0" layoutX="-93.0" layoutY="252.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+      <Ellipse fx:id="Ellipse" fill="DODGERBLUE" layoutX="-35.0" layoutY="158.0" radiusX="18.0" radiusY="55.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="Circle" fill="#008a25" layoutX="-73.0" layoutY="181.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
+   </children>
+</Pane>

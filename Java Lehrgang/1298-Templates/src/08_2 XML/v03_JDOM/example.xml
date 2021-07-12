@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	Hier kann auch Text stehen.
+	<Child name="Peter">
+		Jedes Element kann Text enthalten.
+		<GrandSon name="Karl" Alter ="23" >Werbung</GrandSon>
+		Dieser Text steht sogar hinter Elementen.
+	</Child>
+	<Child></Child>
+	<Child></Child>
+</root>

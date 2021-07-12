@@ -1,0 +1,11 @@
+.root {
+    -fx-background-color: green;
+}
+
+#obereLeiste {
+    -fx-background-color: white;
+}
+
+#untereLeiste {
+	-fx-background-color: red;
+}

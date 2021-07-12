@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/1299-ExternalBlobs/db/sqlite-jdbc-3.20.0.jar" sourcepath="/1299-ExternalBlobs/db/sqlite-jdbc-master.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/1299-ExternalBlobs/db/sqlite-jdbc-3.20.0-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/1299-ExternalBlobs/db/h2-1.4.200.jar" sourcepath="/1299-ExternalBlobs/db/h2-1.4.200-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/1299-ExternalBlobs/db/h2-1.4.200-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/1299-ExternalBlobs/db/mariadb-java-client-2.7.0.jar" sourcepath="/1299-ExternalBlobs/db/mariadb-java-client-2.7.0-javadoc.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

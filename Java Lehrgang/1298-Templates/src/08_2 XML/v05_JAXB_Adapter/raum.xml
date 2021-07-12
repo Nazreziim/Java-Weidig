@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<raum>
+    <raumfarbe>192 192 192 255</raumfarbe>
+    <zahl>2</zahl>
+    <name>Kaffeerauminnenfach</name>
+    <spielerliste>
+        <Spieler>
+            <birthday>1939-08-30T00:00:00+01:00</birthday>
+            <name>John D.</name>
+        </Spieler>
+        <Spieler>
+            <name>Jane D.</name>
+        </Spieler>
+    </spielerliste>
+</raum>

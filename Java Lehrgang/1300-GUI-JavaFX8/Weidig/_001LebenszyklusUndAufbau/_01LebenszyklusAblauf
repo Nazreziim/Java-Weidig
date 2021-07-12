@@ -1,0 +1,18 @@
+-- _011 Hello World Ablauf
+
+- Klasse von Application erben lassen
+--> sorgt dafür, dass start implementiert wird
+--> Erklären, was Stage und primaryStage ist [JavaDoc]
+
+- launch(.. Autovervollständigung in Main Methode
+--> Aufzeigen wofür das ist und was es tut gem. JavaDoc
+
+- Methoden init() und stop() hinzufügen
+--> JavaFX ApplicationThread und JavaFXLauncherThread erklären
+--> Lebenszyklus anhand von Breakpoints über Debugger zeigen
+--> Zeigen, dass in init der JavaFX-Launcher Thread genutzt wird
+anschließend ab start() der JavaFX Application Thread
+
+
+Zyklus: 
+--> Main Methode --> alles vor launch() --> launch() --> init() --> start() --> stop() --> alles nach launch in Main Methode

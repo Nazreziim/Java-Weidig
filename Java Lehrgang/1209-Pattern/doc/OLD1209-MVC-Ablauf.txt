@@ -1,0 +1,133 @@
+##################################################
+# Themengebiet: MVC / Observer
+# Timebox:      1 Tag
+# Stand:        2018-07-11
+##################################################
+
+Tag 1 --------------------------------------------
+
+MVC
+- Beschreibung
+  - Muster zur Trennung von Software in drei Komponenten: Das Datenmodell (Model), die Präsentation (View) und die Programmsteuerung (Controller).
+  - Das Muster gilt als Architekturmuster und als Entwurfsmuster.
+    - Architekturmuster: Bewährte Lösung für den Gesamtaufbau einer Software.
+    - Entwurfsmuster: Bewährte Lösung für ein Teilproblem einer Software.
+    
+  - Model:
+    - Das Model enthält die darzustellenden Daten und die Geschäftslogik. Das heißt alle Daten, welche für die Software wichtig sind und alle Methoden um mit diesen Daten zu arbeiten.
+    - Das Model ist von Controller und View unabhängig und kennt diese in der Reinform des MVC Patterns nicht.
+    
+  - View:
+    - Der View ist dafür zuständig, Daten aus dem Model darzustellen und Benutzerinteraktionen entgegen zu nehmen.
+      Er ist allerdings nicht für die Weiterverarbeitung der entgegen genommenen Daten zuständig.
+    - Der View kennt sowohl das Model als auch den Controller.
+  
+  - Controller:
+    - Der Controller verwaltet den Ablauf der Software und einen oder mehrere Views.
+    - Benutzereingaben werden an den Controller weiter gereicht:
+      - dieser verändert entsprechend die Darstellung (kleiner MVC Cycle) oder
+      - stößt Änderungen am Model an, welche anschließend durch den View dargestellt werden (großer MVC Cycle).
+      
+      Sollten die Benutzereingaben nur die Darstellung ändern (zB. Größe des Fensters beeinflussen) wird dies zwischen Controller und View bearbeitet, das Model wirkt in diesem Fall nicht mit.
+      Sollte jedoch eine Benutzereingabe eine Änderung am Model zum Ziel haben, wird diese vom Controller ausgewertet, anschließend wirkt der Controller entsprechend der Eingabe auf das Model ein,
+        was sich dementsprechend verändert. Nach der Änderung des Models benachrichtigt der Controller den View, damit dieser die neuen Daten darstellt.
+
+- Motivation
+  - Ziel des Musters ist ein flexibler Programmentwurf, der eine spätere Änderung oder Erweiterung erleichtert und eine Wiederverwendbarkeit der Komponenten ermöglicht bzw. erleichtert.
+    Es ist dann zum Beispiel möglich, eine Software zu schreiben, die dasselbe Model nutzt und es dann für unterschiedliche Betriebssysteme oder Anwendungen zugänglich macht.
+    Die Umsetzungen nutzen dasselbe Modell, nur Controller und View müssen dabei jeweils neu implementiert werden.
+    
+  - Aus einer anderen Sichtweise kann man sagen, das Model kann zur gleichen Zeit unterschiedlich dargestellt werden, ohne dass das Model darüber bescheid weis.
+    So können Informationen zum Beispiel gleichzeitig als Tabelle, als Kreisdiagramm und als Balkendiagramm dargestellt werden.
+    Änderungen, welche an einem der Orte stattfinden würden die Informationen im Model verändern und anschließend in allen 3 Darstellungsformen aktualisiert werden. 
+  
+- Struktur
+  - Alle Programme, welche bis jetzt umgesetzt wurden in den Übungen waren eine Mischform aus den drei Bestandteilen des MVC-Musters.
+    - Den meisten Entwicklungsaufwand haben wir allerdings in das Model gesteckt.
+      Bis jetzt haben wir meist die toString()-Methoden der Model Klassen verwendet um Informationen darzustellen.
+      Bei Verwendung des MVC-Musters wandert die Darstellung aus der Model-Klasse in die View-Klasse. Die toString()-Methode der Model-Klasse wird dann nurnoch zum entwickeln und debugging genutzt.
+
+  - Wenn ein Projekt mit dem MVC Muster umgesetzt wird gibt es auf der 1. Paketebene die Pakete 'controller' und 'model' sowie evtl. mehrere 'view' Pakete.
+    - Im Paket model wird das Model der Anwendung entwickelt (Die Datenklassen und die benötigte Logik (gehört bei OOP eh zusammen)).
+    - Im Paket controller befindet sich der Controller mit allen benötigten Klassen. Dieser ist für den Programmablauf zuständig.
+    - Die View Pakete stellen, jedes für sich, einen, von den anderen Views unabhängigen, View dar.
+    
+- Beispiel Projekt:
+  - Ein kleines Model bestehend aus einem Datum, welches eine Ganzzahl darstellt und grundlegende Rechenoperationen zur Verfügung stellt.
+    (Hier sollen Inkrement, Dekrement, Addition und Subtraktion reichen.)
+    
+  - Beginn bei basic.version1
+    
+  - Ein View, welcher die Zahl als Dezimalzahl darstellt.
+  - Ein View, welcher die Zahl als Reihe von '*'-Zeichen darstellt.
+  
+  - Ein Controller, welcher Operationen auf dem Datum ausführt.
+
+Observer
+- Beschreibung
+  - Das Observer Muster bedeutet ist ein Entwurfsmuster in der Softwareentwicklung.
+    - Entwurfsmuster: Bewährte Lösung für ein Teilproblem einer Software.
+  
+  - Dabei wird ein Objekt von einem anderen Beobachtet.
+  - Die Rollen sind dabei:
+    - Observable: Das Objekt, welches überwacht wird.
+    - Observer:  Das Objekt, welches ein Observable überwacht.
+
+- Motivation
+  - Das Observer Muster eignet sich um automatisiert auf Veränderungen an einem Objekt zu reagieren.
+  - Dabei muss das überwachte Objekt nur wenige Details des Überwachers kennen.
+  - Das überwachte Objekt benachrichtigt den Überwacher bei Änderungen, die Reaktion darauf liegt dann beim Überwacher. 
+
+- Struktur
+  - Um das Observer Muster in Java umzusetzen, muss das überwachbare Objekt von der Klasse Observable erben.
+    Des Weiteren müssen die Überwacher das Interface Observer implementieren und daraufhin die Methode
+    - void update( Observable o, Object arg )
+    implementieren.
+    
+    Anschließend müssen sich die Observer am Observable registrieren mit der Methode 
+    - void addObserver( Observer o )
+    Nun muss das Observable bei Veränderungen den eigenen Zustand auf geändert stellen
+    - protected void setChanged()
+    und anschließend die Observer informieren, dies geschieht mit der Methode 
+    - void notifyObservers()
+
+- Übung: 
+	Umbauen des MVC-Beispiels auf Observer (evtl Zusammen)
+
+  - Um das Observer Muster in das MVC Beispiel von eben einzubauen muss die Klasse ZahlEinfach von der Klasse Observable erben.
+    Nach jeder Änderung am Zustand muss setChanged() und notifyObservers() aufgerufen werden. In dieser Reihenfolge.
+     
+  - Des Weiteren müssen alle Überwacher das Interface java.util.Observer implementieren und die Methode update(Observable o, Object arg) implementieren.
+    Diese könnte zum Beispiel die show()-Methode der Views aufrufen.
+    
+  - Anschließend muss der Controller die show()-Methode der Views nicht mehr aufrufen.
+  
+- Java >8:
+  - ab Java 9 sind Observer und Observable Deprecated. 
+    https://docs.oracle.com/javase/9/docs/api/java/util/Observer.html
+    https://docs.oracle.com/javase/9/docs/api/java/util/Observable.html
+    oder
+    https://docs.oracle.com/javase/10/docs/api/java/util/Observer.html
+    https://docs.oracle.com/javase/10/docs/api/java/util/Observable.html
+    
+  - Alternative ist zum Beispiel:
+    - PropertyChangeListener + PropertyChangeSupport
+    Der Observer muss das Interface PropertyChangeListener implementieren.
+    Das Observable muss die PropertyChangeEvents absenden. Dazu kann die Implementierung aus PropertyChangeSupport genutzt werden.
+    Statt von PropertyChangeSupport zu erben, erstellt man ein PropertyChangeSupport Element und benutzt es.
+
+- Übung:
+  - Umbauen des altern Beispiels zu PropertyChange{Listener, Event, Support}.
+
+  
+  
+  
+Übungen:
+- Verändern Sie die Projekte
+  - TopfSpiel und
+  - Rennschnecke
+  zur MVC-Architektur und nutzen Sie das Observer-Muster, wenn es Sinn ergibt.
+  
+  
+  
+   

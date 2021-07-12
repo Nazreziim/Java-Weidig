@@ -1,0 +1,3 @@
+Formatierter Ausgabe ist auch moeglich
+Die Datei ist 12 gross.
+12

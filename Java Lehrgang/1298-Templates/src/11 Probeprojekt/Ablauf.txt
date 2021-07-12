@@ -1,0 +1,26 @@
+1.) Grobe Übersicht über Ablauf des SW-Projektmanagements (Analyse, Design, Implementierung, Test)
+	
+2.) SW-Entwicklungsmodelle vorstellen (Wasserfall, V-Modell, Scrum,...)
+	Für 1.) und 2.) können die vorhandenen Präsentationen von Daniel Volk genutzt werden - ich habe
+	immer nur Anteile daraus entnommen! - Ein Gruppengespräch klappt meist besser.
+	
+3.) Ausgehend davon detailliert eingehen auf:
+    	- Anforderungen / Requirements (vor der Analyse!)
+    	- SW-Testing (kann schon nach Definition der Anforderung beginnen)
+    	
+    	Analyse (alles in Enterprise Architect außer CRC-Karten!):
+    	- Use Cases (zum Festhalten von Anforderungen auch aus Kundensicht)
+    	- Szenarios oder einzelne Aktivitätsdiagramme für Use Cases (jetzt nicht mehr für den Kudnen)
+    	- CRC-Karten (evtl. optional, je nach Qualtität der Gruppe)
+    	- Grobes Klassendiagramm mit Attributen, Vererbungen und Assoziationen
+    	
+    	Design:
+    	- Ziel: Verfeinertes Klassendiagramm! Weg dahin: Wie interagieren Methoden miteinander?
+    	- Dazu entweder: Szenarios "im Kopf" durchspielen (dabei steigen die meisten aus), CRC-Karten (langwierig!),
+    					oder Sequenzdiagramme in Enterprise Architect
+    	- Wichtig: Danach muss unbedingt das Bewusstsein da sein, warum so ein Seq.diagramm Sinn macht!!!
+    	
+4.) Teams organisieren z.B. nach Paketen und Implementierungsstart (ob der Planer fertig wird ist nicht
+	entscheidend!)
+    	
+    	 

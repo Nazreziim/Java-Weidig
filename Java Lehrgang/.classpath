@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="1103-DynDatenstrukturen/src/|1101_Grundlagen/src/|1119-WdhgLN1/bOOP/|1119-WdhgLN1/aGrdlg/|1119-WdhgLN1/cDynDatenstr/|1104-Generics/src/|1119-WdhgLN1/dWdhg/|1102-OOP/src/|1105-Collections/src/aufgabe1/|1105-Collections/src/aufgabe1/" kind="src" path=""/>
+	<classpathentry kind="src" path="1101_Grundlagen/src"/>
+	<classpathentry kind="src" path="1102-OOP/src"/>
+	<classpathentry kind="src" path="1103-DynDatenstrukturen/src"/>
+	<classpathentry kind="src" path="1104-Generics/src"/>
+	<classpathentry kind="src" path="1119-WdhgLN1/aGrdlg"/>
+	<classpathentry kind="src" path="1119-WdhgLN1/bOOP"/>
+	<classpathentry kind="src" path="1119-WdhgLN1/cDynDatenstr"/>
+	<classpathentry kind="src" path="1119-WdhgLN1/dWdhg"/>
+	<classpathentry kind="output" path="1101_Grundlagen/bin"/>
+</classpath>

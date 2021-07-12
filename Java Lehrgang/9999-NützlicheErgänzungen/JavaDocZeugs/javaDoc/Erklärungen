@@ -1,0 +1,86 @@
+Ersteller: Aaron Muetze V1
+Editor: Adrian Weidig V1.1.
+
+HINWEIS: Alle HTML Dinge sind zulässig
+
+Einfacher Text:
+	Eine einfache JavaDoc erstellen und Text reinschreiben
+
+Leerzeile einfügen
+	<p>
+	verwenden um eine Leerzeile in den Code einzufügen
+	
+Unsortierte Liste einfügen
+	<ul>
+		<li>text</li>
+		<li>text</li>
+	</ul>
+	
+Hyperlink einfügen:
+<a href = https://www.google.de> Linktext </a>
+	
+Tabelle einfügen (Achtung hier spinnt Java Doc ab und an. Lösung: Ohne Tabelle erstellen. Tabelle einfügen. NeuErstellen / Überschreiben (OHNE ZU LÖSCHEN)):
+	<h1>Eine Überschrift</h1>
+	
+	<table border = "1"> 
+	 	<tr>  
+	 		<th>Berlin</th>
+			<th>Hamburg</th>
+	 		<th>München</th>
+	  	</tr>
+	  	
+	  	<tr>
+	  		<td>Miljöh</td>
+	 		<td>Kiez</td>
+	  		<td>Bierdampf</td>
+	  	</tr>
+	  	
+		<tr>
+	 		<td>Buletten</td>
+	  		<td>Frikadellen</td>
+	  		<td>Fleischpflanzerl</td>
+	  	</tr>
+	</table>
+	
+	tr = Zeile
+	td = Spalte zur dazugehörigen Zeile
+	th = Dick markierte Spalte 
+	border in table = Rahmenbreite (weglassen = ohne Rahmen)
+
+Klasse verlinken
+	@link
+	verwenden um eine andere Klasse zu verlinken
+	
+Methode/Variable verlinken
+	#stuff(int)
+	-> {@link #stuff(int)}
+	verwenden um eine Variable oder Methode zu verlinken. Funktioniert auch mit Methoden, welche dem Nutzer normalerweise nicht angezeigt werden bspw. private
+	
+Parameter, welche der Methode übergeben werden
+	@param [Name der Variable] [Beschreibung]
+	
+Rückgabewert
+	@return [Beschreibung, was zurückgegeben wird]
+	
+Siehe-Auch-Verlinkung
+	@see [Link zur Klasse, Methode oder einfach nur ein Plain-Text]
+	
+Zeitpunkt der Implementierung
+	@since [Versionsnummer oder Datum]
+	Dient zur Nachverfolgung der Programmierung
+	
+Code-Templates anpassen
+	Wir befinden uns in der View:
+	Window -> Preferences -> Java -> Code Style -> Code Templates
+	
+	Hier bitte den Haken bei
+		automatically add comments for new methods, types, modules, packages and files
+	setzen.
+	
+	Beispielsweise kann man bei:
+	Comments -> Files
+		/**
+			* @author Fw Mütze
+			* ${date}
+			*
+			*/

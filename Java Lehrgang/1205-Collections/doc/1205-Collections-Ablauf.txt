@@ -1,0 +1,118 @@
+Stand: 05.07.2017
+
+1. Tag
+Buch S.955 ff
+
+Collections ?
+Collections werden auch Container genannt, sind Datenstrukturen, die eine Gruppe von Daten
+in einer Einheit zusammenfasst (verwaltet).
+
+Unterscheidung in Liste und Menge
+
+Liste: ( List-Interface )
+	erlaubt Duplikate, 
+	kann sortiert sein, 
+	der Zugriff auf die Elemente kann sequenziell oder wahlfrei erfolgen.
+	Die Anzahl der Elemente ist beliebig.
+
+  Sonderform von Listen: (Queue-Interface)
+    Haeufig als Warteschlange verwendete Liste, auf die nur sequeenziell (FIFO-,LIFO-Prinzip)
+    zugegriffen werden kann.
+  Sonderform von Queue-Interface (Deque-Interface)
+    gestattet das hinzufuegen von Elementen vorne und hinten  	
+   
+Menge: ( Set-Interface )
+   Duplikate sind verboten; sie entspricht der Menge im mathematischen Sinn. 
+   Wird versucht ein vorhandenes Elemente nochmals aufzunehmen, bleibt das alte erhalten.
+   
+
+ 
+
+Interface-Hierarchie des Collections-Frameworks in Paket: java.util
+
+- I Iterable<T>
+-- I Collection<E>
+---  I List<E>
+---  I Set<E>
+---  I Queue 
+----  I Deque  
+
+- Map (besitzt kein Basis-Interface und ist nicht von Collection abgeleitet.)
+ Dient zur Implementierung von Schluesselwertpaaren, also einer Menge zusammengehoeriger Objektpaare.
+   Wird versucht ein vorhandenes Elemente nochmals aufzunehmen, wird das alte Element ueberschrieben,
+   d.h. altes Schluesselwertpaar wird entfernt 
+ 
+ Collections:
+ Vorteil: viele Anwendungsmoeglichkeiten bzgl. Speicherung und Verwaltung von grossen Datenmengen
+ Nachteil: Collections sind nicht synchronisiert. 
+ 
+ Schnittstellen-Methoden von Collection
+ siehe Java-Doc
+ 
+ Konkrete Klassen im Bereich Listen:
+ Mit Listen arbeiten
+ Es steht neben einen einfachen Iterator noch ein weiterer ListIterator zur Verfuegung.
+ 
+--> ArrayListTest.java
+    ArrayList    => verwaltet ein Array intern
+ --> ListeIter.java mit ListenElement.java und ListIteratorTest.java.
+ 
+ Übung: Liste -in Rennen-Klasse mit Iterator() und Iterable ausstatten.
+ 
+ --> Paket: iteratorComparator/ListIteratorTest.java verschiedene Versionen implementiert.
+ 
+ Nutzung: von ArrayList in eigener Verwaltungsklasse ansprechen
+ -- Funktionalitaet der ArrayList nutzen, 
+ -- delegierte die Methodenaufrufe von der eigenen Verwaltungsklasse an die ArrayList
+ -- und implementiere zusaetzliche Methoden in der eigenen Verwaltungsklasse.
+ 
+ --> LinkedListTest.java
+ LinkedList   => verwaltet eine doppelt verkettete Liste
+
+Übung: Aufgabe 1 und 2
+ 	  
+ 
+ 2. Tag
+ 
+Konkrete Klassen im Bereich Set (Mengen):
+Buch Seite 970 ff
+ Mit Mengen arbeiten 
+ Objekte im Set duerfen nachtraeglich nicht mehr veraendert werden.
+ Es steht nur ein einfacher Iterator zur Verfuegung.
+ 
+ --> SetTest.java und
+   HashSet	=> eine unsortierte Menge, keine Nebenlaeufigkeit, schnelle Zugriffszeit
+               Objekte benoetigen kein zusaetzliches Interface, 
+               equals() und hashCode() korrekt implementiert
+   TreeSet	=> schnelle Zugriffszeit (TreeSet > HashSet), Werte liegen sortiert vor. (balancierte Binaerbaeume)			   
+			    Objekte muessen sortierbar sein, Comparalbe() Schnittstelle ist zu implementieren (natuerliche Ordnung) oder,
+				Comparator muss existieren (externe Sortierung),ansonsten gibt es einen Fehler. 
+				TreeSet nutzt  n i c h t  equals(), sondern compareTo()
+		  		TreeSet besitzt auch NavigableSet und SortSet-Schnittstelle
+		  		
+ --> PersonSetTest.java und Person.java
+ 				Implementierung mit eigener Klasse: Person.java
+ 
+ Übung: Aufgabe 3, 4 und 5
+ zu Aufgabe 3: Zusatz zwei Tipps darauf vergleichen, ob Zahlen in beien Tipps vorhanden sind. (Mengen, Schnittmenge retainAll())
+ 
+ Konkrete Klassen im Bereich Map (Schluesselwertpaare):
+Buch Seite 980 ff
+ Mit Map arbeiten 
+ - Verbindet einen Schluessel mit einem Wert.
+- Dieser Assoziative Speicher (Beziehung Schluessel zu Wert) arbeitet nur in diese Richtung schnell. (nicht fuer Wechselbeziehungen geeignet) 
+ z.B.: Telefonbuch, key: telNr, value: persDaten.  suche ueber telNr sehr schnell -> liefert persDaten,  aber suche persDaten  -> telNr sehr langsam
+ 
+ 	HashMap		=> es koennen auch, null-Schluessel oder null-Elemente (Wert) der Map hinzugefuegt werden!
+ 				   fuer Schluessel wichtig: die equals() und hashCode() Methoden, Gleichheit wird nicht ueber Identitaet festgestellt!
+ 				   Ist auch logisch, da das Originale-Schluessel-Objekt vom Einfuegen in die Map auch nicht mehr vorliegt.
+ 				   hashCode() Methode erzeugt den schnell zugreifbaren Schluesselwert und dieser wird beim Hinzufuegen in die Map
+ 				   mit equals verglichen, ob dieser schon vorhanden ist und Wert-Objekt ersetzt werden soll. Daher equals() und hashCode() immer
+ 				   zum gleichen Ergebnis fuehren soll! 
+ 	
+ 	TreeMap		=> Aufbau vergleichbar mit TreeSet jedoch mit separatem Schluessel zur Suche.
+ 	
+ --> PersonMapTest.java mit Person.java
+ 	
+ Übung: Aufgabe 6 und 7	
+ 	

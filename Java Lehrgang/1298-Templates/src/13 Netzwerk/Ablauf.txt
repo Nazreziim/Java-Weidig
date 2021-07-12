@@ -1,0 +1,42 @@
+Ablauf Netzwerkprogrammierung:
+
+1. Tag
+------
+- Theoretische Einweisung ISO-OSI, IP-Adressen etc. gem. Word-Dokument
+	Vermittlungsschicht: IP
+	Transportschicht: IP + Portnummern = UDP (User Datagram Protocol)
+					  + Bestätigung = TCP (Tranmission Control Protocol)
+	Anwendungsschicht: Socket-Schnittstelle!
+	
+- Sockets am Beispiel: simple.client	1. mit Sockets 
+										2. mit URL 
+										3. Ins Internet 
+- aufgaben.browser
+
+
+2. Tag
+------
+- Warmup: aufgaben.emailExtractor - vorher RegEx erklären
+- Server Sockets: 
+	1.) HTTP-Server (Port 80) zum Abfragen von Verbindungen über Firefox
+	2.) Antworten zurückliefern als String (werden im Browser dargestellt)
+	3.) mehrere Anfragen von Clients parallel beantworten mit Threads
+	
+- Client-Server (simple.client_server):
+	1.) Server ersetllen, der auf Port 7 horcht
+	2.) Client erstellen, des sich dahin verbindet, Anfragen stellt und Antwort erhält
+	
+- aufgaben.chat
+	Unterschiedliche Versionen:
+		v1: Grafisch, Client und Server in einem... overdozed
+		v3: Fw Hasslauer, kurz, kompakt, übersichtlich
+	
+	
+3. Tag (kurzer Tag)
+-------------------
+
+- RMI - Theorie s. PPT
+- Eclipse-Plugin RMI unter : http://www.genady.net/rmi/v20/install/ 
+	Demos und Beisiele unbedingt mal anschauen
+- praktisches Beispiel: TimeService
+!!!! Stand 2013: Umgebungssetup funktioniert nicht - auch nicht mit Plugin!!!

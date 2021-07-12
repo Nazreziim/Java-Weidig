@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.net.*?>
+
+<!--  We define the GridPane first -->
+<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" vgap="10">
+	<padding> <Insets top="25" bottom="25" left="25" right="25"/> </padding>
+	
+	<!-- Now we do the easy text / label / textfield stuff -->
+	<Text id="willkommen-text" text="Welcome"
+		GridPane.columnIndex="0" GridPane.rowIndex="0"
+		GridPane.columnSpan="2">
+	</Text>
+	
+	<Label text="User Name:" GridPane.columnIndex= "0" GridPane.rowIndex="1"> </Label>
+	
+	<Label text="Passwort:" GridPane.columnIndex="0" GridPane.rowIndex="2"></Label>
+	
+	<TextField GridPane.columnIndex="1" GridPane.rowIndex="1"> </TextField>
+	
+	<PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2"> </PasswordField>
+	
+	<!-- We setup the button now (and later add some behaviour with event handling) -->
+	<HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="1" GridPane.rowIndex="4">
+		<Button text="Sign in"> </Button>
+	</HBox>
+	
+	<!-- Use the CSS to "redesign" the boring GUI -->
+	<stylesheets>
+		<URL value="@style.css"></URL>
+	</stylesheets>
+	
+</GridPane>
+

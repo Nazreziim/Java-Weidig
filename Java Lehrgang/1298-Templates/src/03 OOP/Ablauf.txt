@@ -1,0 +1,39 @@
+Ablauf Themeneinheit Objektorientierte Programmierung:
+------------------------------------------------------
+NOCH NICHT VOLLSTÄNDIG!
+
+1.) 
+- Klassen <-> Objekte
+- Kapselung: private < package visible < protected < public 
+	- Getter / Setter
+	- Konstruktor
+	- this und super
+	- Beispiele: 1.) Mensch   - 2.) Punkt im Paket kapselung
+
+2.) 
+- Vererbung: extends - keine Mehrfachvererbung!!!
+- Die Klasse Object (extends Chuck Norris ;-D) mit ihren Methoden toString, equals, hashCode, clone kurz zeigen (ruhig in der API)
+	- zur equals Methode: Template in package equals
+- Abstrakte Klassen: mit einzelnen abstrakten Methoden (package vererbung.personen)
+
+3.) 
+- Polymorphie: 
+	- Überladen von Methoden: gleicher Name  (möglicherweise auch gleiche Parameter - nur der return-Typ muss verschieden sein)
+	- Zwei Beispiele im Paket polymorphie
+
+
+
+- Assoziationen: 1:1 -> 1:n
+	- Aggregation, Komposition
+
+
+-
+- Interfaces als komplett abstrakte Klasse, dabei kurz auf Interfaces Comparable und Serializable aus der Java API eingehen
+- Mehrfachvererbung: Einfaches Beispiel mit dem Versuch eine Konstante über zwei Interfaces zu einer Klasse zu führen: package mehrfachvererbung
+	- Übungsaufgabe zur Mehrfachvererbung: Amphibienfahrzeug!
+- statische Attribute, Methode, Blöcke - sinnvolle Anwendung: counter! siehe package statisches
+- Einführung in Enterprise Architect: Klassendiagramm und Codeerzeugung
+
+
+4.) 
+Abschlussaufgabe: Gartenparty mit 1:n Assoziationen, Singleton-Klasse und umfangreicher Algorithmik 

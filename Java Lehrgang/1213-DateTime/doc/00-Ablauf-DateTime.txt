@@ -1,0 +1,94 @@
+##################################################
+# Themengebiet: DateTime-API
+# Timebox:      0,5 Tage
+# Stand:        2017-07-16
+##################################################
+
+Tag 1 --------------------------------------------
+
+- Neue API weil:
+  - Alte Klassen (java.util.Date und SimpleDateFormatter) waren nicht Thread-sicher.
+    Was zu Laufzeiteffekten führen konnte, was man bei speziell bei Datumsklassen nicht erwartet.
+  - Die alten Klassen waren schlecht designed, zum Beispiel starteten die Jahre in java.util.Date bei 1900,
+    die Monate bei 1 uns die Tage bei 0, nicht sehr intuitiv.
+  unter anderem diese Gründe haben dazu geführt, dass eine neue DateTime API entwickelt wurde.
+  
+- Das Paket java.time:
+  - Alle Klassen sind unveränderlich und damit Thread-Safe.
+  - Neue unterschliedliche Klassen für unterschiedliche Anwendungsfälle.
+  - Schnittstellen um spezielle Zeitformate für Länder zu implementieren, die ein anderes Format als ISO-8601 bevorzugen.
+  
+  LocalDate und LocalTime
+  - repräsentieren ein Datum oder die Zeit lokal, dass heißt entsprechend dem definierten Ort. Wie eine Uhr an der Wand.
+  LocalDateTime
+  - ein Zusammenschluss aus LocalDate und LocalTime und repräsentiert die lokale Gruppe aus Datum und Zeit.
+  
+  - Objekte erstellen:
+    LocalDateTime.now()
+    - erzeugt ein LocalDateTime Objekt mit der aktuellen Zeit und aktuellem Datum.
+    LocalDate.of(2012, Month.DECEMBER, 12);
+    - erzeugt ein LocalDate Objekt mit einem gegeben Datum.
+    LocalTime.of( 17, 18 )
+    - erzeugt ein LocalTime Objekt mit der Uhrzeit 17:18.
+    LocalTime.parse( "10:15:30" )
+    - erzeugt ein LocalTime Objekt aus einem String.
+    
+    um Informationen von einem LocalDateTime Objekt zu beziehen, kann die Standard Java Getter Konvention verwendet werden:
+      LocalDateTime timePoint = LocalDateTime.now();
+      LocalDate theDate = timePoint.toLocalDate();
+      Month month = timePoint.getMonth();
+      int day = timePoint.getDayOfMonth();
+      int second = timePoint.getSecond();
+      
+    um Werte zu Ändern, werden neue Objekte erzeugt, deswegen heißen die entsprechenden Methoden with...() und nicht set...()
+      LocalDateTime thePast = timePoint.withDayOfMonth( 10 ).withYear( 2010 );
+      LocalDateTime another = thePast.plusWeeks( 3 ).plus( 3, ChronoUnit.WEEKS );
+      
+    Bestandteile anpassen:
+      LocalDateTime foo = timePoint.with( TemporalAdjusters.lastDayOfMonth() );
+      LocalDateTime bar = timePoint.with( TemporalAdjusters.previousOrSame( ChronoUnit.WEDNESDAY ) );
+      LocalDateTime now = timePoint.with( LocalTime.now() ); 
+      
+    Genauigkeit anpassen:
+      LocalTime truncatedTime = LocalTime.now().truncatedTo( ChronoUnit.SECONDS );
+      
+Zeitzonen
+  ZoneId id = ZoneId.of( "Europe/Berlin" );
+  ZonedDateTime zoned = ZonedDateTime.of( LocalDateTime.now(), id );
+      
+  ZoneOffset offset = ZoneOffset.of( "+2:00" );
+      
+  Zeitzonenklassen:
+  - Wird benötigt, wenn man sich nicht auf die Zeit eines bestimmten Gerätes verlassen kann.
+    ZonedDateTime.parse("2007-12-03T10:15:30+01:00[Europe/Berlin]");
+      
+    OffsetDateTime
+    - Datum und Zeit mit Offset, nützlich für Logging.
+    OffsetTime
+    - Zeit mit Offset
+      
+    OffsetTime time = OffsetTime.now();
+    OffsetTime sameTimeDifferentOffset = time.withOffsetSameInstant( offset );
+    OffsetTime changeTimeWithNewOffset = time.withOffsetSameLocal( offset );
+    changeTimeWithNewOffset.withHour( 3 ).plusSeconds( 2 );
+    
+Zeiträume (Periode):
+  // 3 Jahre, 2 Monate, 1 Tag
+  Period period = Period.of( 3, 2, 1 );
+  
+  LocalDate newDate = theDate.plus( period );
+  ZonedDateTime newDateTime = zoned.minus( period );
+  period.get( ChronoUnit.DAYS );
+    
+Zeitdauer (Duration):
+  // 3 Sekunden und 5 Nanosekunden
+  Duration duration = Duration.ofSeconds( 3, 5 );
+  Duration oneDay = Duration.between( today, yesterday );
+  // bei Duration funktioniert auch plus, minus und with.
+  // genauso kann ein Date oder Time Objekt mit einer Duration verändert werden.
+    
+Des Weiteren gibt es noch weitere Klassen, zB:
+  MonthDay
+  - ist ein paar von Monat und Tag werten, z.B. für Geburtstage.
+  YearMonth
+  - Jahr und Monat, zB. Kreditkarten Ablaufdatum oder ungenaue Datumsangabe.

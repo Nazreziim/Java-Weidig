@@ -1,0 +1,22 @@
+Beim Erzeugen diese Datei nebenbei offen haben!
+
+Schritte:
+
+1. Main Klasse erstellen (Mit main Methode sonst leer)
+2. Interface Tier erstellen (Eine gemeinsame Funktionalität)
+3. Klasse Hund, Katze, Maus erstellen die Tier implementieren
+4. Zu implementierende Methode ausfüllen (Z.B. Sysout)
+5. Main Klasse:
+- Tier Objekt erstellen mit Tier = new Hund z.B.
+- Methode aufrufen 
+6. Wie lösen wir dieses Problem?
+--> FACTORIES!!!!
+7. Main Methode leeren <<
+8. Klasse TierFactory erzeugen
+-> public static Tier getTier(String tierart) erstellen
+-> Tier in Variable zwischenspeichern und mit null initialisieren
+-> Fallabfrage je nach Eingabe-String (tierart) (If oder Switch Case)
+-> Variable tier das neue Hund / Katze / Maus Objekt erzeugen und zuweisen
+9. Main Methode anpassen:
+- "Tier hund = TierFactory.getTier("Hund")" z.B. eingeben
+- Über erzeugtes "Tier" Objekt die Funktionalitäts-Methode aufrufen

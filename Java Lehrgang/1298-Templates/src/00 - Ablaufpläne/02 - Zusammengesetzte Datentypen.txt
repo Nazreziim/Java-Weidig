@@ -1,0 +1,94 @@
+﻿1. Arrays allgmein
+	- Einführungsbeispiel "viele Messwerte" für Notwendigkeit
+	- Reihung von Werten gleichen Typs bestehend aus:
+		- Index
+		- namelose Variable mit Wert
+	- immer beschränkt => Größe bei Deklaration festzulegen (Speicherallokation)
+
+2. Anlegen von eindimensionalen Arrays
+	-- '02 - Templates/02 - Zusammengesetzte Datentypen/01_array_init.cpp'
+	- direkte Beschränkung in Deklaration (int arr[5];)
+	- implizite Beschränkung durch Initialisierung (int arr[] = {12, 42, 23};)
+
+3. Zugriff auf Elemente
+	- Auslesen mit []-Operator (int a = arr[0];)
+	-- '02 - Templates/03 - Referenzen und Zeiger/02_array_zuweisung.cpp'
+	- Setzten von Werten mit []-Operator (arr[0] = 42;)
+	
+Übung 1 - 4
+
+4. Anzahl der Elemente ermitteln
+	-- '02 - Templates/03 - Referenzen und Zeiger/03_array_anzahl.cpp'
+	- sizeof() gibt Speicherallokation wieder
+		--> Hinführen sizeof(zahl)
+		--> Hinführen sizeof(arr)
+	- Anzahl der Elemente = sizeof(arr) / sizeof(arr[0])
+	- Makro LENGTH => #define LENGTH(arr) sizeof(arr)/sizeof(arr[0])
+	
+5. Iterieren über Arrays
+	- for ( int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
+
+6. Arrays und Funktionen / Prozeduren
+	-- '02 - Templates/03 - Referenzen und Zeiger/04_array_fkt.cpp'
+	- können keine Arrays zurückliefern (nur mit Zeigern)
+	- können aber Arrays modifizieren mit Prozeduren
+	- können auch Werte aus Arrays zurückgeben in Funktionen
+	--> WICHTIG: Länge des Arrays sollte als Parameter übergeben werden
+	--> Alternativ: globale Konstante für Größe eines Arrays
+
+Übungen 5 - 6 (!! bei 6 keine Funktion, sondern Prozedur !!)
+
+----- Ende 1. Tag ----- Mittwoch
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 2. Tag --- Donnerstag
+
+1. Mehrdimensionale Arrays
+	-- '02 - Templates/03 - Referenzen und Zeiger/05_array_mehrdim.cpp'
+	- int arr[3][2] = { {12, 14}, {5, 75}, {7, 19} };
+		- LENGTH(arr) => Zeilen
+		- LENGTH(arr[0]) => Spalten
+
+Reihenfolge
+Übungen 7 - 10
+--> besprechen
+Übung 13
+--> besprechen
+Übung 11
+--> besprechen
+Übung 14
+--> besprechen
+		
+Übungen 15 - 18 nur zur LN-Vorbereitung
+
+----- Ende 2. Tag ----- Donnerstag
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 3. Tag --- Freitag
+
+1. Structs allgemein	(weniger wichtig für 1. LN --> ggf. lieber Sortierarlgorithmen)
+	-- '02 - Templates/03 - Referenzen und Zeiger/07_struct.cpp'
+	- Vorstufe von Klassen
+	- im Gegensatz zu Arrays mit verschiedenen Typen als Komponenten
+	
+2. Anlegen von Structs
+	- struct Person {...};	ACHTUNG: Semikolon am Ende nicht vergessen
+	- Person p = {...};
+	
+3. Zugriff auf Elemente
+	- Zugriff mit .-Operator (p.name usw.)
+	-- '02 - Templates/03 - Referenzen und Zeiger/08_struct_in_struct.cpp'
+	
+Übungen 19 - 22
+
+----- Ende 3. Tag ----- Freitag
+--------------------------------------------------------------------------------------------------------------
+----- Beginn 4. Tag --- Montag
+
+- Auswertung Übungen
+- Wiederholung gesamter Stoff
+- evtl. Sortieralgorithmen zu Arrays
+	-- '02 - Templates/03 - Referenzen und Zeiger/06_array_sortieren.cpp'
+
+- am Nachmittag => Übungsklausur
+
+----- Ende 4. Tag ----- Montag
+--------------------------------------------------------------------------------------------------------------

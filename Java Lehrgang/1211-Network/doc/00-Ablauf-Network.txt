@@ -1,0 +1,85 @@
+https://docs.oracle.com/javase/tutorial/networking/index.html
+##################################################
+# Themengebiet: Network
+# Timebox:      1 Tag
+# Stand:        
+##################################################
+
+Tag 1 --------------------------------------------
+
+ISO-OSI 7 Schichten Modell
+- Schichten (Name, Addressierung, Protokolle):
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+- Protokoll / Dienst
+
+Zur Interaktion mit verbreiteten Protokollen gibt es Klassen in der Standardbibliothek.
+- Zum Beispiel für http/https: 
+- URL Reader für bekannte Protokolle
+  - Abfrage von Webseiten:
+-- BEISPIEL url_reader.URLReader.java
+  - Verbindung über proxy
+-- BEISPIEL url_reader.URLReaderProxy.java
+  - Selektives lesen aus HTML
+-- BEISPIEL url_reader.URLReaderSelectivePrint.java
+
+Chat:
+- Stufe 1:
+  Nachricht vom Client zum Server.
+- Stufe 1_1:
+  Nachricht vom Client zum Server. Server schickt Nachricht zurück.
+- Stufe 1_2:
+  Nachricht vom Client zum Server. Server antwortet mit Bestätigung (inklusive der Nachricht vom Client).
+  
+- Stufe 2:
+  Ein Server nimmt Verbindungen von 10 Clients an. 
+  Client sendet eine Nachricht zum Server.
+  Server antwortet jedem Client mit Bestätigung (inklusive Nachricht).
+- Stufe 2_1:
+  wie Stufe 2 + Verbindung zum Client wird beendet, sobald 'BYE' empfangen wird.
+
+- Stufe 3: 
+  Beliebig viele Clients.
+  Nachrichten der Clients werden in ChatRoom gegeben.
+  ChatRoom leitet Nachricht per Observer-Muster an alle Clients weiter.
+- Stufe 3_1:
+  wie Stufe 3 + Client sendet einen Namen mit (bei jeder Nachricht).
+- Stufe 3_2:
+  wie Stufe 3_1 + Server schickt nach dem Verbinden den kompletten Nachrichtenverlauf an den neuen Nutzer.
+  
+- Stufe 4:
+  wie Stufe 3_2 + Server verteilt per Multicast seine IP und den Port.
+
+- Stufe 5:
+  wie Stufe 4 + Datenbank-Datei. Nachrichten werden in Datenbank geschrieben und bei Neustart gelesen.
+
+Eigenes Nachrichtenprotokoll:
+-- Paket: knock_knock
+
+## TODO: bearbeiten von hier an...
+
+Eigenes Protokoll mit Sockets
+TCP:
+java.net.Socket
+         ServerSocket
+UDP:         
+         DatagramSocket
+         DatagramPacket
+         MulticastSocket
+         
+   
+Aufgabe: Chat mit Client und Server programmieren.
+         - simple: Server verteilt Nachrichten an alle Clients
+         - clientNamed: Client liest einen Name ein und sendet diesen mit.
+         - serverHistory: Server sendet neuem Client zuerst alle alten Nachrichten.
+         
+-- Datenbank: Beispiele zeigen.
+Aufgabe: Protokoll des Servers mit SQLiteDB realisieren.
+         1. DB überschreiben bei Neustart
+         2. DB einlesen bei Neustart.

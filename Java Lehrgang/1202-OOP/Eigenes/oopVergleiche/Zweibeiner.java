@@ -1,0 +1,5 @@
+package oopVergleiche;
+
+interface Zweibeiner {
+
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.282-redhat" xmlns:fx="http://javafx.com/fxml/1" fx:controller="_010Netzwerk.LocalChat.controller.ChatController">
+  <children>
+      <SplitPane dividerPositions="0.7884187082405345" pickOnBounds="false" prefHeight="592.0" prefWidth="900.0" VBox.vgrow="ALWAYS">
+         <items>
+            <VBox focusTraversable="true">
+               <children>
+                  <AnchorPane prefHeight="566.0" prefWidth="705.0">
+                     <children>
+                        <ListView id="chat" fx:id="fxChat" editable="true" minWidth="705.0" prefWidth="705.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="103.0" prefWidth="705.0">
+                     <children>
+                        <TextField id="eingabeFeld" fx:id="fxEingabeFeld" layoutX="14.0" layoutY="16.0" prefHeight="25.0" prefWidth="535.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="16.0" />
+                        <Button id="sendeButton" fx:id="fxSendeButton" layoutX="559.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="Senden" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="16.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <AnchorPane>
+               <children>
+                  <ListView id="nutzerListe" fx:id="fxNutzerliste" maxWidth="187.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+      <AnchorPane prefHeight="41.0" prefWidth="900.0" />
+  </children>
+</VBox>

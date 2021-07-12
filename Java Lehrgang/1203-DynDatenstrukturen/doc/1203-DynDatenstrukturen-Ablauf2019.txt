@@ -1,0 +1,75 @@
+Stand: 23.09.2019
+
+Verwaltung von Daten:
+- Beispiel: Verwaltung von ganzen Zahlen
+  - Nur mit Arrays möglich.
+    Großes Array anlegen. Zahlen einfügen.
+    Falls Array voll: Array vergrößern?
+    +1, +10, *2? Welche Lösung/Strategie?
+    
+- Übung: Verwaltungsklasse für Menschen (Schulverwaltung) erstellen.
+         Mit: - hinten einfügen
+              - Ausgabe
+              - vorn einfügen
+              - Anzahl gültiger Einträge zurückgeben
+              
+---> Viele Probleme/Aufwendig!
+Deshalb: dyn. Datenstrukturen, hier: eine Liste
+         - zuerst nur Listenelemeente:
+           Mit: - vorn einfügen
+                - Ausgabe
+                im Hauptprogramm.
+                
+         - dann Kapseln von Methoden in eigene Listenklasse:
+           Implementierungsdetails verstecken.
+           
+         - iterativ: durchlaufen -> Ausgabe
+         - Einfügen: - in leere Liste
+                     - vorn Einfügen
+                     - hinten Einfügen
+                     - sortiertes Einfügen (Reihenfolge notwendig): Attribut key : int
+                       + Einfügestelle suchen mit Nachschleppen
+                       + Einfügen des Elements
+         - Löschen: - vorn Löschen
+                    - hinten Löschen
+                    - Suchen / Löschen
+                      + zu löschendes Element suchen mit Nachschleppen
+                      + Element Ausketten
+                      
+         Aktionen auf Listen:
+         - Summe   \
+         - MaxWert -)- erst als Methode in Listenklasse,
+         - Ausgabe /   dann extrahieren in Aktion, die Elemente übergeben bekommt -> generische Schleife
+         
+         Interfaces: Iterable / Iterator
+         - Iterable: Voraussetzung für for-each-loop
+         - Iterator: Voraussetzung für Iterable
+         
+--- Übung 1.
+
+- rekursiver Ansatz:
+         - Elemente zählen
+         - Liste vorwärts / rückwärts durchlaufen
+         - Einfügen
+         - Löschen
+         
+--- Übung 2, 3, 4
+
+------------------------------------------------------------------
+zeitlich nicht geschafft:
+
+Bäume: grundlegende Begriffe
+
+- EINEN Wurzelknoten (ohne Vorgänger)
+- jeder weitere Knoten hat genau EINEN Vorgänger
+- jeder Knoten ist von der Wurzel nur auf einem Weg erreichbar.
+Wurzel, Ast, Tiefe, Teilbaum, Blatt, leerer Baum
+Geordneter Binärbaum:
+- Rekursive Operationen auf Bäumen:
+  - Durchlaufen: in-order
+                 pre-order
+                 post-order
+  - Einfügen
+  - Löschen: kein Nachfolger
+             ein Nachfolger
+             zwei Nachfolger 

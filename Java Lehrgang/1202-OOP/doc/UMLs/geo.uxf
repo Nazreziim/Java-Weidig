@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>20</y>
+      <w>240</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>Punkt
+--
+-x : int
+-y : int
+--
+&lt;&lt;Konstruktoren&gt;&gt;
++Punkt()
++Punkt( x : int, y : int )
+
+&lt;&lt;Getter / Setter&gt;&gt;
++getX() : int
++setX( x : int ) : void
++getY() : int
++setY( y : int ) : void
+
+&lt;&lt;Methoden&gt;&gt;
++verschiebenAuf( p : Punkt ) : void
++verschiebenUm( p : Punkt ) : void
++toString() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>370</x>
+      <y>20</y>
+      <w>320</w>
+      <h>380</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+/Strecke/
+--
+
+--
+&lt;&lt;Konstruktoren&gt;&gt;
++Strecke()
++Strecke( start : Punkt, ende : Punkt )
+
+&lt;&lt;Getter / Setter&gt;&gt;
++getStart() : Punkt
++setStart( start : Punkt ) : void
++getEnde() : Punkt
++setEnde( ende : Punkt ) : void
+
+&lt;&lt;Methoden&gt;&gt;
++berechneLaenge() : double
++verschiebenUm( p : Punkt ) : void
++toString() : String
+
+&lt;&lt;static Methoden&gt;&gt;
+_+compare( s1 : Strecke, s2 : Strecke ) : boolean_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>110</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1
+r1=-start</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>150</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+r1=-ende</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+</diagram>

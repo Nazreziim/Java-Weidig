@@ -1,0 +1,121 @@
+##################################################
+# Themengebiet: Generics
+# Timebox:      1,5 Tage
+# Stand:        2017-07-09
+##################################################
+
+Tag 1 --------------------------------------------
+Motivation:
+- Wir haben schon kennen gelernt, dass Unterklassen in Variablen (Containern) vom Typ einer Oberklasse gespeichert werden können.
+-- Schüler ließ sich in einem Array / einer Liste vom Typ Mensch speichern / verwalten.
+
+-- Wie sieht es aus, wenn man nun Hunde und Katzen verwalten will? 
+--> Wir schreiben zwei neue Listenklassen: Liste für Hund + Liste für Katze! Hier: vereinfacht mit einer Box.
+----> Pakete hund und katze zeigen.
+
+--- Was muss man tun, wenn beide Klassen (Hund und Katze) in einem Container verwaltet werden sollen?
+---> eine Listenklasse für eine Oberklasse von Hund und Katze. zB. Haustier ?
+-----> Paket haustier zeigen.
+----> Was hat das für Folgen?
+----> Fragen in BoxHaustierTest: 
+> Warum kann man jetzt nicht mehr auf die Methoden der Tiere zugreifen?
+> Was müsste man tun um wieder darauf zugreifen zu können?
+--> Wenn man den Typ nicht prüft und einfach castet -> ClassCastException
+ 
+-- Angenommen man will nun die Menschen und Haustiere in einem Speicher verwalten
+--> entweder: nächste Oberklasse definieren und Listenklasse schreiben
+--> oder:     man könnte ja auch gleich Objekt nehmen und eine Liste für Object definieren (:
+> Was hätte das für Folgen? Ähnlich wie bei Haustier?
+-----> Paket object zeigen
+-- Antworten:
+--- Typsicherheit: geht verloren
+---> um Typsicherheit bei zu behalten schreibt man für jede Klasse eine extra Container Klasse :(
+---- viel Schreibarbeit, fehleranfällig, ...
+
+- Neues Sprachkonstrukt Generics
+-- Bevor es Generics gab wurden ContainerKlassen mit Object definiert. (vor java 5) 
+--> keine Typsicherheit -> ClassCastExceptions -> viele instanceof Abfragen
+
+-- Mit Generics kann man einen Container global implementieren und der Laufzeitumgebung mitteilen,
+    für welchen Typ dieser Container in dem Moment gedacht ist.
+--> Generische Klassen werden auch nur einmal für Object übersetzt. -> eine .class Datei
+     Die Zusatzinformationen stehen am Ende der .class Datei um Rückwärtskompatibilität mit 
+     Versionen vor Java 5 aufrecht zu erhalten. 
+
+Syntax:
+	class Box<T>{	       // T ist Typparameter
+	  private T inhalt;    // und kann jetzt in der gesamten Klasse als Typ verwendet werden.
+	}                      // Als Typparameter werden einzelne große Buchstaben verwendet.
+
+Beispiel Umsetzen:
+--> Aufbau von BoxObject nach mitGeneric.Box<T>:
+	package generics.mitGeneric;
+	
+	public class Box< T > {
+	  private T inhalt;
+	
+	  public Box( T inhalt ) {
+	    this.setInhalt( inhalt );
+	  }
+	  public T getInhalt() {
+	    return this.inhalt;
+	  }
+	  public void setInhalt( T inhalt ) {
+	    this.inhalt = inhalt;
+	  }
+	}
+ 
+--> Test mit Hund, Katze, Mensch, Schueler:
+	public class BoxTest {
+	  public static void main( String[] args ) {
+	
+	    Box< Hund > box1 = new Box< Hund >( new Hund() );
+	    Box< Katze > box2 = new Box< Katze >( new Katze() );
+	    Box< Mensch > box3 = new Box< Mensch >( new Mensch() );
+	    Box< Schueler > box4 = new Box< Schueler >( new Schueler() );
+	
+	    System.out.println( box1.getInhalt() );
+	    box1.getInhalt().bellen();
+	    // box1.getInhalt().miau(); // Geht nicht, weil kein Hund
+	
+	    System.out.println( box2.getInhalt() );
+	    // box2.getInhalt().bellen();
+	    box2.getInhalt().miau();
+	
+	    System.out.println( box3.getInhalt() );
+	    box3.getInhalt().sprechen();
+	
+	    System.out.println( box4.getInhalt() );
+	    box4.getInhalt().sprechen();
+	    box4.getInhalt().lernen();
+	  }
+	} 
+
+--> Test mit int, long, double, boolean ( einfach mit in die Testklasse schreiben ).
+---> warum funktioniert das nicht? -> keine Primitivtypen!
+
+Übung: 1 Liste
+
+Mittag -------------------------------------------
+
+-- T extends Comparable<T>
+-- Liste für anderen Zweck wieder verwenden. Dafür wird ein Größenvergleich der Inhalte benötigt. zB getMax()
+--> Elemente müssen compareTo() zur Verfügung stellen. -> T muss eingeschränkt werden -> T extends Comparable<T>
+-- T super LowerBound erwähnen
+
+Übung: 2 Triple
+
+Tag 2 --------------------------------------------
+
+- Vererbung mit Generics
+-- Generische Unterklasse und generische Oberklasse
+--- class Test<T> extends Oberklasse<T>
+--- class Test<T> extends Oberklasse<V>
+-- Generische Unterklasse und nicht generische Oberklasse
+--- class Test<T> extends Oberklasse
+-- Nicht generische Unterklasse und generische Oberklasse
+--- class Test extends Oberklasse<Typ>
+-- Nicht generische Unterklasse und nicht generische Oberklasse
+--- class Test extends Oberklasse
+
+Übung: Zusatz Übungen (1 & 3: Analyseaufgaben), (2: Praktisch) 

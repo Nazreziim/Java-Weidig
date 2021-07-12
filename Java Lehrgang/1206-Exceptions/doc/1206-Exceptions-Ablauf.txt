@@ -1,0 +1,153 @@
+##################################################
+# Themengebiet: Exceptions
+# Timebox:      1 Tag
+# Stand:        2018-06-20
+##################################################
+
+Tag 1 --------------------------------------------
+
+Motivation:
+- Zwei Arten von Fehlern
+  - Fehler zur Übersetzungszeit
+  - - Macht der Compiler drauf aufmerksam und müssen / sollten korrigiert werden um das Programm zu übersetzen.
+  - Fehler zur Laufzeit
+  - - Sind im allgemeinen nicht zur Übersetzungszeit bekannt.
+  - - Treten erst unter bestimmten Umständen während des Betriebs auf.
+  - - Führen mindestens zu unerwartetem Verhalten / eher zum Abbruch des Programms. 
+  - - - Ein guter Compiler kann bei einfachen Fällen noch auf Schwachstellen hinweisen. Z.B. offensichtlicher NullPointer 
+
+- Wie können Fehlersituationen/-zustände während der Laufzeit bekannt gemacht werden?
+- - Rückgabewert einer Methode?
+    - Wird in vielen Programmiersprachen so gemacht, hat allerdings einige Nachteile:
+    - - Muss immer gut dokumentiert werden.
+    - - Es eignet sich nicht jeder Rückgabewert als Beschreibung eines Fehlers. 
+    - - - Oft wird -1 genutzt aber was ist, wenn -1 ein legitimes Ergebnis der entsprechenden Operation ist?
+    - Des Weiteren muss bei jedem Aufruf der Funktion das Ergebnis mithilfe einer Kontrollstruktur auf einen Fehler überprüft werden,
+      - dies wird gern vergessen 
+      - oder es wird darauf vertraut, dass schon kein Fehler auftritt
+      Diese Fälle können alle mehr oder weniger schlimme Folgen nach sich ziehen.
+    - Was ist besser:
+      - Programmabsturz?
+      - oder fortsetzen mit fehlerhaftem Zustand?
+          ANTWORT: Es kommt darauf an (Wenn flüchtige Daten produziert werden (Audio/Video) für eine einmalige Verwendung ist ein fehlerhafter Zustand evtl nicht schlimm.
+                                       Werden aber als Ergebnis genaue Daten erwartet, welche für weitere Operationen genutzt werden, ist ein Absturz/Abbruch des Programms
+                                       eindeutiger, als wenn das Programm im fehlerhaften Zustand fortgesetzt wird.)
+                                       
+      - - Das beste wäre natürlich, dass das Programm selbst erkennt, dass ein Zustand fehlerhaft ist und dieser korrigiert wird! 
+    
+- - Daraus folgt, dass eine andere Möglichkeit gefunden werden muss.
+   - In Java werden dazu sogenannte Exceptions (Ausnahmen) genutzt.
+   - - Ausnahmen brechen die Abarbeitung einer Methode augenblicklich ab (die restlichen Anweisungen der Methode werden nicht mehr ausgeführt),
+       die Exception wird an die aufrufende Methode weiter gegeben. Diese muss sich dann um eine Ausnahmebehandlung kümmern.
+       Tut sie dies nicht, wird die Exception die Aufrufhierarchie weiter nach oben geleitet,
+       - bis sich entweder eine Methode darum kümmert, oder
+       - die Exception bei der JavaVM ankommt und diese das Programm mit einer speziellen Meldung beendet.
+   - Vorteil der Ausnahmen ist, dass nicht jede Methode mit einer Kontrollstruktur aufgerufen werden muss um eventuell Fehlerzustände zu erkennen. 
+     Genauso kann es nicht vorkommen, dass man vergisst den Fehlerzustand zu überprüfen.
+-- Als BEISPIEL haben wir hier eine NullPointerException die Sie so alle schon einmal gesehen haben.
+-- BEISPIEL Exception provozieren. (beispiel1.BeispielNullPointerException.java)
+    
+Exceptions:
+- Exceptions sind auch Klassen und erben von einer Oberklasse: siehe 1206-1-Throwable.png
+  - - 1206-1-Throwable.png: 
+    - Error werden nicht abgefangen, wirklich schlimme Situationen, löst normalerweise nur die VM aus.
+    - Exceptions müssen zum Teil abgefangen werden.
+  - - 1206-2-Exception.png / 1206-3-RuntimeException.gif
+    - einige Beispiele für Exceptions. Alle nicht von RuntimeException abgeleiteten Exceptions müssen abgefangen werden um zu compilieren.
+    - RuntimeExceptions sind Ausnahmen, die zur Laufzeit auftreten und nicht abgefangen werden müssen um zu übersetzen.
+    - - sie sollten aber abgefangen werden um einen unerwarteten Abbruch des Programms zu verhindern.
+    
+  - Beim Thema Methoden haben wir schonmal gesehen, wie man erkennt, ob eine Methode eine Exception auslösen könnte.
+    - In der Java Sprachumgebung redet man davon, dass die Exceptions geworfen werden ( to throw )
+    - Wer kann sich erinnern wo das Stand?
+    - - Antwort: im Methodenkopf.
+    - - - an diesem haben wir hinter dem Schlüsselwort throws eine Liste von Ausnahmen gesehen.
+        - RuntimeExceptions müssen hier nicht aufgeführt werden.
+    - - - Der Compiler sieht anhand dieser Liste ebenfalls, dass die Methode eventuell eine Ausnahme auslöst.
+    - - - Wenn man versucht ein Programm zu übersetzen, in welchem man eine Methode nutzt die eine Ausnahme werfen könnte,
+          und die Ausnahme nicht behandelt wird, beschwert sich der Compiler und die Übersetzung wird abgebrochen.
+
+  - Um eine solche Methode zu nutzen, müssen also Vorkerungen getroffen werden um die Ausnahme abzufangen.
+  - - Entweder man definiert die eigene Methode ebenfalls mit einem throws Statement, um die Ausnahme weiter nach oben zu reichen,
+
+  - - oder man nutzt:
+    - Die try-catch Struktur.
+      - Try-Catch-Konstrukt an Tafel zeigen
+		try {
+			// Programmcode, der eine Ausnahme auslösen könnte
+		} catch( AusnahmeKlasse e ) {
+			// Programmcode zur Fehlerbehandlung
+		}
+    - - Der Programmabschnitt, der eventuell eine Exception auslösen könnte kommt in den try-Block.
+    - - Im catch-Block folgt dann Code der Ausgeführt wird, sollte es im try-Block zu einer Ausnahme kommen.
+-- BEISPIEL Exception provozieren. (beispiel2.NumberFormatExceptionThrown.java)
+  - Konvertieren von eingelesenen Zahlen ist eine häufig auftretende Situation, welche immer abgefangen werden sollte.
+  
+-- BEISPIEL Exception abfangen. (beispiel2.NumberFormatExceptionCatched.java)
+  - Einfaches Abfangen einer Exception mit Ausgabe einer Fehlermeldung und
+    vortführen des Programmablaufs.     
+    
+  - Die Anweisung catch(NumberFormatException e) fängt also alle Ausnahmen vom Typ NumberFormatException ab.
+  - - Der catch-Block kann auch differenzieren zwischen verschiedenen Ausnahmen und eine angepasste Fehlerbehandlung durchführen.  
+      Würde der try-Block eine andere Ausnahme auslösen, würde diese nicht abgefangen werden.
+    - Für diesen Fall müssten weitere Catch-Blöcke angefügt werden.
+    - Im Falle einer Ausnahme wird ein Objekt der Klasse des Fehlers erzeugt und dieses mit den Catch Blöcken verglichen. 
+      Der erste Block der passt bekommt das Objekt übergeben.
+      Die Vererbungshierarchie funktioniert hier auch, das heißt man sollte zu erst auf spezielle Fehler reagieren und später allgemeinere Abfangen.
+-- BEISPIEL Unterschiedliche Exceptions provozieren und abfangen (beispiel3.MultipleCatchExample.java)
+    - Manchmal kann man Catch Blöcke aber auch zusammenfassen
+-- BEISPIEL Catch-Blöcke zusammenfassen (beispiel3.MultipleExceptionsOneCatch.java)
+
+  - Exceptions bieten einige Möglichkeiten um Informationen zu erhalten:
+-- BEISPIEL Methoden und Ausgaben der Exceptionklasse. (beispiel4.MethodsExceptions.java)
+  - Standard Ausgabe einer Exception (siehe Consolen Ausgabe:)
+  - - 1. Zeile: NumberFormatException wurde ausgelöst
+  - - In den weiteren Zeilen steht, an welcher Stelle im Programmcode der Fehler ausgelöst wurde.
+  - - Die Ausgabe ist der sogenannte Stack-Trace der virtuellen Maschine, dieser ist nützlich um zu sehen, welche Methode den Fehler ausgelöst hat.
+  - Weitere Möglichkeiten der Exceptions:
+    - Nachricht: Exceptions können eine Nachricht mitbringen
+    - Cause (Grund): Exceptions können ein anderes Throwable als Grund mitbringen.
+
+  - In manchen Fällen reicht das try-catch-Konstrukt nicht aus. Manchmal müssen unabhängig von Erfolg oder Misserfolg noch Dinge erledigt werden.
+  - - Für diesen Fall gibt es den finally-Block.
+    - Der Finally-Block wird immer ausgeführt, egal ob eine Exception ausgelöst wurde oder nicht.
+-- BEISPIEL Finally Block (beispiel5.FinallyBlock.java)
+  - - Der Finally-Block ist optional, aber sobald er genutzt wird ist der Catch-Block optional.
+  - - Finally eignet sich um Ressourcen wieder frei zu geben, welche vorher reserviert und möglicherweise genutzt wurden.
+      - Zum Beispiel könnte hier ein Scanner oder BufferedReader geschlossen werden.
+      - Auch für den Fall geöffneter Dateien kann man diese hier schließen. Folgt im nächsten Ausbildungsabschnitt.
+-- BEISPIEL Finally Block um BufferedReader zu schließen. ( beispiel5.ScannerClosureInFinally.java )
+      - Bevor wir den Scanner geschlossen haben gab es eine Warnung, dass er nicht geschlossen wurde.
+        Durch dieses Verhalten kann es passieren, dass Ressourcen reserviert bleiben und andere Prozesse nicht drauf zugreifen können.
+  
+- - Kommen wir mal zu Nutzereingaben, hier können wir auch den Scanner von eben ganz gut gebrauchen.
+  - Nutzereingaben sollten immer überprüft werden, egal ob der Nutzer aus versehen oder mit Absicht eine falsche Eingabe tätigt.
+  - Wir betrachten nun zuerst den BufferedReader und anschließend den Scanner. Die beiden Klassen haben ihre Vor- und Nachteile.
+-- BEISPIEL Nutzer Eingaben einlesen und parsen mit Scanner und BufferedReader:
+  - beispiel6.BufferedReaderBeispiel.java
+  - beispiel6.ScannerBeispiel.java
+  - - nun kann die HilfsMeth.java endlich in den Ruhestand.
+  - - ABER ACHTUNG wir müssen hier einige eventuell auftretenden Fehler abfangen.
+-- ÜBUNG zusammen die möglichen Exceptions abfangen.
+
+
+Eigene Exception schreiben
+- Um eine eigene Exception zu schreiben muss die neue Klasse von Exception oder einer der Unterklassen erben.
+  - Hier gilt auch, Exceptions von RuntimeException müssen nicht abgefangen werden, alle anderen schon.
+-- BEISPIEL eigene Exception: beispiel7.DummerNutzerException.java
+
+- eigene Exception auslösen (throw)
+  - Eine eigene Exception auszulösen funktioniert genauso, als wenn eine vordefinierte ausgelöst wird:
+    - throw "Exception";
+    - Allerdings müssen im Beispiel noch ein paar Fehler beseitigt werden.
+-- BEISPIEL Exception werfen: beispiel7.DummeAktion.java
+   - Unereichbarer Code
+   - throws: Wir wollen uns ja nicht direkt um unsere Exxception kümmern, sobald sie geworfen wird:
+     - Das soll schon der Aufrufer machen: exception weiterreichen
+
+- exception weiterreichen (throws)
+  - mit throws im Methodenkopf reichen wie die Exception weiter an den Aufrufer.
+    - jetzt muss dieser sich darum kümmern.
+-- BEISPIEL: exception-handling: beispiel7.DummeNutzerMain.java
+
+-- ÜBUNG Uebung-Exceptions.doc 1 - 3. 

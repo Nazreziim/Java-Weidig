@@ -1,0 +1,40 @@
+Ablauf Themeneinheit Threads:
+
+1.) Threads erstellen (extends Thread / implements Runnable): 
+	package basic_threading.v1 - implements Runnable()
+	package basic_threading.v2 - Thread über den eigenen Konstruktor direkt starten
+	package basic_threading.v3 - extends Thread()
+	package basic_threading.daemon - Thread, der nur läuft, wenn der aufrufende Thread was zu tun hat
+	
+	aufgaben.primzahl
+	
+2.) Threadzustände erklären: new, runnable, blocked, timed_waiting (=sleeping), terminated
+
+3.) Interrupts:
+	package interrupts.v1 - mit deprecated stop
+	package interrupts.v2 - mit booleschem Flag
+	package interrupts.v3 - mit interrupt()
+	package interrupts.yield - zur Demo von yield! (und ThreadGroup)
+	
+4.) Rendezvous mit join: package interrupts.join
+
+5.) Synchronisation:
+	package synchronisation.critical_section - Problem mit einem kritischen Abschnitt
+	package synchronisation.synchronized_method - Synchronisation auf Klassenobjekt
+
+	aufgaben.armee!!!
+
+	package synchronisation.locks - Synchronisation mit einem Lock
+	package synchronisation.deadlocks - Eine Deadlock-Situation mit zwei Locks
+	
+	aufgaben.philosophen
+	
+	Bei genügend Zeit:
+	(package synchronisation.semaphore - Zur Demonstration von Semaphoren)
+	
+	package synchronisation.wait_notify - Erzeuger / Verbraucher-Problem mit wait und notify
+	
+	aufgaben.killingmachine (in der Variante mit Arraylist!)
+	
+	
+	

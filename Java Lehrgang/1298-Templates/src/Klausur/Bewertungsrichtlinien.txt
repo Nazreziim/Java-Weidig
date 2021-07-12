@@ -1,0 +1,42 @@
+Bewertungsrichtlinien:
+
+Aufgabe 1:
+
+Stufe 1 - 6P (je 3 pro Antwort)
+Stufe 2 - 7P (1,1,1,2,2)
+Stufe 3 - 7P (für die ersten drei je 1 Punkt (mgl. Zufallstreffer) , danach je 2 Punkte)
+
+
+Aufgabe 2:
+richtiger Funktionskopf: 2P
+Identifikation und Formulierung der beiden Rekursionsenden: je 5 P
+Rekursionsschritt: 8 P
+
+
+Aufgabe 3: 
+richtiger Funktionskopf: 2P
+Erstellung des Verschlüsselungsarrays: 9P
+Verschlüsselungsvorgang: 9P
+
+Aufgabe 4:
+countInnerNodes: 10P
+	richtiger Funktionskopf: 2P
+	Implementierung im Tree korrekt: 3P
+	Implementierung im TE korrekt : 5P
+		rekursive Aufrufe für die Teilbäume: 3P
+		zaehler hochsetzen, wenn TE selbst innerNode: 2P
+	
+checkDouble: 20P
+	richtiger Funktionskopf: 2P
+	Implementierung im Tree korrekt: 5P
+	Implementierung im TE: 13P
+		korrekte Rekursionsenden: 4P
+		Rekursionsschritte: 9P 
+
+
+Aufgabe 5:	 30P
+	Konstruktoren: 6 P
+	toString: 6 P
+	getGehalt: 8 P (je 4P in Politiker und Minister)
+	getAnzFreieSitze: 5P
+	sitzverteilung: 5P		

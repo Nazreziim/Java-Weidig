@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.Pane?>
+
+<Accordion maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.271" fx:controller="AccordionPaneController">
+  <panes>
+    <TitledPane fx:id="fxAccordion1" animated="false" text="Accordion 1">
+         <content>
+            <Pane fx:id="fxPane1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
+         </content></TitledPane>
+    <TitledPane fx:id="fxAccordion2" animated="false" text="Accordion 2">
+         <content>
+            <Pane fx:id="fxPane2" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: blue;" />
+         </content></TitledPane>
+      <TitledPane fx:id="fxAccordion3" prefHeight="200.0" prefWidth="200.0" text="Accordion 3">
+         <content>
+            <Pane fx:id="fxPane3" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" />
+         </content>
+      </TitledPane>
+  </panes>
+</Accordion>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>20</y>
+      <w>210</w>
+      <h>400</h>
+    </coordinates>
+    <panel_attributes>PiggyBank
+--
+-anzahl1Cent : int
+-anzahl2Cent : int
+-anzahl5Cent : int
+-anzahl10Cent : int
+-anzahl20Cent : int
+-anzahl50Cent : int
+-anzahl1Euro : int
+-anzahl2Euro : int
+-maxAnzahl : int
+-gebrochen : boolean
+--
++init( maxAnzahl : int ) : void
++add1Cents( anzahl : int ) : int
++add2Cents( anzahl : int ) : int
++add5Cents( anzahl : int ) : int
++add10Cents( anzahl : int ) : int
++add20Cents( anzahl : int ) : int
++add50Cents( anzahl : int ) : int
++add1Euros( anzahl : int ) : int
++add2Euros( anzahl : int ) : int
++isEmpty() : boolean
++isFull() : boolean
++isBroken() : boolean
++breakPiggy() : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

@@ -1,0 +1,23 @@
+Zwei Brüder erben eine Schafherde. Da sie ihre Berufe haben, entscheiden sie sich, sie zu verkaufen und den Gewinn zu teilen.
+Die Brüder erhalten für jedes Schaf so viele Taler wie die Herde Tiere hat, ausgezahlt in 10-Taler-Scheinen und 1-Taler-Münzen (Anzahl der Münzen < 10).
+Beim Aufteilen des Betrages nimmt jeder abwechselnd einen Schein, jedoch erhält der ältere Bruder den ersten und den letzten.
+Deshalb bekommt der jüngere sämtliche Münzen. Da der Gewinn jedoch immer noch nicht gerecht geteilt ist, 
+stellt der ältere dem jüngeren Bruder einen Scheck aus.
+
+Welche Zahl steht auf dem Scheck?
+
+Wenn es n Schafe gibt und jedes Schaf n Taler kostet, ist der Gesamtbetrag n^2 Taler.
+Jede Zahl n kann man in der Form a*10+b schreiben; beispielsweise die Zahl 4356 als 435*10+6.
+n^2 ist also (a*10+b)*(a*10+b) = 100*a2+20*ab+b2.
+Die ersten beiden Terme (100*a2+20*ab) ergeben immer eine Zahl mit einer geraden Zehnerstelle.
+Dieser Anteil lässt sich immer zwischen den beiden Erben glatt aufteilen.
+Nur der Anteil der Einerstelle b*b kann also dazu führen, dass die beiden Brüder nicht gleich viele 10-Taler-Scheine erhalten.
+b^2 sind die ersten 10 Quadratzahlen: 0, 1, 4, 9, 16, 25, 36, 49, 64, und 81.
+Davon haben nur 16 und 36 eine ungerade Zehnerstelle; bei allen anderen Zahlen hätte beide Brüder gleich viele 10-Taler-Scheine bekommen.
+Egal, ob nun 16 oder 36 - die Einerstelle ist immer 6; der jüngere Erbe hat also 6 Taler in Münzen erhalten;
+der ältere muss dem jüngeren daher noch 2 Taler »zurückzahlen«.
+
+Auf dem Scheck steht also die Zahl 2.
+
+Quelle:
+https://www.janko.at/Raetsel/Mathematik/009.a.htm

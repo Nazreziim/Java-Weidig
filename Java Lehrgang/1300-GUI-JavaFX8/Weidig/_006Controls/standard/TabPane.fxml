@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.Pane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TabPaneController">
+  <tabs>
+    <Tab fx:id="fxTab1" style="-fx-background-color: pink;" text="Tab 1">
+         <content>
+            <Pane fx:id="fxPaneTab1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: green;" />
+         </content></Tab>
+    <Tab fx:id="fxTab2" style="-fx-background-color: red;" text="Tab 2">
+         <content>
+            <Pane fx:id="fxPaneTab2" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: Aquamarine;" />
+         </content></Tab>
+  </tabs>
+</TabPane>

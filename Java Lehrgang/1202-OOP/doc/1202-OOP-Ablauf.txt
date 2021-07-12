@@ -1,0 +1,231 @@
+#################################################
+# Themengebiet: Java OOP                        #
+# Timebox:      5 Tage                          #
+# Stand:        2017-08-17                      #
+#################################################
+
+### TAG 1 -----------------------------------------------------------------------------------------
+
+OOP:
+- Objektorientierte Programmierung ist ein Programmierparadigma
+-- Weitere Prog Paradigmen sind zum Beispiel Imperative Programmierung oder Deklarative Programmierung.
+--- Imperative Programmierung: Strukturierte Anweisungen an den Computer, was er ausführen soll.
+--- Deklarative Programmierung: Man definiert funktional oder logisch was man haben möchte und der Computer sucht sich selbst den Weg zur Lösung. 
+
+Motivation:
+- In der realen Welt werden zusammenhänge immer anhand von Objekten wahrgenommen und häufig auch so modelliert.
+-- Warum sollte dieses Modell dann in ein prozedurales System überführt werden, welches nur Unterprogramme (Prozeduren/Funktionen) kennt.
+-- Mit der Objektorientierten Programmierung werden die Objekte, welche modelliert wurden auch so in die Software übernommen.
+--- Objektorientierung bedeutet
+---- Jedes Objekt hat eine Identität, welche sich während des gesamten Lebens des Objektes _nicht_ verändert 
+---- Jedes Objekt hat einen Zustand (Werte innerhalb der Attribute), welcher nur vom Objekt selbst manipuliert wird --> Kapselung
+---- Jedes Objekt zeigt ein Verhalten (Methoden).
+
+- Objektorientierung --> Wiederverwendbarkeit
+-- Wenn man ein neues Projekt startet trifft man sehr wahrscheinlich auf Probleme, welche man in früheren Projekten schonmal gelöst hat.
+-- Wiederverwendung gibt es zwar nicht erst seit der Objektorientierung aber objektorientierter Code macht es deutlich einfacher Programmteile wieder zu verwenden,
+   weil die Klassen/Objekte jeweils für ihren eigenen Speicher und die eigenen Fähigkeiten (Methoden) verantwortlich sind.
+   
+- OOP Konzepte: (auf die wir zu sprechen kommen)
+-- Abstraktion
+-- Datenkapselung
+-- Vererbung
+-- Polymorphie
+
+- Modellierung
+-- Modellierung in der Objektorientierung findet überwiegend mit Mitteln der UML - Unified Markup Language statt
+--- Strukturdiagramme:
+---- Klassendiagramm: zeigt zusammenwirken der Klassen (Class-Diagram, CD)
+---- Objektdiagramm: zeigt relevante Objekte zu einem bestimmten Zeitpunkt -> Zustände (Object-Diagram, OD)
+---- Paketdiagramm: wird genutzt um Projekte zu unterteilen (paketieren) (Package-Diagram, PD)
+---- Komponentendiagramm: zeigt die Komponenten, eines Gesamtsystems, mit Schnittstellen und Ports, aus einer bestimmten Sicht (Component-Diagram)
+--- Verhaltensdiagramme: kommen wir später drauf, bei OOA, OOD
+---- Anwendungsfalldiagramm (Use-Case-Diagram, UD)
+---- Aktivitätsdiagramm (Activity-Diagram, AD)
+---- Sequenzdiagramm (Sequence-Diagram, SD)
+---- Zustandsübergangsdiagramm (State-Transition-Diagram, STD)
+
+Klassen / Objekte
+- Unterschied/Zusammenhang Klassen <-> Objekte <-- Abstraktion
+-- Klassen sind Bauplan für Objekte
+--- Klassen deklarieren zwei Dinge
+---- Attribute: Was das Objekt hat (Objektattribute vs. Klassenattribute)
+---- Methoden: was das Objekt kann (Objektmethoden vs. Klassenmethoden)
+-- Realität wiederspiegeln (modellhaft, das heißt soweit wie möglich vereinfacht)
+- Neues Exemplar von einer Klasse / Objekt erzeugen mit new Operator
+
+BEISPIEL: Klassendiagramm Auto beginnen (Tafel)
+- Klassendiagramm Elemente: Klasse, Attribute (Typ), Methoden (Typ, Parameter)
+-- Klasse: Auto
+-- Attribute: farbe, marke, modell, geschwindigkeit, sitzplaetze, maxGeschwindigkeit
+-- Methoden: einsteigen, aussteigen, beschleunigen, bremsen, parken, aufschließen, abschließen
+
+2. BEISPIEL: Klassendiagramm Punkt beginnen
+-- Klasse: Punkt
+-- Attribute: x, y
+-- Methoden: verschiebenUm, verschiebeAuf, ursprung, abstand(Punkt p)
+-- Diskussion: sollte man direkt auf Attribute zugreifen können? Überleitung zu Datenkapselung
+--> Klassendiagramm: Sichtbarkeiten!
+
+Parallel Klassendiagramm verfeinern und Klasse Punkt im jEdit mit Teilnehmern aufbauen
+(Daten)Kapselung: private < "package visible" < protected < public  # Wie bei Methoden
+- Getter / Setter
+-- Stellen öffentliche Schnittstellen dar, um den Zustand eines Objektes auszulesen und zu verändern
+-- Setter sollten Werte nicht einfach in das Attribut speichern, sondern vorher Gültigkeit prüfen
+--> Getter und Setter in das Modell / die Klasse aufnehmen
+- Konstruktoren # Spezielle Methoden, werden nur bei der Erzeugung eines Objektes verwendet --> Objekte sind selbst für ihre Erzeugung zuständig
+-- Defaultkonstruktor () # wird nur automatisch erzeugt, wenn KEIN Konstruktor definiert wird
+-- eigene Konstruktoren mit Parametern
+--- Konstruktoren haben keinen Returntype (auch kein return), gleichen Namen wie die Klasse
+---> Konstruktoren in das Modell / die Klasse aufnehmen
+- this 
+-- this: Zugriff auf das eigene Objekt
+--> Unterschiedliche Namen zu gleichen Namen ändern und this benutzen
+-- this(): Einen anderen Konstruktor aufrufen
+--> Verweis auf anderen Konstruktor nutzen
+- Beispiele:
+-- 1.) Punkt im Paket b1Kapselung ( wird während Unterricht mit Teilnehmern aufgebaut )
+		--> Klasse Strecke hinzufügen
+-- 2.) Mensch ( als weiteres Beispiel Aufbauen )
+        -- Attribute:
+        --- Vorname
+        --- Nachname
+        --- Geburtsdatum
+        --- Geschlecht
+        -- Methoden:
+        --- Getter/Setter
+        --- Konstruktor
+
+### TAG 2 -----------------------------------------------------------------------------------------
+
+WIEDERHOLUNG:
+- Motivation
+- UML Klassendiagramm -> Modellierung
+- Klassen / Objekte
+- Datenkapselung
+
+----> UEBUNG: OOP - Klassen 1
+
+- UML Klassendiagramm
+-- Assoziationen
+--- Multiplizitäten
+--- Rollen
+--- Lesrichtung/-text
+--- Aggregation
+--- Komposition (Composition) 
+
+----> UEBUNG: OOP - Klassen 2 (Modellierungsaufgabe Pizzaria)
+      -> An Tafel durchsprechen ( oder mit Enterprise Architect )
+      
+----> UEBUNG: OOP - Klassen 3 - 4 (Implementierung Sparschwein + Test)
+
+- Klassenvariablen besprechen
+-- statische Attribute (static)
+-- Verwendungszweck zum Beispiel eindeutige ID für die Objekte.
+--- statische Attribute, Methode, Blöcke - sinnvolle Anwendung: counter!
+
+----> UEBUNG: OOP - Klassen 5 (Personen mit ID (Personalnummer))
+----> UEBUNG: OOP - Klassen 6 (nur wenn Zeit ist) (Lehrgangsobjekte)
+
+----> UEBUNG: OOP - Klassen 7 a) - b) (TopfSpiel)
+
+### TAG 3 -----------------------------------------------------------------------------------------
+
+Motivation für Vererbung:
+- Gruppen bilden
+- Hierarchien bilden
+- Wiederverwendung von Quellcode
+-- Gemeinsame Teile von Klassen können in eine Oberklasse ausgelagert werden
+
+Klassendiagramm an Tafel: Person, Fahrzeug, Haus, Raum, Parkplatz, Fahrzeugteile 
+--> PKW, LKW, Motorrad erben von Fahrzeug
+--> Garage erbt von Parkplatz und Raum
+
+Klassendiagramm: Person, Verkäufer, Kunde
+- erstmal Verkäufer und Kunde --> Person als Oberklasse von Verkäufer und Kunde
+- kann Verkäufer auch Kunde sein? --> Person <- Kunde <- Verkäufer
+
+Vererbung in Java: 
+- von Klassen erben mit "extends" -> keine Mehrfachvererbung möglich!!!
+- Jede Klasse, welche nicht von einer anderen Klasse erbt, erbt von Object
+-> class Test{} ==> class Test extends Object {}
+-- Die Klasse Object kurz zeigen (ruhig in der API) https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
+--> Methoden toString, equals, hashCode, clone (example for hashCode: https://stackoverflow.com/questions/113511/best-implementation-for-hashcode-method )
+--> Jede Klasse verfügt über diese Methoden 
+--- zur equals Methode: Template in package equals, ACHTUNG: boolean equals(Object o)
+--- zur toString Methode: siehe b1Kapselung.aufgabenLsg.Mitarbeiter
+--- zur hashCode Methode: siehe b2Vererbung.equals.Person
+---- hashCode versucht einen eindeutigen Hash ((Primzahl als Multiplikator)) des Objektes zu erstellen. Der Wertebereich von int ist eingeschränkt --> Mehrdeutigkeit
+--- zur clone Methode: Klont das gesamte Objekt, kommt bei Interfaces genauer, weil wir dafür eines benötigen.
+ 
+- super
+-- super() 
+--- ruft den Konstruktor der Oberklasse auf.
+--- Wenn nicht selbst genannt im Konstruktor wird es automatisch eingefügt. super()
+--- Will man einen speziellen Konstruktor der Oberklasse aufrufen und nicht den Defaultkonstruktor, dann muss man diesen mit super( Parameterliste ) angeben.
+--- Existiert in der Oberklasse kein Defaultkonstruktor muss der richtige Konstruktor angegeben werden, ansonsten --> CompileError
+-- super
+--- Zugriff auf geerbte Methoden/Attribute aller Oberklassen. Wird vor allem benötigt, wenn die entsprechende Methode überschrieben wurde
+
+- Abstrakte Klassen 
+-- Klasse von der man keine Exemplare erzeugen kann
+-- diese Klasse kann Methoden implementieren
+-- genauso kann sie nur vorschreiben welche Methoden eine Unterklasse implementieren muss ( public abstract int add(int a, int b) )
+-- mit einzelnen abstrakten Methoden (package vererbung.personen)
+---> public abstract class / public abstract void methode();
+-- UML: Abstrakte Klassen und Methoden werden kursiv dargestellt.
+--- Das ist besonders bei Handschrift schlecht zu lesen. Deshalb ist es besser den Stereotyp <<abstract>> über den Klassennamen hinzuzufügen.
+
+----> UEBUNG: OOP - Vererbung 8 - 9
+
+### TAG 4 + 5 -------------------------------------------------------------------------------------
+
+Pakete:
+- package:
+-- Definition des Paketes
+- import: 
+-- Import von Klassen (paket.Klasse)
+-- Import von Paketen (paket.*)
+- import static:
+-- Import von statischen Membern (paket.Klasse.member)
+- javac -cp <ClassPath> Pfad/zur/HauptKlasse.java
+-- ClassPath: Quellverzeichnis
+
+----> UEBUNG: OOP - Vererbung 10 Schulverwaltungssoftware in eigenem Paket
+
+- Formen der Polymorphie
+-- Statischer Polymorphismus
+--- überladene Operatoren:
+---- Beispiele: + - * /
+--- überladene Methoden:
+---- int add(int, int) <-> double add(double, double) | void ausgabe(String) <-> void ausgabe(long)
+-- Dynamischer Polymorphismus
+--- Mehrere Klassen (meist Vererbungshierarchie) implementieren eine Methode mit gleichem Namen und gleichen Parametern --> Überschreiben ( @Override )
+---- return-Typ kann sich unterscheiden (siehe Signatur)
+-- Zwei Beispiele im Paket polymorphie
+--- instanceof Operator
+
+----> UEBUNG: OOP - Vererbung 11 Fussball 
+
+- Interfaces
+-- Interface (Schnittstelle), welche von einer Klasse implementiert werden kann
+-- Nutzung: class Test implements Cloneable, Serializable{}
+-- Interface definiert Methoden, welche implementiert werden müssen (Im Interface wird grundsätzlich nicht implementiert)
+--- instanceof Operator
+
+--- zur Methode clone: Das eigentliche Kopieren macht die JavaVM. Sie kopiert einfach den gesamten Speicherbereich des Objektes -> flache Kopie.
+---- Falls Referenztypen genutzt werden und diese unabhängig werden sollen, müssen auch diese geklont werden. -> Überschreiben der Clone Methode.
+---- Implementieren
+
+----> UEBUNG (OPTIONAL, FALLS VIEL ZEIT): OOP - Vererbung 12 GeoPaket
+
+- Interfaces (Konzept zur Mehrfachvererbung in Java)
+-- Mehrfachvererbung: Einfaches Beispiel mit dem Versuch eine Konstante über zwei Interfaces zu einer Klasse zu führen: package mehrfachvererbung
+--- Beispiel an Tafel: Gebäude + Parkplatz => Garage
+---- Gebäude kann betreten werden, Parkplatz kann befahren werden, Garage kann beides.
+
+----> UEBUNG: OOP - Vererbung 13 Ampibienfahrzeug
+
+----> ABSCHLUSS-UEBUNG: OOP - Rennschnecke Einweisung und Implementierungsschritt 1
+
+----> UEBUNG: Gartenparty <-- Aufgabenstellung fehlt

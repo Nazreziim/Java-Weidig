@@ -1,0 +1,98 @@
+Ablauf Themeneinheit Filehandling:
+----------------------------------
+
+Buch Seite 1071 ff
+1.) File-Objekte - Dateiorganisation: package file
+	Klasse: java.io.File
+	bezieht sich immer auf das lokale Dateisystem
+	Informationen zu Pfad- und Dateisystem erhalten sowie
+	Verzeichnisse und Dateien anlegen.
+Ordner: unterricht
+--> FileMain.java
+
+Ordner: file
+--> FileTest.java
+	
+	- ab Java 7 auf externe Speicherung von Daten möglich (java.nio.file.Path)
+
+Übungen: Aufgabe 1
+
+2.) RandomAccessDateien: package randomAccess
+Dateien können über zwei verschiedenen Arten gelesen und modifiziert werden.
+- über einen Dateistrom, der Bytes in eimen Stream verarbeitet (sequentieller Zugriff) oder
+- über einen wahlfreien Zugriff (direkter Zugriff)
+Ordner: unterricht
+--> RandomAccessMain.java
+
+Ordner: randomAccess
+--> RandomAccessTest.java
+
+Übungen: Aufgabe 2 und  
+         Aufgabe 3 (randomAccess-aufgaben-soldat)
+Buch Seite 1097
+3.) Streams: package streams
+Eine sequenzielle Ein- und Ausgabe werden in Java mit Streams realisiert.
+Ein Datenstrom kann immer nur in eine Richtung senden.
+Die Klassen zur Verarbeitung von Streams sind im Paket: java.io zusammengefasst.
+
+- zeichen-orientierte (Character-Streams, 2Byte) Klassen: Reader und Writer
+-- Sie stehen fuer die Ein- und Ausgabe von Texten (Unicode-Zeichen) zur Verfuegung.
+--- abstrakte Klasse Writer
+---- OutputStreamWriter    => Brueckenklasse wandelt Character- in byte-Datenstrom um
+----- FileWriter		   => schreibt Daten reduziert in Datei.
+
+--- abstrakte Klasse Reader
+---- InputStreamReader	   => Brueckenklasse wandelt byte- in Character-Datenstrom um.
+----- FileReader		   => liest Daten von Datei.
+
+Ordner: streams
+--> FileWriterReaderTest.java
+
+Primitive Datentypen und formatierte Strings (printf) schreiben und lesen
+   mit PrintWriter und FileReader, und BufferedReader
+--> PrintWriterReaderTest.java
+
+
+- byte-orientierte (Byte-Streams) Klassen: InputStream und OutputStream
+-- Hiermit wird die Ein- und Ausgabe von Daten im Byte-Format dargestellt.
+--- abstrakte Klasse OutputStream
+---- FileOutputStream
+
+--- abstrakte Klasse InputStream
+---- FileInputStream
+
+--> FileOutputInputTest.java
+
+Übungen: 
+Aufgabe 4: FileInputStream/FileOutputStream  (streams-aufgaben-FileUtils)
+Aufgabe 5: DataOutputStream/DataInputStream, (streams-aufgaben-soldat)
+
+2. Tag
+
+4.) Serialisierung: package persistenz
+Objekte speichern mit der Standard-Serialisierung
+- ObjectOutputStream  und Methode: writeObjekt zur Verfuegung.
+-- DataOutput für primitive Datentypen
+--- ObjectOutput erweitert um Objekte und Attribute zu speichern
+
+Objekte koennen nur serialisiert werden, wenn sie die Schnittstelle Serialzable implementieren.
+Diese Schnittstelle enthaelt keine Methoden und ist nur eine Markierungsschnittstelle.
+-- statische Variablen werden nicht serialisiert.
+
+Nicht alle Klassen (Passwoerter) sollen serialisiert werden. Es weicht die Kapselung von privaten Attribute auf.
+Sollen Klassen nicht serialisiert werden oder sollen nur bestimmte Attribut einer Klasse serialisiert werden,
+da können die nicht zu serialisierten Attribute mit dem Schlüsselwort  transient  markiert werden.  
+
+Selber die Serialisierung in die Hand nehmen.
+private void writeObject(ObjectOutputStream oos){
+}
+private void readObject(ObjectOutputStream oos){
+}
+
+Ordner: unterricht
+--> PersistenzMain.java
+
+Übungen:
+Aufgabe 6a: ObjectOutputStream / ObjectInputStream (persistenz-aufgaben-soldat_a1)
+Aufgabe 6b: ObjectOutputStream / ObjectInputStream (persistenz-aufgaben-soldat_a2)
+

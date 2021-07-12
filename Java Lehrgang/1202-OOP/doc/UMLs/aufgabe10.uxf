@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>240</x>
+      <y>0</y>
+      <w>230</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>Mensch
+--
+-name : String
+-alter : int
+--
+&lt;&lt;Konstruktor&gt;&gt;
++Mensch( name : String, alter : int )
+
+&lt;&lt;Getter / Setter &gt;&gt;
++getName() : String
++setName( name : String ) : void
++getAlter() : int
++setAlter( alter : int ) : void
+
++toString() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>280</y>
+      <w>340</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>Schueler
+--
+-klassenstufe : int
+-faktor : double = 5 {readonly}
+--
+&lt;&lt;Konstruktor&gt;&gt;
++Schuler( name : String, alter : int, klassenstufe : int )
+
+&lt;&lt;Getter / Setter &gt;&gt;
++getKlassenstufe() : int
++setKlassenstufe( klassenstufe : int ) : void
+
++getBeitrag() : double
++toString() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>280</y>
+      <w>300</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>Lehrer
+--
+-fach : String
+--
+&lt;&lt;Konstruktor&gt;&gt;
++Lehrer( name : String, alter : int, fach : String )
+
+&lt;&lt;Getter / Setter &gt;&gt;
++getFach() : String
++setFach( fach : String ) : void
+
++toString() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>240</y>
+      <w>190</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>170.0;10.0;170.0;30.0;10.0;30.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>340</x>
+      <y>240</y>
+      <w>190</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0;170.0;30.0;170.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>580</y>
+      <w>470</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>Klassensprecher
+--
+--
+&lt;&lt;Konstruktor&gt;&gt;
++Klassensprecher( name : String, alter : int, klassenstufe : int, faktor : int )
+
+&lt;&lt;Getter / Setter &gt;&gt;
++setFaktor( faktor : int ) : void
+
++getBeitrag() : double
++toString() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>230</x>
+      <y>520</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+</diagram>

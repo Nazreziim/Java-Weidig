@@ -1,0 +1,729 @@
+#################################################
+# Themengebiet: Java Grundlagen
+# Timebox:      8-9 Tage
+# Stand:        2018-04-17
+#################################################
+
+### Tag 1 -----------------------------------------------------------------------------------------
+Begrüßung zum Lehrgang
+- Vorstellung
+-- HslLtr, Chef, Spieß, Teilnehmer
+
+## Beginn 08:20 
+- Refü
+-- Verwaltungsangelegenheiten
+## Ende 10:20
+
+Einweisung in den Lehrgang
+- Präsentation
+-- mit Belehrungen
+--- Prüfungsmodalitäten
+--- Internetbelehrung
+
+## Mittagspause
+
+Grundlagen Programmiersprachen:
+- Bedeutung: Vielfalt der Programmiersprachen
+-- Maschinennahe Sprachen
+--- Maschinensprache Byte-Code pro Architektur
+--- Assembler Menschenlesbare Übersetzung des Byte-Codes pro Architektur
+-- Höhere Programmiersprachen
+--- Abstraktion von der Architektur
+--- Für den Mensch leichter lesbar und einfacher verständlich
+--- Übersetzbar in ByteCode
+--- Kategorien: Paradigmen
+---- Strukturierte Programmiersprachen
+----- 3 Kontrollstrukturen: Sequenz, Verzweigung, Schleifen
+---- Imperative Programmiersprachen
+----- Folge von Anweisungen / Prozedurale Programmierung
+----- Detaillierte Beschreibung der Schritte zur Erfüllung der Aufgabe
+----- C, Cobol, Ada, Pascal, ...
+---- Deklarative Programmiersprachen
+----- Beschreibung WAS berechnet werden soll. Das WIE muss der Compiler / Interpreter selbst herausfinden.
+----- Programme deutlich kürzer, als imperative. Optimierungen umständlich.
+----- Haskell, Lisp, Prolog, SQL
+---- Objektorientierte Programmiersprachen
+----- Verfolgen das Paradigma der Objektorientierung
+----- Bilden reale/geplante Objekte oder Abstraktionen davon ab
+----- Smalltalk, Java, C++, Scala
+----- Mischsprachen: JavaScipt, PHP, Python
+----- Mehr zu OOP in ca. 2 Wochen
+
+Einfache Programmierumgebung einrichten
+- jEdit ansehen
+-- Dateien öffnen, schließen, speichern
+-- Console testen
+- Notepad++ ansehen
+-- Hinweis auf Prüfungsaufbau / -umgebung
+
+- Verzeichnisstruktur anlegen
+-- SVN Grundlagen erklären
+-- Tortoise SVN Einweisung
+-- SVN Verzeichnis anlegen
+-- Kommunikation mit SVN-Server sicherstellen
+-- ...
+
+Java
+- HelloWorld.java in jEdit schreiben.
+-- Inhalt der Datei zusammen schreiben (MasterSolution)
+-- Dabei erklären, was die einzelnen Begriffe/Bestandteile bedeuten.
+-- Besprechen was dieses Programm tun wird.
+
+- mit "javac -cp . HelloWorld.java" übersetzen
+-- an der Tafel erklären was passiert ist:
+--- Compiler hat JavaSource in JavaBinary übersetzt. ByteCode für die JavaVM.
+--- Während dessen hat er eine Syntaktische Analyse durchgeführt, um den Source Code in Tokens zu zerlegen
+--- dabei können Fehler entdeckt werden. Bei einem Fehler wird abgebrochen und eine Meldung ausgegeben.
+
+- mit "java -cp . HelloWorld" ausführen
+-- an der Tafel erklären was passiert ist:
+--- Java Binary wird in Java Virtual Machine geladen. Anschließend wird die Methode main(String[] args) gesucht und ausgeführt.
+--- Übersetzen und ausführen in Java sind also zwei getrennte Schritte.
+--- Die JavaVM interpretiert das JavaBinary und erzeugt daraus zur Laufzeit MaschinenCode für die entsprechende Plattform (Betriebssystem / Prozessorarchitektur )
+---- Deshalb gibt es für jedes Betriebssystem eine andere JavaVM
+---- Aber das JavaBinary ist somit auf allen unterstützten Plattformen lauffähig: Platform unabhängig.
+- Begriffe: Compiler, Interpreter, Schlüsselwort, Trennzeichen, Literal, Bezeichner, Anweisung / Befehl, Kommentar
+
+- Abstraktionsreihenfolge eines Compilers:
+-- 1. Lexikalik - lexikalische Betrachtung des Quellcodes
+-- Schlüsselwort, Kommentar, Trennzeichen, Literal, Bezeichner 
+--- Eingehen auf gültige Bezeichner (Uebersichten - '901 - Uebersichten.pptx') 
+  
+-- 2. Syntax : bildet das Vokabular. Grammatik der Sprache
+--- Anweisung = statement = Befehl
+  
+-- 3. Semantik: Bedeutung, das macht das Programm.
+--- Dokumentation Java 8 (System.out.println("Hallo Welt!");
+---- java.lang.System - Klasse 
+---- public Attribut von public Klassentyp: java.io.PrintStream Bezeichner: out 
+---- Methode: println(String x) aufgerufen 
+
+- Variablen und Datentypen
+-- Baum der Java Datentypen an der Tafel darstellen (Vorlage im Ordner Uebersichten - '901 - Uebersichten.pptx')
+-- Syntax von Variablen (Tafel)
+--- Deklaration (Bekanntmachen): Typ Bezeichner;
+--- Initialisieren (Wert zuweisen): Bezeichner = Wert;
+---- auch gleichzeitig möglich: Typ Bezeichner = Wert;
+-- Literale
+--- Zahlenformate: Ganzzahl (123), lange Ganzzahl (123L), Fließkommazahl (1.23F), Fließkommazahl doppelte präzision (1.23)
+--- Zeichen(ketten): Character ('a'), String ("abc")
+--- Wahrheitswerte: Boolean (true, false)
+--- weitere Zahlenformate: oktal (0567; 01234567L), hexadezimal (0xAFFE, 0xCAFEAFFEL)
+----> UEBUNG: 3 Literale 
+
+-- Operatoren bei primitiven Datentypen
+--- Übersicht in Datei: /Uebersichten/901 - Uebersichten.pptx
+----> UEBUNG: 4 Logik
+
+- Casting zwischen primitiven Datentypen
+-- Verkleinerung des Wertebereichs
+-- Ungenauigkeit bei Fließkommazahlen.
+
+### Tag 2 -----------------------------------------------------------------------------------------
+
+Zahlensysteme
+- Wichtige Zahlensysteme in der Informatik
+-- Binärsystem (2er System)
+--- Computer arbeiten ausschließlich mit 0 und 1, also im Binärsystem.
+--- Zur Darstellung von längeren Bitfolgen eignen sich allerdings andere Systeme besser.
+-- Oktalsystem (8er System)
+--- Bitfolgen lesbar machen.
+-- Dezimalsystem (10er System)
+--- Interaktion mit dem Menschen (wir wachsen mit diesem System auf.)
+-- Hexadezimalsystem (16er System)
+--- Bitfolgen lesbar machen.
+
+- Die Zahlensysteme werden jeweils durch Ziffern mit dem Wert 0 bis n-1 dargestellt
+-- binär:       0 - 1
+-- oktal:       0 - 7
+-- dezimal:     0 - 9
+-- hexadezimal: 0 - 9, A(10), B(11), C(12), D(13), E(14), F(15)
+
+- Umrechnung zwischen Zahlensystemen
+(einfach)
+-- binär -> oktal
+--- 3 Bit ergeben jeweils eine oktal-Ziffer
+--- 001(2) = 1(8), 111(2) = 7(8), 100101(2) = 45(8)
+-- oktal -> binär
+--- eine oktal-Ziffer führt jeweils zu 3 Bit
+--- Die einzelnen Ziffern werden einfach in Binärdarstellung (3stellig) aneinandergehängt.
+--- 123(8) = 001010011(2)
+-- binär -> hexadezimal (ähnlich wie binär -> oktal, diesmal mit 4 Bit)
+--- 4 Bit ergeben jeweils eine hex-Ziffer
+--- 0001(2) = 1(16), 1001(2) = 9(16), 1010(2) = A(16), 1111(2) = F(16)
+-- hexadezimal -> binär (ähnlich wie oktal -> binär)
+--- eine hex-Ziffer führt jeweils zu 4 Bit
+--- Die einzelnen Ziffern werden in Binärdarstellung (4stellig) aneinandergehängt.
+--- 42(16) = 0100 0010(2), FCB(16) = 1111 1100 1011(2)
+--- Bei der Binärdarstellung von hex-Zahlen, ist es empfählenswert die Bit in 4er Gruppen darzustellen.
+-- oktal <-> hexadezimal
+--- einfachster Weg: über das Binärsystem.
+
+(nicht ganz einfach)
+-- binär, oktal, hexadezimal -> dezimal
+--- 1. im Kopf umrechnen: einfache Methode für "kleine" Zahlen 
+---- F(16) = 1111(2) = 17(8) = 15(10)
+--- 2. Multiplikation mit dem Stellenwert
+---- Jede Stelle in einer Zahl hat einen bestimmten Stellenwert.
+---- Dieser lässt sich bestimmen, indem die Basis (hier: 2, 8 oder 16) mit einem Exponenten versehen wird.
+---- Der Exponent ergibt sich aus der Position der Ziffer (Stelle). 
+---- Die Ziffer direkt links vom Komma hat den Exponenten 0.
+---- Nach links wird mit jeder Stelle der Exponent um eins erhöht.
+---- Nach rechts wird der Exponent um eins verringert.
+---- Die Dezimaldarstellung entsteht nun aus der Addition der einzelnen Stellen, 
+----  welche aus der Multiplikation der Ziffern mit ihrem jeweiligen Stellenwert berechnet wurden.
+----- 123(16) = 3*16^0 + 2*16^1 + 1*16^2 =  291(10)
+----- 1001 1001(2) = 1*2^7 + 1*2^4 + 1*2^3 + 1*2^0 = 153(10)
+----- 25(8) = 2*8^1 + 5*8^0 = 21(10)
+--- 3. Hornerschema
+---- Berechnung bei unbekannter Länge (z.B. während der Eingabe)
+---- Es wird mit Null begonnen.
+---- Bei der Eingabe einer neuen Zahl, wird die aktuelle Zahl mit der Basis (2, 8, 16) multipliziert und die neue Ziffer hinzu addiert.
+---- 123(16) = (((1*16) + 2*16) + 3) = 291(10)
+---- 1001 1001(2) = ((((((((1*2) + 0*2) + 0*2) + 1*2) + 1*2) + 0*2) + 0*2) + 1) = 153(10)
+---- 25(8) = ((2*8) + 5) = 21(10)
+-- dezimal -> binär, oktal, hexadezimal
+--- 1. im Kopf umrechnen: für kleine Zahlen praktikabel
+---- 129(10) = 1000 0001(2) = 201(8) = 81(16)
+--- 2. Division mit Rest (neue Basis) (umgekehrtes Hornerschema)
+---- Die bessere und sichere Methode ist die Division durch die neue Basis mit Rest.
+---- Dabei wird der Ausgangswert solange durch die neue Basis geteilt und der Rest notiert, bis der Ergebnis null ist.
+---- 130(10) -> binär: 130 / 2 = 65 R 0
+                        65 / 2 = 32 R 1
+                        32 / 2 = 16 R 0
+                        16 / 2 =  8 R 0
+                         8 / 2 =  4 R 0
+                         4 / 2 =  2 R 0
+                         2 / 2 =  1 R 0
+                         1 / 2 =  0 R 1
+---- 130(10) = 1000 0010(2); Die größte Schwierigkeit bei dieser Methode ist, dass man auf die Richtung achten muss.
+---- Das Ergebnis der ersten Division steht direkt links vom Komma.
+---- Alle weiteren Ergebnisse werden links davon angehängt. 
+
+--- UEBUNG: 5 a, b, c
+
+- Darstellung von negativen Werten
+-- Zur Darstellung von negativen Werten in binär Darstellung wird ein Bit benötigt.
+-- Da es nicht ohne weiteres möglich ist, in der Hardware des Computers / Prozessors ein Bit hinzuzufügen, 
+--  wird ein bereits vorhandenes Bit genutzt. Dies schränkt natürlich den Wertebereich ein.
+-- Um bei den positiven Zahlen keine großen Veränderungen zu verursachen, wird das höchstwertigste Bit (MSB) für das Vorzeichen genutzt.
+-- Für positive Zahlen steht also nur ein Bit weniger zur Verfügung.
+-- Das MSB wird bei positiven Zahlen mit 0 belegt und bei negativen Zahlen mit 1.
+--- Positive Zahlen lassen sich also ganz normal verwenden.
+--- Negative Zahlen verfügen also über eine 1 im MSB, dies ist allerdings noch nicht alles.
+--- Denn es wäre auch schön, wenn man mit negativen Zahlen auch gut rechnen könnte.
+--- Erstmal ein Beispiel mit 3 Bit.
+---- naive Variante:
+----- Zahlen:                  binär 000 001 010 011 100 101 110 111
+             dezimal ohne Vorzeichen   0   1   2   3   4   5   6   7
+             dezimal mit Vorzeichen    0   1   2   3  -0  -1  -2  -3
+----- Damit können die Zahlen -3..-0, 0..3 abgebildet werden.
+----- Nebeneffekte:
+------ Es gibt zweimal die Null, mit -0 und +0. Das ist ein eher ungewolltes Verhalten.
+------ Die Addition von einer positiven und einer negativen Zahl führt zu unerwarteten Ergebnissen:
+------- -1 + 1 = 101 + 001 = 110 = -2 ! Das passt nicht.
+---- Um diese beiden Probleme zu beheben: Doppelte Null und fehlerhafte Addition; 
+----  Wird das 2er-Komplement zur Darstellung der negativen Zahlen verwendet:
+----- 2er-Komplement:
+------ Um das 2er-Komplement einer Zahl zu bilden, wird die Zahl zuerst invertiert und anschließend eins hinzu addiert.
+------ Berechnung kommt gleich. Sehen wir uns erstmal die Zahlenreihe und die Vorteile an.
+----- Zahlenkreis mit 2er-Komplement:
+------ Zahlen: binär                   000 001 010 011 100 101 110 111  umgestellt 100 101 110 111 000 001 010 011
+               dezimal ohne Vorzeichen   0   1   2   3   4   5   6   7               4   5   6   7   0   1   2   3
+               dezimal mit Vorzeichen    0   1   2   3  -4  -3  -2  -1              -4  -3  -2  -1   0   1   2   3
+------ Mit dem 2er-Komplement können die Zahlen -4..3 dargestellt werden. Der Wertebereich ist also um eins gewachsen.
+------ Gleichzeitig ist das Problem der doppelten Null verschwunden.
+------ Auch die Addition von negativen und positiven Zahlen macht jetzt weniger Probleme:
+------ -1 + 1 = 111 + 001 = 1000 = 1|000 = 000 = 0 Hier passt alles. Das zusätzliche Bit bei der Addition ist für das Verständnis dargestellt,
+------  Der Computer betrachtet es überhaupt nicht, sogenannter Überlauf.
+------ Auch andere Beispiele lassen sich jetzt berechnen.
+------ Vorteile: Größerer Wertebereich, Additionen funktionieren ohne Nebeneffekte.
+------ Nachteile: Die niedrigste Zahl ist vom Wert immer eins größer als die höchste Zahl, Überlauf findet weiterhin statt.
+---- Berechnung des 2er-Komplements:
+----- Die Berechnung des 2er-Komplements findet in 2 Schritten statt:
+------ 1. Invertierung der Binärdarstellung. Beispiel: 3(10) = 011(2) invert 100(2)
+------ 2. 1 addieren.                                                        100(2) + 1 = 101(2) = -3(10)
+----- Die Rückberechnung funktioniert identisch:      -3(10) = 101(2) invert 010(2) + 1 = 011(2) =  3(10)
+----- Eine Zweite Interpretation der 2er-Komplementdarstellung am Beispiel -1:
+------ -1(10) = 111(2) = -1*2^2 + 1*2^1 + 1*2^0 = -4 + 2 + 1 = -4 + 3 = -1
+------ Man interpretiert den Stellenwert des MSB negativ und alle anderen Bit positiv.
+------  Bei der Addition der Terme kommt man auf das richtige Ergebnis. 
+------  Diese Interpretation funktioniert für die Richtung binär -> dezimal ganz gut.
+- Alle primitiven Datentypen zur Repräsentation von Zahlen sind in Java vorzeichenbehaftet.
+-- byte, short, int, long
+
+- UEBUNG: 5d & 6 Zahlenformate.
+
+- Fließkommazahlen (IEEE 754)
+-- Bestandteile:
+--- Vorzeichenbit
+--- Mantisse
+--- Exponent
+-- Formel: Vorzeichenbit * -1 * Mantisse * 2^Exponent
+-- Gleitkommazahl nach IEEE 754 erstellen
+--- 1. Ganzzahlteil der Dezimalzahl zur Binärdarstellung transformieren
+--- 2. Nachkommateil der Dezimalzahl zur Binärdarstellung transformieren
+--- 3. Binärzahl normalisieren: das Komma so verschieben, dass die Zahl mit 1,... beginnt.
+---    Dabei die Verschiebung im Exponent merken.
+--- 4. Die normalisierte Binärzahl ohne 1, in der Mantisse speichern. 
+---    (1, ist immer vorhanden und kann somit weggelassen werden.)
+--- 5. Vorzeichen der Dezimalzahl im Vorzeichenbit speichern
+--- Ergebnis: [s|exponent|mantisse] float: [1|8|23] = 32 Bit double: [1|11|52] = 64 Bit
+--- Beispielberechnung zuhause.
+
+Informationen vom Nutzer abfragen
+- Die Nutzerinteraktion ist einer der wichtigsten Punkte von Anwendungsprogrammen
+- Dabei muss dem Nutzer mitgeteilt werden, was man von ihm will
+-  und die Antwort korrekt verarbeitet werden.
+- Da die Verarbeitung von Nutzereingaben nicht immer trivial ist, 
+-  benutzen wir zu Beginn des Lehrgangs eine fertige Klasse zum Einlesen von Informationen.
+-- Klasse: HilfsMeth
+--- Die Klasse bietet Ihnen 18 Methoden, um Informationen in unterschiedlicher Form einlesen zu können.
+---- Sie übernimmt auch eine grundlegende Fehlerbehandlung, falls der Nutzer falsche Eingaben macht.
+---- Das Abfangen von Fehlern sehen wir uns im Verlauf des Lehrgangs noch genauer an.   
+--- Die Methoden der Klasse HilfsMeth sind alle statisch, können also direkt aus der main-Methode aufgerufen werden.
+--- Sie beginnen alle mit 'read' und darauf folgt der Name des Datentyps, welcher gelesen werden soll.
+--- Des weiteren gibt es die Methode jeweils mit und ohne einen Parameter.
+--- Der Parameter ist ein String und repräsentiert eine Abfrage an den Nutzer.
+--- Alle Methoden liefern genau eine Information in Form des Datentyps im Namen zurück. readByte() -> Byte, usw.
+
+- Ausprobieren
+-- UEBUNG: Aufgabe 7 (Zusatz: Fragen Sie vorher den Name ab.)
+           Aufgabe 8
+           Aufgabe 9 (Vorher zusammen durchsprechen.)
+           Aufgabe 10
+           Aufgabe 11
+           Aufgabe 12
+           Aufgabe 13
+           Aufgabe 14
+
+### Tag 3 + 4 -------------------------------------------------------------------------------------
+Buch: Kapitel 2.5 Bedingte Anweisungen oder Fallunterscheidungen
+  Sinn? Beispiele   
+Verzweigungen: Kontrollstrukturen if-else
+- Motivation:
+-- Fallunterscheidung, Reaktion auf Eingaben, die wenigsten Programme haben nur einen Ablaufpfad
+-- If-else: ja nein Entscheidungen, Reaktion auf eine Bedingung (erfüllt oder nicht)
+-- Syntax an Tafel vorstellen
+--- if(Bedingung(en)){}
+--- if(Bedingung(en)){}else{}
+--- if(Bedingung(en)){}else if(Bedingung(en)){}else{}
+
+-- Ergänzung: Verschachtelung von if-Verzweigungen auch möglich.
+
+-- UEBUNG: 15 Kreisberechnung mit Abfrage: was soll ausgegeben werden.
+              (Umfang oder Flächeninhalt)
+
+-- Bedingungsoperator (ternären Operator)
+-- Syntax:
+--- Bedingung ? Ausdruck, wenn Bedingung wahr  : Ausdruck, wenn Bedingung false
+
+---> Template_06_Kontrollstuktur_If.java
+  
+
+Verzweigung: Kontrollstruktur switch-case
+- Motivation:
+-- Switch-case: Viele Zustände können abgefragt werden. Falls der aktuelle Zustand nicht berücksichtigt wurde, Standardverhalten.
+Einschränkung: 
+-für Ganzzahltypen, Wrapper-Typen (von Ganzzahltypen) , Aufzählungstypen (enum) und Strings
+- nur eine Abhängigkeit (Variable) ist möglich zur Selektion
+
+-- Syntax:
+--- switch(){}
+---- case: 
+---- default:
+
+  ---> Template_07_Kontrollstuktur_Switch.java
+  ---> Template_07_Kontrollstuktur_Switch1.java  -> mit Strings
+
+-- UEBUNG: 16 Vokale erkennen.
+
+-- UEBUNGEN: 17 - 23
+-- Denkaufgabe: 24
+
+### Tag 5 + 6 -------------------------------------------------------------------------------------
+
+Kontrollstrukturen: Schleifen
+- Motivation:
+-- Schritte mehrfach durchführen, ohne den Code mehrfach zu schreiben
+-- Programmierer sind faul -> erster Schritt zur Wiederverwendung
+-- OOP bietet noch mehr in der Richtung, kommt später
+- for(;;){}
+-- Syntax erklären
+--- BEISPIEL Summenbildung
+-- Eine fest vorgegebene Anzahl an Wiederholungen durchführen 
+--- BEISPIEL Linie mit '*' ausgeben
+--- UEBUNG 25
+
+- for(:){}
+-- Syntax erklären
+--- Benötigt spezielle Datentypen: zB Arrays; sehen wir uns später nochmal an
+
+- while(){}
+-- Syntax erklären, Verwendung wie for(;;){}, etwas flexibler
+-- Dafür auch schlechter lesbar, auf die verwendeten Variablen achten (wo werden sie angelegt / manipuliert).
+--- BEISPIEL Linie mit '*' ausgeben 
+
+- do{}while(); 
+-- Syntax erklären
+--- Fußgesteuert: Zahlen raten, Abfragen bis eine gültige Antwort kommt.
+--- BEISPIEL Linie mit '*' ausgeben
+
+- Vorgehen bei der Überführung einer Problemlösung in Schleifen im Programmcode
+-- Problem auf Papier aufmalen
+-- Muster suchen / erkennen
+-- Schleifen von innen (tiefste Verschachtelung) nach außen in den Code umsetzen
+--- Nach jeder neuen Schleifenebene testen.
+
+- Schleifen schachteln (mindestens for und while Schleife gleichartig und gemischt)
+-- BEISPIEL: Rechteck mit '*' ausgeben
+
+-- UEBUNG: 26 Zahlenpyramide mit for, while und do-while Schleifen
+-- UEBUNG: 27 Wiederholtes Noteneinlesen mit fußgesteuerter Schleife realisieren
+-- ZUSATZUEBUNGEN: 28 - 30
+
+### Tag 6 + 7 -------------------------------------------------------------------------------------
+
+Zusammengesetzter Datentyp: Array
+
+- Hinleitung: Zweck, Sinn?
+-- Problematik bei Programmerweiterung, Messwerte fuer Tag festhalten
+--- neue Variable
+--- neue Nutzerabfrage
+--- evtl. if-Verzweiger implementieren
+
+- Programm 
+-- Lösung: Variablen vom gleichem Datentyp mit einem Bezeichner
+     arrays = Ordner
+  
+-- Arrays können folgende Komponenten/Typen beinhalten
+--- primitive Datentypen: werden autom. mit 0, false vorbelegt.
+--- Referenztypen: werden mit null vorinitialisiert
+--- Arrays: um mehrdimensionale Arrays zu realisieren (Reihung in Reihung)
+  
+-- Schritte fuer die Erzeugung eines Arrays (Tafelbild mit Stack und Heap)
+--- 1. das Deklarieren von Array-Variablen
+--- 2. Initialisieren der Variablen (Referenz) mit einem Array-Objekt
+--- 3. der Zugriff auf Arrays, den lesenden Zugriff ebenso den schreibenden
+  
+-- Index der Arrays muss ein Ganzzahl-Ausdruck sein, der zur Laufzeit berechnet wird.
+-- Operatoren auf Referenztypen 
+--- Zuweisungsoperator
+--- instanceof Operator
+--- == Gleichheitoperator  
+----- vs. .equals von Objekt 
+----- Verhalten der object.equals Methode durch LT anweisen lassen
+-----  richtiges Verhalten nachprogrammieren lassen (sind die Inhalte gleich?)
+--------- zuerst Referenzen prüfen
+--------- Längen der beiden Arrays prüfen
+--------- Komponentenweise die Inhalte prüfen
+--- Arrays.equals - Operator
+--- Attribut  length:  Gibt die Anzahl der Elemente
+  
+-- for (foreach)-Schleife
+--- rechts vom  :  steht immer ein Array(Bezeichner des Arrays oder etwas von Iterable) 
+--- Einschraenkungen:
+---- laeuft ueber das gesamte Array
+---- immer von vorne nach hinten
+---- Schrittlaenge immer 1
+---- Der Index ist nicht sichtbar
+---- Die Schleife liefert ein Element, kann aber nicht in das Array schreiben (nur lesender Zugriff)
+  
+---> Template_01_Arrays.java
+  
+-- Methoden zum Kopieren von Arrays 
+--- zweites Array erzeugen und Inhalte kopieren in Einzelschritte
+--- Erzeugen und Inhalte kopieren (flache Kopie) mit  .clone()-Methode
+  
+---> Analyse-Aufgabe:  
+     - Analyse01.java Sortieralgorithmus (Sortieren durch Einfuegen)
+     - umkopieren von vorhandenen Arrays
+     - umkopieren mit System.arraycopy() innerhalb eines Arrays z.B.: nach links oder rechts shiften
+  
+-- ArrayInput fuer Eingabewerte ueber Programmstart 
+-- String-Objekt in char[] konvertieren mit
+--- char[] name = ("Willi").toCharArray()
+--- char[] name1 = new char[2];   kopieren von Zeichen
+--- ("Willi").getChars(2, 4, name1, 0); // ll 
+--- .getBytes()  erzeugt neues char[]
+-- Zeichenweise 
+--- char zeichen = ("Test").charAt(0); // 'T'
+--- von char[] zu String konvertieren
+-- Konstruktor
+--- char[] name = {'W','i','l','l','i'};
+--- String nameStr = new String(name);
+  
+- enum- Aufzählungstypen 
+-- enum Farbe {Gruen, Blau, Rot, Gelb};
+-- Farbe farbe = Farbe.valueOf("Rot")
+-- switch-Anweisung für Bus-Aufgabe
+
+----> Template_Enums.java
+----> Aufgaben: Grundlagen - Reihungen 31 - 37 möglich
+
+- Die Klasse Arrays zum Vergleichen, Befüllen, Suchen und Sortieren
+-- Arrays.toString( )   -> Default Ausgabe in [  ]
+-- Arrays.sort()		-> fuer primitive Datentypen ausser boolean nutzbar, 
+                           bei Referenztypen, muessen diese die Schnittstelle Comparable haben
+                           String besitzt diese Schnittstelle
+-- Arrays.equal()		-> ueberprueft, ob zwei Arrays gleiche Inhalte besitzen (auf Komponente bezogen) 
+                           OK fuer primitive Datentypen
+-- Arrays.deepEqual()  -> fuer Referenztypen auch mehrdimensionale Arrays
+-- Arrays.fill()		-> befuellt ein Array mit einem festen Wert.
+-- Arrays.copyOf()     -> Erzeugt ein neues Array auf Basis eines vorhandenen, erlaubt aber eine Bereichsangabe
+                        -> Vorteil zur clone()-Methode 
+                        
+### Tag 7 ---------------------------------------  
+  
+mehrdimesionale Arrays (Reihung in Reihung)
+ 
+- Wiederholung Folgetag:
+-- Übungen besprechen
+-- Reihung mit String-Objekten
+-- Hörsaalliste erzeugen
+----> Hoersaal.java
+ 
+- Einstieg in 2dim Array:
+-- Beispiel: 1dim.Array mit Messwerten Übungsaufgabe 1 (Tafelbild)
+-- Erweiterung mit 1dim Array fuer Messwerte mehreren Tagen?
+--- weitere Referenzvariablen für 1dim anlegen, tag1 tag2 tag3
+-- Abhilfe zur besseren Strukturierung => 2dim. Array (Tafelbild ergänzen)
+--- Dadurch Vorteil erkennen lassen.
+---- Syntax an Tafel vorstellen
+---- Zugriff auf 2Dim. Array
+---- Alle Elemente duchlaufen
+ 
+----> Analyse-Aufgabe: Analyse02.java fuer LT
+-- bessere Loesung: Analyse02_1 mit aussagekraefigen Bezeichnern.
+ 
+[optional]
+----> Template_03_MultiDimArrays.java    (Graphisch an Tafel)
+-- Beispiel: Anwesentheitsliste 
+--- Zeile: Tage einer Woche
+--- Spalte: Mitarbeiter
+--- Komponente : boolean für vorhanden oder nicht
+
+--- Bestimmen, wie viele Mitarbeiter an den jeweiligen Wochentage da sind.
+--- Bestimmen, an welchem Wochentag die wenigsten Mitarbeiter in der Arbeit sind.
+--- Bestimmen, welcher Mitarbeiter am wenigsten Tage in der Arbeit ist.
+
+----> Übung: Kleines EinMalEin in zweidimensionales Array ablegen und danach ausgeben.
+----> Aufgaben: Grundlagen - Reihungen 38 + 39 
+    
+### TAG 8 -----------------------------------------------------------------------------------------
+
+METHODEN
+- Motivation
+-- Wiederkehrende Programmteile:
+--- Sollten nicht mehrmals implementiert werden
+--- sondern an einer Stelle angeboten werden
+---> Änderungen sind einfacher (man vergisst keine Stelle, wo noch zusätzlich Änderungen durchgeführt werden müssen)
+---> Fehlersuche ist einfacher (der Ort des Fehlers lässt sich leichter einschränken)
+
+- Komplexe Programme
+-- resultieren aus komplexen Problemen,
+-- sollten nicht an einem Stück implementiert werden (Lesbarkeit / zu komplex zum verstehen)
+-- Probleme sollten in Teilprobleme zerlegt werden, um die Komplexität zu reduzieren
+--> Anschließend als atomare Methoden implementieren und in "höheren"/"abstrakteren" Methoden weiter nutzen
+--> Lesbarkeit steigt / der Kontrollfluss ist leichter zu erkennen
+
+- OOP
+-- Objekte / Klassen kommunizieren über Nachrichten
+-- Damit Nachrichten genutzt werden können, müssen diese erst definiert werden 
+--> Methoden stellen die definition der Nachrichten dar
+--> Methoden stellen also Funktionalität und damit Kommunikationsmöglichkeiten in der OOP zur Verfügung
+
+- Syntax (an die Tafel schreiben)
+-- Methodenkopf:
+--- [Sichtbarkeit] [Modifikator] Rückgabetyp Bezeichner( [Parameterliste] ) [throws Ausnahmenliste]
+-- Methodenrumpf:
+	{
+		[Anweisungen]
+	}
+
+-- Methodenkopf
+# Sichtbarkeit (an Tafel unter die Syntax schreiben)
+- public:
+-- für alle Objekte/Klassen sichtbar
+- "package":
+-- innerhalb des selben Pakets sichtbar
+- protected:
+-- innerhalb des selben Pakets sichtbar + sichtbar für Unterklassen (Vererbung -> nächste Woche)
+- private:
+-- NUR für die eigene Klasse sichtbar
+
+# Modifikatoren (an Tafel unter die Syntax schreiben)
+- static:
+-- Statische Methode:	Methode ist ohne Objekt nutzbar ( siehe main() )
+- final:
+-- unveränderliche Methode ( kann durch Vererbung nicht verändert werden -> nächste Woche )
+-> weitere Modifikatoren kommen später
+
+# Rückgabetyp (an Tafel unter die Syntax schreiben)
+- primitive Typen:
+-- byte, short, int, long, float, double, char, boolean
+- Referenztypen:
+-- String, Point, ...
+-- Wrapper Klassen ( Byte, Short, Integer, Long, Float, Double, Character, Boolean ),
+-- Arrays ( primitive: int[], long[] char[]; Referenztypen: String[], ... )
+- void
+-- die "Leere" = steht für keinen Rückgabewert
+
+# Bezeichner (an Tafel unter die Syntax schreiben)
+- lowerCamelCase:
+-- beginnt mit einem kleinen Buchstaben / jedes folgende Wort mit einem großen Buchstaben
+-- Sonderzeichen nur benutzen, wenn diese Sinn ergeben
+-- Methodennamen stellen grundsätzlich Verben dar oder beginnen mit einem Verb
+
+# Paramterliste (an Tafel unter die Syntax schreiben)
+- kein Parameter
+-- ()
+--> PrintStream.println();
+- >0 Parameter (feste Anzahl)
+-- ( int i, String s, Point p, int[] iarr )
+--> Math.pow( double a, double b )
+- >=0 Parameter (variable Anzahl)
+-- ( Object... o) entspricht Object[] o und muss am Ende der Parameterliste stehen!
+--> PrintStream.printf( String format, Object... args )
+--> Alle Parameter, welche nach dem ersten String übergeben werden, landen dabei in einem Array vom Typ Object[].
+- Call-by-Value
+-- Java kennt nur Call-By-Value für Primitive sowie für Referenztypen
+---> Primitive werden auf den Stack der Methode kopiert!
+---> Die Adressen der Referenztypen werden auf den Stack kopiert
+---> Man kann die übergebenen Werte nicht (nach außen sichtbar) verändern
+	
+# Ausnahmebehandlung
+- throws [Ausnahme]
+-- weißt den Compiler daraufhin, dass in dieser Methode eine geprüfte Ausnahme verursacht werden kann,
+-- welche nicht abgefangen/behandelt wird
+---> Programmierer muss sich darum kümmern
+---> sehen wir später im Lehrgang detaillierter
+
+----> Aufgabe: Grundlagen - Methoden 40
+				
+## Methodenrumpf
+beliebige Anzahl an Anweisungen, welche imperativ ausgeführt werden
+- vgl. main(String[] args)-Methode
+
+# return
+Besitzt die Methode einen Rückgabetyp != void
+- muss mindestens einmal am Ende der Methode eine return Anweisung auftreten
+- diese return Anweisung muss ein Exemplar des Rückgabetyps an die aufrufende Methode zurück geben
+-> z.B. return 0; return (byte) 0; return 0L; return "Teststring"; return new Point( 2, 2 ); return;
+CODE:	public class Test{
+			public static void main(String[] args){
+				test();
+			}
+			public static void ausgabe( int i ){
+				System.out.println( i );
+			}
+			public static int addieren( int a, int b ){
+				int c = a + b;
+				return c;
+			}
+			public static int multiplizieren( int a, int b ){
+				return a * b;
+			}
+		}
+
+# Unerreichbarer Code
+Sollte der Compiler feststellen, dass Code in einer Methode nicht erreicht werden kann
+-> Compilation Error
+CODE:	public static void test(){
+			return;
+			System.out.println();
+		}
+
+----> Template_Methoden_lang.java durchsprechen
+----> Aufgabe: Grundlagen - Methoden 41, 42 
+
+### TAG 9 ---------------------------------------
+
+WIEDERHOLUNG:
+- Motivation für Methoden:
+-- Wiederverwendbarkeit,
+-- Komplexität
+-- Lesbarkeit / Wartbarkeit
+-- OOP
+- Syntax
+-- Methodenkopf
+--- Sichtbarkeit
+--- Modifikatoren
+--- Rückgabetyp
+--- Bezeichner
+--- Parameterliste
+--- throws-Klausel
+-- Methodenrumpf
+--- return <- Rückgabetyp
+--- Unerreichbarer Code
+
+----> Aufgaben: Grundlagen - Methoden 43
+
+### Methoden überladen
+- Überladen bedeutet, dass mehrere Methoden mit dem gleichen Bezeichner innerhalb des gleichen Namensraumes (hier: Klasse) existieren
+- Dazu muss sich die Signatur der Methoden unterscheiden
+## Signatur
+Methodenkopf:
+	[Sichtbarkeit] [Modifikator] Rückgabetyp Bezeichner( [Parameterliste] ) [throws Ausnahmenliste]
+Signatur: 
+	Bezeichner( [Parameterliste] )
+-> Das bedeutet, bei gleichem Bezeichner müssen sich die Parameterlisten der Methoden unterscheiden
+public class Test{
+	public static void main(String[] args){
+		test();
+	}
+	public static int addieren( int a, int b ){
+		return a + b;
+	}
+	public static long addieren( long a, long b ){
+		return a + b;
+	}
+	public static double addieren( double a, double b ){
+		return a + b;
+	}
+}
+
+## Defaultparameter
+- Existieren bei Java nicht
+-- Methoden überladen
+-- Eine "Haupt-Methode" mit allen in frage kommenden Parametern implementieren
+-- Weitere Methoden mit eingeschränkter Parameterliste definieren 
+--- und darin die "Haupt-Methode" aufrufen mit Standardwerten für die fehlenden Parameter
+--- Achtung: Dabei sollte keine weitere Funktionalität in die Hilfsmethoden gesteckt werden 
+	         um Fehlersuche und Lesbarkeit nicht unnötig zu erschweren
+public class Test{
+	public static void main(String[] args){
+		test();
+	}
+	// "Haupt-Methode"
+	public static int addieren( int a, int b, int c, int d ){
+		return a + b + c + d;
+	}
+	// Hilfsmethode ruft Haupt-Methode auf -> implementiert die Lösung nicht selbst!
+	public static int addieren( int a, int b, int c ){
+		return addieren(a, b, c, 0);
+	}
+	// Hilfsmethode ruft Haupt-Methode auf -> implementiert die Lösung nicht selbst!
+	public static int addieren( int a, int b ){
+		return addieren(a, b, 0, 0);
+	}
+}
+----> Template_Methoden_Ueberladen.java
+----> Aufgaben: Grundlagen - Methoden 44 + 45
+
+### TAG 10 --------------------------------------
+
+### Rekursive Methoden
+Rekursive Methoden zeichnen sich dadurch aus, dass sie sich selbst aufrufen z.B.:
+int sum( int n ){
+	return n + sum( n - 1 );
+}
+- Dabei müssen die Parameter auf akzeptanz geprüft werden.
+-- Alle Probleme lassen sich iterativ UND rekursiv lösen
+--- meist ist der rekursive Ansatz kürzer (eleganter) zu programmieren
+--- der iterative Ansatz ist aber im allgemeinen Ressourcen schonender
+---> Endrekursion, das heißt Methoden, bei denen der Rekursive Aufruf die letzte Anweisung ist lässt sich direkt in while Schleifen umformen,
+     Der Oracle Java Compiler tut das allerdings nicht selbständig (im Gegensatz zu anderen Compilern).
+
+----> Template Methoden rekursiv
+----> Aufgaben: Grundlagen - Methoden 46 - 49

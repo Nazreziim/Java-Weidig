@@ -1,0 +1,7 @@
+package oopVergleiche;
+
+
+interface Säugetier {
+
+
+}

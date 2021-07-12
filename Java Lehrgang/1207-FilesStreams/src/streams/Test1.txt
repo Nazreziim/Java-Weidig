@@ -1,0 +1,4 @@
+
+Anhaengen von Strings und Zeichen moeglich.Einen weiteren Text anhaengen
+
+

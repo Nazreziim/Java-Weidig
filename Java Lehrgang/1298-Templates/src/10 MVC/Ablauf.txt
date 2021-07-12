@@ -1,0 +1,15 @@
+Ablauf Unterrichtsanteil MVC: (maximal ein Tag!)
+
+1.) MVC erklären anhand MVC.doc
+
+2.) Ein einfaches Beispiel gemeinsam machen - z.B. MVC-Counter in simple.version1
+
+3.) Ein etwas schwereres Beispiel (hüpfender Punkt) selber machen lassen.
+	Die drei MVC-Versionen gemäß Skript MVC.doc befinden sich in mvc_uebung.simple1-3
+
+
+Wenn danach noch Zeit ist: Design Pattern "Oberver"  - observer.version1 (besser mit den entsprechenden Java-Klassen: observer.version2)
+!!!Dieser Anteil sollte ansonsten spätestens vor Beginn der ersten Projektphase erfolgen!!!
+
+4.) Nach Abschluss des Projekts und der Kenntnis erste GUI-Komponenten, kann das Infotool
+	gemeinsam implementiert werden. 

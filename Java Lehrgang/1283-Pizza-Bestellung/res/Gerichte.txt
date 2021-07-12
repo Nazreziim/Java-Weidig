@@ -1,0 +1,3 @@
+Salami Pizza;6.00
+Schinken Pizza;6.00
+Pizza Hawaii;7.50

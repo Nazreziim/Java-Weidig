@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.6" icons="false" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="ausgabe_klausur_2014.aufgabe5.Feldspieler" project="Java-Lehrgang" 
+    file="/Java-Lehrgang/Klausur/ausgabe_klausur_2014/aufgabe5/Feldspieler.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="78" width="147" x="198" y="719"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="ausgabe_klausur_2014.aufgabe5.Torwart" project="Java-Lehrgang" 
+    file="/Java-Lehrgang/Klausur/ausgabe_klausur_2014/aufgabe5/Torwart.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="78" width="147" x="385" y="719"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="ausgabe_klausur_2014.aufgabe5.Fussballspieler" project="Java-Lehrgang" 
+    file="/Java-Lehrgang/Klausur/ausgabe_klausur_2014/aufgabe5/Fussballspieler.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="142" width="147" x="292" y="537"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="ausgabe_klausur_2014.aufgabe5.Weltmeisterschaft" project="Java-Lehrgang" 
+    file="/Java-Lehrgang/Klausur/ausgabe_klausur_2014/aufgabe5/Weltmeisterschaft.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="142" width="147" x="292" y="173"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="ausgabe_klausur_2014.aufgabe5.Mannschaft" project="Java-Lehrgang" 
+    file="/Java-Lehrgang/Klausur/ausgabe_klausur_2014/aufgabe5/Mannschaft.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="147" x="292" y="355"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="6">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="7" name="spieler"/>      
+      <multiplicity id="8" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="9">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="10" name="teams"/>      
+      <multiplicity id="11" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="13">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

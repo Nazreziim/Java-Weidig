@@ -1,0 +1,218 @@
+Tag 1 (Intro + Painting):
+-------------------------
+0. Historie GUIs in Java SE: AWT, Swing, JavaFX
+1. Hello JavaFX -                    day1.p1.hellojavafx
+2. Basic Components (Stage, Scene) - day1.p2.components.basics.BasicControlElements.java
+3. Malen mit JavaFX - vorher das Koordinatensystem erklären: 
+	a. Geometrische Formen:          day1.p3a.paint.simple.MyFirstDrawing.java
+	b. Malen auf der Canvas:         day1.p3b.paint.simple.CanvasDrawings.java
+	c. (Optionales Addon): Layersysteme erklären (mehrere Canvas Objekte übereinander) - nettes Beispiel zum Zeigen auf
+	   	 https://docs.oracle.com/javase/8/javafx/graphics-tutorial/canvas.htm#JFXGR214
+	   	 oder                        day1.p3c.paint.layers	   	 
+	d. Aufgabe: Smiley zeichnen (Start mit canvas!) 
+	                                 day1.p3d.paint.simple.SmileyPainting.java
+
+(potentielle Aufgabe zur Vorbereitung: Analoguhr malen!)
+
+
+
+Tag 2 (Animationen):
+--------------------
+0. Warmup: Ein Hut für den Smiley!
+1. Animationen:                      day2.p1.animation.Animation.java
+	a. Basic Timelines (hier kann und muss man alles händisch machen)
+	b. Transitions - Fading, Path (an der Tafel demonstrieren, wie die Bezier-Kurven gemalt werden)
+	c. Sequential Transitions für ein ganzes Drehbuch.
+2. Aufgabe: Smiley animieren (Augenbewegung), evtl. Hut heben und lächeln 
+                                     day2.p2.animation.SmileyPaintingAnimated.java
+3. Demonstration: Oracle Example     day2.p3.animation.tree                    - voll abgefahren!!!
+4. Aufgabe: Schneefall               day2.p4.animation.Snowfall.java
+5. Sehr ähnlich wie Schneefall ist ColourfullCircles.java, LinearGradient und BlendMode sind hier noch neu.
+                                     day2.p5.animation.colouredcircles
+	
+Evtl später zu nutzen:
+animation.TimelineEvents.java: Verbindung von Animationen mit Eventhandling
+
+
+	
+Tag 3 (Controls, CSS, Events ):
+-------------------------------	
+0. Warmup: Schneefall chaotisch (Umbau auf PathTransition)
+1. Some simple Elements (Buttons, Textfield) - 
+                                     day3.p1.controls.basics.ButtonTextDemo.java 
+2. Layouts -                         day3.p2.components.layouts
+	a. BorderPane
+	b. HBox, VBox
+	c. StackPane
+	d. GridPane
+	e. FlowPane (/ TilePane)
+	f. AnchorPane
+3. (Kurze) Aufgabe: Login Fenster aufbauen (GridLayout + Textfelder, Label, Button) - 
+                                     day3.p3.controls.loginform 
+                    (ohne Step 4 - Eventhandling kommt später)!
+4. Einschub: CSS Stylesheets fürs Login Fenster aus 3. - 
+                                     day3.p4.controls.loginform.css
+
+
+
+Tag 4 (FXML, Events):
+---------------------
+
+1. FXML: Komplette Trennung von Logik und Darstellung!  
+                                     day4.p1.controls.loginform.fxml
+	a. LoginFormsFXML.java           - komplett ausgemistet
+	b. loginform.fxml                - in den Kommentaren beschrieben
+	c. LoginFormsFXMLController.java - fürs Eventhandling
+2. Event-Handling Basics: 
+	Convenience Methoden https://docs.oracle.com/javase/8/javafx/events-tutorial/convenience_methods.htm#BABCCIHI
+	a. events.basics.v1: EventHandler-Klasse wird direkt von der Klasse implementiert.
+	b. events.basics.v2: EventHandler-Klasse als eigene Klasse.
+	c. evetns.basics.v3: EventHandler als innere Klasse
+	d. events.basics.v4: EventHandler als anonyme Klasse
+	e. events.basics.v5: EventHandler als Lambda-Ausdruck
+3. Aufgabe: Eventhandling fürs Login Fenster. (Button-Click = Passwort-Check)
+	a. Schüler selber machen lassen
+	                                 day4.p3a.controls.loginform.css
+	b. mit FXML zusammen machen / zeigen
+		                             day4.p3b.controls.loginform.fxml
+4. KeyEvents                         day4.p4.events.keyevents
+5. MouseEvents                       day4.p5.events.mouseevents
+6. Aufgaben: Paint                   day4.p6.events.mouseevents.paint 
+(Exkurs: Unittests und Codecoverage)
+
+
+
+Tag 5 (Resterampe und Spiel):
+-----------------------------
+1. Aufgabe: einfaches Spiel (Klassendiagramm + JavaDoc zeigen (Designvorgaben))
+   a. Minesweeper! oder              day5.p1a.events.games.minesweeper
+   b. Snake                          day5.p1b.events.games.snake ( Vor der Verwendung: Thread entfernen! )
+							
+Tag 6 (AnimationTimer + Charts):
+--------------------------------							
+1. TimelineEvents:                   day6.p1.animation.TimelineEvents.java
+   Neue Bestandteile: Timeline + AnimationTimer
+   Aufgabe: AnimationTimer: FPS berechnen und auf Console ausgaben
+   
+2. Kurze Demo zu Charts: 
+   a. Barchart unter                 day6.p2a.controls.charts
+      hierbei die (mögliche) Trennung zwischen Datenhaltung und Darstellung zeigen
+   b. AreaChart                      day6.p2b.controls.charts
+   c. BubbleChart                    day6.p2c.controls.charts
+   d. LineChart                      day6.p2d.controls.charts
+   e. ScatterChart                   day6.p2e.controls.charts
+   f. StackedAreaChart               day6.p2f.controls.charts
+   g. StackedBarChart                day6.p2g.controls.charts
+   h. PieChart                       day6.p2h.controls.charts
+    
+   Ablauf: ScatterChart vorstellen.
+   Aufgabe: ausarbeiten und vorstellen: (Stacked-)BarChart, (Stacked-)AreaChart, LineChart, PieChart, BubbleChart
+                                        Beuse,              Köster,              Traber,    Erol,     Svoboda
+            Beispiel erstellen, welche Skalen sind für welche Axen möglich 
+            
+Tag 7 (Weitere Controls):
+-----------------------------
+0. WarmUp: Präsentation charts
+
+1. Weitere Controls:
+   (Einzel Arbeit: Beispiel Anwendung erstellen, spezielle Methoden, Unterschiede zu ähnlichen Controls)
+   a. MenuButton vs. SplitMenuButton with MenuItems
+                                     day7.p1a.controls
+   b. ChoiceBox                      day7.p1b.controls
+   c. ListView                       day7.p1c.controls(.separated)
+   d. ComboBox                       day7.p1d.controls
+   e. Spinner                        day7.p1e.controls
+   f. ColorPicker                    day7.p1f.controls
+   g. DatePicker                     day7.p1g.controls
+   h. Slider + ProgressBar/Indicator day7.p1h.controls
+   i. TextArea                       day7.p1i.controls
+   j. Separator                      day7.p1j.controls
+   
+   k. MenuBar                        day7.p1k.controls
+   l. ContextMenu                    day7.p1l.controls
+   m. Tooltip                        day7.p1m.controls
+   n. ToolBar                        day7.p1n.controls
+   o. ButtonBar                      day7.p1o.controls
+   
+   
+Tag 8 (Complex Controls / Panes):
+---------------------------
+0. Warmup: Besprechung Tag 7 1. k - o
+
+1. Complex Controls
+   a. TreeView                       day8.p1a.controls
+   b. TableView                      day8.p1b.controls(.properties)
+   c. TreeTableView                  day8.p1c.controls(.properties)
+
+2. Weitere Panes
+   a. ScrollPane                     day8.p2a.pane // TODO
+   b. TabPane                        day8.p2b.pane
+   c. TitledPane                     day8.p2c.pane
+   d. Accordion                      day8.p2d.pane
+   e. SplitPane                      day8.p2e.pane
+   f. Pagination                     day8.p2f.pane
+
+3. Windows:
+   a. Alert (Information, Warning, Error)
+      Modality, StageStyle           day8.p3abc.dialogs
+   b. Alert with expandable Content  day8.p3abc.dialogs
+   c. Alert (Confirmation)           day8.p3abc.dialogs
+   d. TextInputdialog                day8.p3d.dialogs
+   e. ChoiceDialog                   day8.p3e.dialogs
+   f. Dialog (CustomLoginDialog)     day8.p3f.dialogs
+   g. FileChooser                    day8.p3g.dialogs
+   h. DirectoryChooser               day8.p3h.dialogs
+
+Tag 9 (Events)
+------------------------------
+0. Warmup: Besprechung Tag 8 3. a - h
+
+1. Events                            day9.p1.events
+   a. Event Phasen:
+      1. Target selection
+      2. Route construction (von der Stage zum Node/Control/...)
+      3. Event capturing    (Pfad von Stage zum Node/... wird abgelaufen)
+      4. Event bubbling     (Pfad vom Node/... zur Stage wird abgelaufen)
+      5. Target selection   (nächstes Event)
+   
+   b. EventFilter:
+      Phase: Event capturing.
+      Intercept an event and prevent child notes from acting on the event. (event.consume())
+   
+   c. EventHandler:
+      Phase: Event bubbling.
+      Intercept an event and prevent parent notes from acting on the event. (event.consume())
+   
+   d. Event Arten:
+   
+2. Aufgabe Analyse Drag and Drop     day9.p2.events
+
+3. Projekt (klein)
+   ChatProgramm: Fenster erstellen.
+   
+   +---------------------------------------+    +---------------------------------------+
+   | HslChat                            _oX|    | HslChat                            _oX|
+   +---------------------------------------+    +---------------------------------------+
+   ||Server:|Srv1 x|Srv2 x|                |    ||Server:|Srv1 x|Srv2 x|                |
+   |+       +------+------+                |    |+-------+      +------+                |
+   | +------+----------------------------+ |    | +--------------------------+ +------+ |
+   | |Name  |IP/Port              |Nutzer| |    | |08:31 abc> Hallo Leute :) | |Nutzer| |
+   | +------+---------------------+------+ |    | |08:33 def> Hey Kai        | +------+ |
+   | |Srv1  |192.168.100.254:12345|   100| |    | |08:40 ghij> Wie gehts euch| |abc   | |
+   | |Srv2  |10.10.10.10:666      |     5| |    | |Leute? Der letzte Montag  | |def   | |
+   | |      |                     |      | |    | |der Woche                 | |...   | |
+   | |      |                     |      | |    | |                          | |Moritz| |
+   | |      |                     |      | |    | |                          | |....  | |
+   | |      |                     |      | |    | |                          | |...   | |
+   | +------+----------------------------+ |    | +--------------------------+ +------+ |
+   | +---------------+        +----------+ |    | +------------------------+ +--------+ |
+   | | Aktualisieren |        | Betreten | |    | | Hallo alle zusammen... | | Senden | |
+   | +---------------+        +----------+ |    | +------------------------+ +--------+ |
+   +---------------------------------------+    +---------------------------------------+
+   
+Tag 10
+--------------------------------							 
+1. Projekt fortsetzen
+   - Fenster mit dem Consolenchat verbinden. (Ausbildungsabschnitt Netzwerk notwendig!)
+   
+ 

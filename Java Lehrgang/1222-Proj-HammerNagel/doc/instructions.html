@@ -1,0 +1,588 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>Hammer & Nagel GmbH - Projektarbeit für AnwProgBw Java</TITLE>
+</HEAD>
+
+
+<BODY LANG="de-DE" DIR="LTR">
+<H1><A NAME="top"></A>Anwendungsprogrammierer Java - Projektarbeit</H1>
+<H2 CLASS="western">Einführung und Inhaltsverzeichnis</H2>
+<P>Diese Dokument beschreibt, welche Dinge Sie benötigen und was Sie tun
+müssen, um Ihre Lösung für die Projektarbeit im Rahmen des Java-Lehrgangs 
+an der ITSBw einzureichen. 
+Bitte lesen Sie die Anweisung genau durch bevor Sie mit der Bearbeitung beginnen.
+Dieses Dokument enthält verbindliche Anweisungen, wie die Prokjektarbeit durchgeführt werden muss
+und gewährleistet auf diesem Weg Konsistenz und Fairness in der Bewertung.
+</P>
+<P>Für die Bearbeitung der Aufgabe bekommen Sie folgende Quelldateien ausgehändigt:
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in">Dieses Dokument
+	</P>
+	<LI><P>Eine nicht-relationale Datenbankdatei. 
+	</P>
+</UL>
+<P>Stellen Sie sicher, dass Sie während der Bearbeitung eine Sicherheitskopie
+der Quelldateien aufbewahren, falls während Ihres Entwicklungsprozesses Fehler
+auftreten sollten. Es ist verboten für die Bearbeitung die Quelldateien anderer
+Lehrgangsteilnehmer zu nutzen (selbst wenn Sie der Meinung sind, dass diese über
+die selben Quelldateien verfügen). 
+</P>
+<P>Dieses Dokument ist wie folgt aufgebaut:
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#what_this"><B>Überblick</B></A> 
+	- Genereller Überblick über die zu entwickelnde Applikation
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#arch"><B>Architektur</B></A>
+	- Die Bestandteile der Applikation und wie sie zusammenarbeiten sollen
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#UI"><B>User Interface</B></A>
+	- GUI Spezifikation
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#database"><B>Datenzugriff
+	</B></A> Vorgaben zur Umsetzung des Zugriffs auf die Datenbank-Datei
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#data"><B>Datenformat
+	</B></A> Das Format und Schema der Datenbank-Datei
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#Deliverables"><B>Abzuliefernde Artefakte</B></A>
+	- Beschreibung der Bestandteile, die Sie abliefern müssen und wie diese zu strukturieren sind
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#marking"><B>Bewertung</B></A>
+	- Wie wird Ihr Ergebnis bewertet? 
+	</P>
+	<LI><P><A HREF="#whattodo"><B>Was soll ich tun, wenn ich eine Frage habe?</B></A>
+		</P>
+</UL>
+<H3 CLASS="western">Wichtiger Hinweis: Automatisches Nichtbestehen</H3>
+<P STYLE="margin-bottom: 0in"><I>Wenn in diesem Dokument das Wort 
+&quot;müssen&quot; benutzt wird, ist damit eine verbindliche Anforderung berschrieben! 
+Sollten Sie eine solche Anforderung nicht befolgen, wird die Arbeit automatisch ohne weitere
+Überprüfung als nicht bestanden gewertet. In Ihrem eigenen Sinne ist es daher von 
+oberster Wichtigkeit, absolute Aufmerksamkeit auf die Verwendung des Wortes &quot;müssen&quot;
+zu legen! Teile Ihres Ergebnis werden ggf. automatisch per Software überprüft - sollte also
+eine bestimmte Struktur oder Namensgebung vorgeschrieben sein, so könnte hier schon die 
+kleinste Abweichung zu einem automischen Nichtbestehen führen.&nbsp;</I> 
+</P>
+<HR>
+
+<H2 CLASS="western"><A NAME="what_this"></A>Überblick</H2>
+<H3 CLASS="western">Hintergrund</H3>
+<P>Hammer & Nagel GmbH ist ein Vermittlungsunternehmen für Handwerker.
+Das Unternehmen verarbeitet Anfragen von Immobilienbesitzern für einen
+speziellen Arbeitsauftrag und bietet dem Kunden jeweils einen oder mehrere
+Vertragsnehmer an, die den Auftrag erfüllen können. Aktuell stellt 
+Hammer & Nagel GmbH diese Dienstleistung über ein Customer-Service-Team (CST)
+per Telefon zur Verfügung.   Das CST arbeitet mit einer in die Jahre
+gekommenen, selbst entwickelten Applikation, die inzwischen deutlich 
+kritisiert wird. Daher möchte Hammer & Nagel GmbH zukünftig auf webbasiertes
+Marketing setzen und seine Serviceleistung über das Internet direkt den
+Kunden verfügbar machen. 
+</P>
+<P>Der Chief Information Officer (CIO) der Firma hat entschieden, die
+existierende Applikation in eine Java-basiertes System zu migrieren. 
+Für den Anfang soll das System nur das CST unterstützen, obwohl 
+die Hoffnung besteht, dass dieser Zwischenschritt als Startpunkt für die 
+Migration in eine webbasierte Anwendung genutzt werden kann. Trotz der 
+Tatsache, dass sich der CIO nicht die höchste Wiederverwendbarkeit von
+dem neuen System erwartet, setzt er darauf, dass sich die Entwicklung einer
+Java-Anwendung als lehrreiche Vorübung für ein webbasiertes System erweist.
+</P>
+<P>Die IT-Administration von Hammer & Nagel ist im Besitz einer Daten-Datei,
+welche die Datenbasis der Firma enthält. Da diese Daten weiterhin noch in
+einer anderen Applikation (Reporting) benutzt werden, muss die neue
+Applikation das Format der Daten-Datei ohne Abänderung übernehmen und nutzen
+können. 
+</P>
+<P>Die neue Anwendung, welche das ursprüngliche Datenformat beibehält,
+muss in der Lage sein für das CST eine Liste aller möglichen Auftragnehmer
+zu generieren, die den Kriterien des Kunden entsprechen. Für die Umsetzung
+dieses Projekts haben Sie den Zuschlag erhalten.
+</P>
+<H3 CLASS="western">Was Sie tun müssen</H3>
+<P>Die folgenden &quot;top level&quot; Features müssen implementiert werden:
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in">Eine Client-Applikation, die über 
+	ein User-Interface Zugriff auf die gespeicherten Datensätze ermöglicht.  
+	</P>
+	<LI><P STYLE="margin-bottom: 0in">Ein Zugriffssysten, welches das
+	Sperren / Entsperren sowie die flexible Suche von Datensätzen ermöglicht.
+</UL>
+<P>Ihre Arbeit an dem Projekt wird eine Reihe von Design-Entscheidungen, die
+Sie zu treffen haben, mit sich bringen. Wenden Sie hierbei stets folgende
+Richtlinien an:
+</P>
+<H4 CLASS="western">Übersichtlichkeit und Wartbarkeit</H4>
+<DL>
+	<DD STYLE="margin-bottom: 0.2in">Ein klares Design, welches auch 
+	von Prgrammieranfängern verstanden werden kann, wird einer komplexen
+	Lösung vorgezogen, selbst wenn die komplexe Lösung ein wenig effizienter
+	sein sollte. Die Komplexität des Codes (z.B. Verschachtelungstiefe, 
+	Parameterübergaben, Klassen- / Schnittstellenanzahl) soll sich in einem
+	vernünftigen Rahmen bewegen. 
+	</DD></DL>
+<H4 CLASS="western">
+Dokumentation</H4>
+<DL>
+	<DD>Sowohl Dokumentation (sowohl im Code als auch außerhalb) als auch die Wahl
+	von Methoden- / Variablennamen muss in englischer Sprache erfolgen.
+	Der Code sollte von sich aus schon so sprechend wie möglich sein;
+	schreiben Sie keine Kommentare, die nichts zum Verständnis beitragen.
+	Komplexe und missverständliche Abschnitt oder Methoden sollen mit 
+	beschreibenden Kommentaren versehen sein. Weiterhin muss jedes public-
+	Element einer Klasse / eines Interfaces sowie jede Klasse / Interface selbst
+	eine JavaDoc-Dokumentation haben.
+	Spätestens mit Abgabe des Ergebnisses muss die komplette JavaDoc-Doku mit
+	dem &quot;javadoc&quot; Tool im HTML-Format generiert und abgegeben werden.
+	</DD><DD STYLE="margin-bottom: 0.2in">
+	Sie müssen die grundlegende Funktion Ihres Produkts dokumentieren. Diese
+	Dokumentation soll ausreichend sein, dass sich ein mit dem Zweck des Produkts
+	vertrauter Nutzer mit der Funktionalität vertraut machen kann. Dieser Teil
+	der Dokumentation muss in einem der folgenden Formate erstellt sein:
+	</DD></DL>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in">
+	HTML 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in">Plain text (mit Texteditor lesbar) 
+	</P>
+	<LI><P>Innerhalb der Applikation als Hilfe 
+	</P>
+</UL>
+<H4 CLASS="western">Korrektheit</H4>
+<DL>
+	<DT STYLE="margin-bottom: 0.2in">Ihr Projekt muss den Anforderungen dieser
+	Spezifkation entsprechen. Bei Abweichungen werden Ihnen Punkte abgezogen. 
+	Zusatzpunkte für Arbeit, die über die Anforderungen dieser Spezifikation hinaus
+	geht, gibt es nicht.
+	</DT></DL>
+<H4 CLASS="western">
+Benutzung von Standard-Sprachelementen</H4>
+<P>Ziehen Sie Funktionalität, die von Java-Standardklassen zur Verfügung gestellt
+wird Ihrer eigenen Implementierung dieser Funktionalität vor - es sei denn Ihre 
+Implementierung bietet einen fallspezifischen Vorteil gegenüber dem Standard (dieser
+sollte dann aber dokumentiert werden).</P>
+<P STYLE="margin-bottom: 0in"><A HREF="#top"><I>Return to top</I></A>
+</P>
+<HR>
+
+
+<H2 CLASS="western"><A NAME="arch"></A>Architektur</H2>
+<H3 CLASS="western">Hauptkomponenten</H3>
+<P>Im ersten Schritt des Umbaus bei Nagel & Hammer (dieses Projekt!)
+soll eine standalone Applikation erstellt werden. Dabei gibt es zwei Hauptkomponenten:
+Das Datenmanagement und die GUI. Trotzdem soll die Anwendung erweiterbar implementiert
+werden, um in einem Folgeprojekt eine Netzwerkverbindung zwischen den beiden 
+Hauptkomponenten zu ermöglichen (Client-Server-Applikation).
+</P>
+<H3 CLASS="western">Standalone Applikation</H3>
+<P>Im Standalone-Modus laufen GUI und Datenbank in der selben VM. Dabei sind keine 
+Netzwerk-Operationen oder Serialisierungen notwendig.
+</P>
+<P STYLE="margin-bottom: 0in"><A HREF="#top"><I>Return to top</I></A>
+</P>
+<HR>
+
+
+<H2 CLASS="western"><A NAME="UI"></A>User Interface</H2>
+<P>Das Nutzerinterface der Applikation muss den folgenden Kriterien genügen:
+</P>
+<UL>
+	<LI><P>Es müssen ausschließlich Elemente des 
+	JDK verwendet werden.
+		</P>
+	<LI><P>Der Benutzer muss in der Lage sein, sich alle Datensätze anzeigen zu lassen.
+	</P>
+	<LI><P>Der Benutzer muss sich alle Datensätze mit einem bestimmten Namen und / oder
+	Einsatzort gefiltert anzeigen lassen können.	
+	</P>
+	<LI><P>Der Benutzer muss einen neuen Datensatz hinzufügen können.	
+	</P>
+	<LI><P>Der Benutzer muss einen ausgewählten Datensatz löschen können.
+	</P>
+	<LI><P>Die Datensätze müssen stets tabellarisch angezeigt werden.
+	</P>
+	<LI><P>Der Benutzer muss in der Lage sein,
+	einen Datensatz zu buchen, wobei die Datenbankdatei entsprechend aktualisiert
+	wird. 
+	</P>
+	<LI><P>Das Programm muss es dem Benutzer ermöglichen, den Pfad der 
+	Datenbankdatei zu ändern und diese Konfiguration persistent in der Datei
+	config.ini zu speichern. Das Programm muss diese Datei bei jedem Start
+	auslesen um die letzte Konfiguration wieder zu laden und die entsprechenden 
+	Datensätze anzuzeigen. 
+	</P>
+</UL>
+<P>Ihre Nutzeroberfläche sollte zukünftige Erweiterungen nicht unterbinden und ggf. gegen 
+eine andere GUI ausgetauscht werden können.
+</P>
+<P STYLE="margin-bottom: 0in"><A HREF="#top"><I>Return to top</I></A>
+</P>
+<HR>
+<H2 CLASS="western"><A NAME="database"></A>Datenzugriff</H2>
+<H3 CLASS="western">Notwendiges Interface</H3>
+<P>Ihre Datenzugriffsklasse muss "Data.java" heißen und sich im Paket "db" 
+befinden. Außerdem muss sie das folgende Interface implementieren:
+</P>
+<PRE CLASS="western">
+package db;
+
+
+public interface DBAccess
+{
+  // Reads a record from the file. Returns an array where each
+  // element is a record value.
+  public String [] readRecord(long recNo)
+    throws RecordNotFoundException;
+
+
+  // Modifies the fields of a record. The new value for field n 
+  // appears in data[n]. Throws SecurityException
+  // if the record is locked with a cookie other than lockCookie.
+  public void updateRecord(long recNo, String[] data, long lockCookie)
+    throws RecordNotFoundException, SecurityException;
+
+
+  // Deletes a record, making the record number and associated disk
+  // storage available for reuse. 
+  // Throws SecurityException if the record is locked with a cookie
+  // other than lockCookie.
+  public void deleteRecord(long recNo, long lockCookie)
+    throws RecordNotFoundException, SecurityException;
+
+
+  // Returns an array of record numbers that match the specified
+  // criteria. Field n in the database file is described by
+  // criteria[n]. A null value in criteria[n] matches any field
+  // value. A non-null  value in criteria[n] matches any field
+  // value that begins with criteria[n]. (For example, &quot;Fred&quot;
+  // matches &quot;Fred&quot; or &quot;Freddy&quot;.)
+  public long[] findByCriteria(String[] criteria);
+
+
+  // Creates a new record in the database (possibly reusing a
+  // deleted entry). Inserts the given data, and returns the record
+  // number of the new record.
+  public long createRecord(String [] data)
+    throws DuplicateKeyException;
+
+
+  // Locks a record so that it can only be updated or deleted by this client.
+  // Returned value is a cookie that must be used when the record is unlocked,
+  // updated, or deleted. If the specified record is already locked by a different
+  // client, the current thread gives up the CPU and consumes no CPU cycles until
+  // the record is unlocked.
+  public long lockRecord(long recNo)
+    throws RecordNotFoundException;
+
+
+  // Releases the lock on a record. Cookie must be the cookie
+  // returned when the record was locked; otherwise throws SecurityException.
+  public void unlock(long recNo, long cookie)
+    throws SecurityException;
+
+
+}</PRE><P>
+Alle nicht-implementierten Excpetions in diesem Interface müssen als Klassen im Paket
+ <TT CLASS="western">db</TT> umgesetzt werden. Jede dieser Klassen muss einen 
+ Standardkonstruktur sowie einen Konstruktur mit String-Argument, welches als Beschreibung
+ der Excpetion dient, besitzen. 
+</P>
+<P>Alle Methoden, die eine RecordNotFoundException werfen, sollen dies tun, wenn ein
+spezifischer Datensatz entweder nicht existiert oder in der Datenbank-Datei als "deleted"
+markiert ist. 
+</P>
+<H3 CLASS="western">Locking</H3>
+<P>Auch wenn in diesem ersten Projekt eine Standalone-Applikation im Vordergrund steht,
+muss Ihre Anwendung im Hinblick auf eine zukünftige Version in der Lage sein eine Locking-
+Funktionalität zur Verfügung zu stellen. Dies muss wie im obigen Interface spezifiziert
+umgesetzt werden. 
+</P>
+<P STYLE="margin-bottom: 0in"><A HREF="#top"><I>Return to top</I></A>
+</P>
+<HR>
+
+<H2 CLASS="western"><A NAME="data"></A>Datenformat</H2>
+<P>Das Format der Datenbank-Datei ist wie folgt spezifiziert: 
+</P>
+<P>Dateianfang 
+<BR>4 Byte numerisch, magic cookie value. Identifikation der Datenbank-Datei
+<BR>4 Byte numerisch, Gesamtlänge jedes Datenbankeintrags in Byte
+<BR>2 Byte numerisch, Anzahl der Felder pro Datenbankeintrag 
+</P>
+<P>Abschnitt zu Beschreibung des DB-Schema.
+<BR>Wiederholung für jedes Feld eines Datenbankeintrags:
+<BR>2 Byte numerisch, Länge des Feldnamens in Byte 
+<BR>n Bytes (definiert durch den vorhergehenden Eintrag), Name des Feldes
+<BR>2 Byte numerisch, Feldlänge in Byte
+<BR>Ende des Wiederholungs-Blocks 
+</P>
+<P>Datenabschnitt
+<BR>Wiederholung bis zum Ende der Datei:
+<BR>1 Byte "deleted" flag, 0 = aktiver Datensatz, 1 = gelöschter Datensatz
+<BR>Datensatz, enthält Felder wie in der Schemadefinition spezifiziert, keine 
+Trennzeichen zwischen Feldern, maximale Feldlänge wie in der Schemadefinition angegeben.
+</P>
+<P>Dateiende 
+</P>
+<P>
+Alle numerischen Werte, die im Header beschrieben sind nutzen das Format der Klassen 
+DataInputStream und DataOutputStream. Alle Textwerte und alle Felder (die nur aus Text 
+bestehen) enthalten ausschließlich 8bit codierte Zeichen(8bit US ASCII).
+</P>
+<H3 CLASS="western">Datenbankschema</H3>
+<P STYLE="margin-bottom: 0in">Die von Hammer & Nagel verwendete Datenbank enthält 
+folgende Felder:
+</P>
+<TABLE CELLPADDING=2 CELLSPACING=2>
+	<TR VALIGN=TOP>
+		<TD>
+			<P><B>Beschreibender Name des Feldes</B></P>
+		</TD>
+		<TD>
+			<P><B>Feldname</B></P>
+		</TD>
+		<TD>
+			<P><B>Länge des Feldes</B></P>
+		</TD>
+		<TD>
+			<P><B>Detaillierte Beschreibung</B></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD>
+			<P>Name d. Vertragsnehmer</P>
+		</TD>
+		<TD>
+			<P>name</P>
+		</TD>
+		<TD>
+			<P>32</P>
+		</TD>
+		<TD>
+			<P>Der Name des Vertragsnehmers zu diesem Datensatz.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD>
+			<P>Stadt</P>
+		</TD>
+		<TD>
+			<P>location</P>
+		</TD>
+		<TD>
+			<P>64</P>
+		</TD>
+		<TD>
+			<P>Die Stadt, in der der Vertragsnehmer seine Dienste anbietet.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD>
+			<P>Angebotene Dienstleistungen</P>
+		</TD>
+		<TD>
+			<P>specialties</P>
+		</TD>
+		<TD>
+			<P>64</P>
+		</TD>
+		<TD>
+			<P>Komme-getrennte Liste von Arbeiten, die der Vertragsnehmer anbieten kann.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD>
+			<P>Mitarbeiteranzahl</P>
+		</TD>
+		<TD>
+			<P>size</P>
+		</TD>
+		<TD>
+			<P>6</P>
+		</TD>
+		<TD>
+			<P>Die Anzahl verfügbarer Arbeiter, die bei Buchung zur Verfügung stehen.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD>
+			<P>Stundensatz</P>
+		</TD>
+		<TD>
+			<P>rate</P>
+		</TD>
+		<TD>
+			<P>8</P>
+		</TD>
+		<TD>
+			<P>Stundensatz des Vertragsnehmers. Das Feld enthält auch das Währungssymbol</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD>
+			<P>Buchender Kunde</P>
+		</TD>
+		<TD>
+			<P>owner</P>
+		</TD>
+		<TD>
+			<P>8</P>
+		</TD>
+		<TD>
+			<P>
+			Die ID des Kunden (8stellige Zahl), der den Vertragsnehmer gebucht hat. Die
+			Kunden-ID ist im Rahmen dieser Anwendung sowohl dem Kunden selbst als auch dem
+			CST bekannt. Die eigentliche Buchung wird trotzdem ausschließlich vom CST 
+			getätigt (indem die Kunden-ID beim entsprechenden Vertragsnehmer eingetragen
+			wird)
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-bottom: 0in"><A HREF="#top"><I>Return to top</I></A>
+</P>
+<HR>
+
+<H2 CLASS="western"><A NAME="Deliverables"></A>Abzuliefernde Artefakte</H2>
+<H3 CLASS="western">Zielplattform und Ausführung</H3>
+<P>Sie müssen während der Bearbeitung der kompletten Aufgabe auschließlich die
+Java Plattform verwenden. Das fertige Produkt muss bei der Abgabe in einem
+Produktivsystem, welches eine Java-Version verwendet, die nicht älter als 1,5
+Jahre ist, lauffähig sein. 
+</P>
+<P>Sie dürfen jede beliebige IDE benutzen; stellen Sie dabei jedoch sicher,
+dass sämlticher Code, den Sie abgegeben von Ihnen selbst verfasst wurde.
+</P>
+<P>Zur Abgabe muss sich das Produkt mit folgender Kommandozeile starten lassen:
+</P>
+<BLOCKQUOTE><TT CLASS="western">java -jar &lt;path_and_filename&gt;
+</TT></BLOCKQUOTE>
+<P>Dabei muss kein weiterer Parameter über die Kommandozeile übergeben werden.
+Sämtliche ggf. notwendigen Konfigurationseinstellungen müssen über die GUI
+einstellbar sein und beim Verlassen des Programms persistent gespeichert werden.
+Der Name einer solchen Konfigurationsdatei muss config.ini lauten und diese
+Datei muss sich im aktuellen Arbeitsverzeichnis befinden. Das Programm muss
+in sich lauffähig sein, es darf keine manuelle Editierung von Dateien durch 
+den Prüfer im Vorfeld notwendig sein.
+</P>
+<H3 CLASS="western">Paketierung der abzugebenden Artefakte</H3>
+<P>Alle Elemente, die Sie zur Prüfung einreichen wollen, müssen in einer
+ZIP-Datei verpackt sein. Benennen Sie diese ZIP-Datei mit dem Abgabedatum in
+der Form YYYY-MM-DD_<Ihr_Name>.zip. Die ZIP-Datei muss folgendes Layout und Inhalt
+haben:
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in">Die ausführbare JAR-Datei Ihres Programms. 
+	Name: <TT CLASS="western">runme.jar</TT>. 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in">Die originale und <I>unveränderte</I>
+	Datenbank-Datei, die Ihnen zu Beginn des Projekts übergeben wurde. Denken
+	Sie daran, eine Kopie der Datei aufzubewahren! Die Bewertung erfolgt auf
+	exakt dieser Datenbasis. 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in">Ein Verzeichnis namens <TT CLASS="western">code</TT>,
+	in welchem sich sämtlicher Sourcecode Ihres Projekts in unkompilierter Fassung
+	befindet. Sie müssen hier Unterverzeichnisse erstellen, um die Paketstruktur abzubilden.
+	</P>
+	<LI><P STYLE="margin-bottom: 0in">Eine Datei namens <TT CLASS="western">version.txt.</TT>
+	In dieser Datei müssen Sie die exakte Version des von Ihnen verwendeten JDK sowie des
+	Betriebssystems aufführen. Die Datei muss im ASCII Format geschrieben sein.
+	</P>
+	<LI><P STYLE="margin-bottom: 0in">Ein Verzeichnis namens <TT CLASS="western">docs</TT>,
+	welches folgende Elemente enthält:
+	</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0in">Diese HTML-Datei 
+		</P>
+		<LI><P STYLE="margin-bottom: 0in">Ein Unterverzeichnis namens <TT CLASS="western">javadoc</TT>,
+		in welchem sich die HTML/Javadoc Dokumentation aller von Ihnen abgegebenen Klassen /
+		Interfaces befindet. 
+		</P>
+		<LI><P STYLE="margin-bottom: 0in">Eine Datei namens<TT CLASS="western">choices.txt</TT>.
+		Diese Datei muss im ASCII Format geschrieben sein und die von Ihnen getroffenen Design
+		Entscheidungen erläutern. Sie müssen hierbei die Probleme, auf die Sie gestossen sind,
+		erläutern, Ihre Entscheidungsalternativen darstellen und Ihre getroffenen Entscheidungen
+		begründen. Ebenfalls in diesem Dokument sollten Sie erlebte Unsicherheiten beschreiben,
+		sowie die darauf folgenden Entscheidungen erklären. Bitte beachten Sie, dass es 
+		oftmals nicht den "einen richtigen Ansatz" gibt, sondern mehrere Wege zum Ziel führen
+		können. 
+		</P>
+		<LI><P>Die Benutzerdokumentation Ihres Programms wie im Abschnitt <A HREF="#what_this">Überblick</A> 
+		beschrieben. Falls Ihre Dokumentation im Programm selbst enthalten ist, können
+		Sie diesen Punkt überspringen. In jedem anderen Fall müssen Sie entweder eine
+		ASCII-Textdatei namens <TT CLASS="western">userguide.txt</TT> oder eine / mehrere
+		verlinkte HTML-Dateien zur Verfügung stellen, die über <TT CLASS="western">userguide.html</TT>.
+		gestartet werden können.
+		</P>
+	</UL>
+</UL>
+<P STYLE="margin-bottom: 0in"><A HREF="#top"><I>Return to top</I></A>
+</P>
+<HR>
+<H2 CLASS="western" ALIGN=CENTER><A NAME="marking"></A>Bewertung</H2>
+<P><B>Wie funktioniert der Bewertungsprozess?</B> 
+</P>
+<P>Die Bewertung erfolgt in drei Phasen: Zuerst wird überprüft, ob die Struktur
+Ihrer abgegebenen Datei formell der Spezifikation entspricht. Danach wird
+der Prüfer Ihre Applikation starten, um zu bewerten, ob die verlangten 
+Funktionalitäten alle enthalten sind. Falls in diesen beiden ersten Phasen bereits
+Probleme auftreten, die nicht den "Muss"-Anforderungen dieser Spezifikation
+genügen, wird die Bewertung abgebrochen und das Projekt gilt automatisch als
+nicht bestanden. 
+</P>
+<P>Sollte das essenzielle Verhalten Ihrer Software korrekt sein, wird
+der Prüfer Details in Design und Umsetzung Ihrer Bearbeitung bewerten.
+Dieser Schritt ist deutlich zeitaufwendiger als die ersten beiden. 
+Auch hier führt die Nichterfüllung von Muss-Anforderungen zum automatischen
+Nichtbestehen. Hier werden auch Ihre getroffenen Entscheidungen hinsichtlich unklarer
+Spezifikation bewertet. Solche Entscheidungen müssen in Ihren Kommentaren klar und
+knapp erläutert sein! 
+</P>
+<H3 CLASS="western"><B>Bewertungskriterien</B></H3>
+<P>Ihre Arbeit wird anhand der folgenden Kriterien bewertet. Es gibt maximal 400 Punkte:
+</P>
+<P>Grundsätzliche Überlegungen (80 Punkte)
+<BR>Dokumentation (50 Punkte)
+<BR>Objektorientiertes Design (50 Punkte)
+<BR>GUI (70 Punkte)
+<BR>Locking (80 Punkte)
+<BR>Verwendetete Sprachmittel (70 Punkte) 
+<BR>&nbsp;
+<BR>&nbsp; 
+</P>
+<P STYLE="margin-bottom: 0in"><A HREF="#top"><I>Return to top</I></A>
+</P>
+<HR>
+<H2 CLASS="western" ALIGN=CENTER><A NAME="whattodo"></A>Was soll ich tun, wenn ich eine Frage habe?</H2>
+<P>
+Sie werden möglicherweise an einigen Stellen dieses Dokuments eine Rückfrage haben,
+oder nach der Erlaubnis verlangen ein Problem speziell auf die eine oder andere Art
+lösen zu dürfen. Diese Spezifikation lässt absichtlich einige Dinge offen und erwähnt
+Problemstellen nicht explizit. Ihre Fähigkeit sich in eine solche Spezifikation 
+einzuarbeiten entspricht der Realität und ist daher auch Teil des Bewertungsprozesses.
+</P>
+<P>
+Generell gilt: Es gibt oft mehrere Wege zum selben Ziel. Fragen Sie erstmal nicht, 
+sondern stellen Sie Ihre eigenen Überlegungen an und entwickeln Sie Optionen, die
+Sie ergreifen könnten. Beschreiben Sie diese in knappen Worten in Ihren Kommentaren
+und treffen Sie eine Entscheidung. Solange Sie keine Muss-Anforderung verletzen ist jede
+Entscheidung gleich gut, solange Sie sie begründen können. In sofern ist es auch nicht 
+gewinnbringend Ihren Nachbarn zu fragen, denn im Zweifel müssen Sie Ihre Entscheidung
+selbst auch mündlich belegen können! 
+</P>
+<P>
+Für darüber hinausgehende Punkte steht Ihnen selbstverständlich Ihr Hörsaalleiter / Fachlehrer 
+zur Verfügung.
+</P>
+<P>
+Viel Erfolg!
+</P>
+<P><A HREF="#top"><I>Return to top</I></A> 
+</P>
+</BODY>
+</HTML>

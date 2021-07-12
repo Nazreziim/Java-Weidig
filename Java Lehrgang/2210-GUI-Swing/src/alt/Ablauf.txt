@@ -1,0 +1,156 @@
+Ablauf Unterrichtseinheit GUI-Programmierung:
+
+1. Tag
+------
+- Seq. <-> Nachrichtengesteuerter Programmablauf (s. PPT)
+- AWT & Swing, Historie, Unteschiede (s. Word-Dokument oder PPT)
+- einfuehrung.awt & einfuehrung.swing.version1
+- Klassenhierarchie Swing Container - Component (s. PPT Folie 11) 
+- Frame (PPT Folie 12-13) -  einfuehrung.swing.version2 & version3
+- Toolkit: einfuehrung.toolkit (PPT Folie 9)
+-> aufgaben.toolkit: Fenster in der Mitte 
+					 JFrame halb so breit/hoch wie Auflösung & im rechten unteren Quadranten!
+
+Zeichenfunktionen
+- paint() in AWT
+- Graphics-Objekt (Folie 16)
+- Swing: Überschreiben paintComponent() - micht paint(),d a paint() noch paintBorder() und 
+  paintChildren() aufruft
+- repaint() -> update() in AWT, paint() in Swing
+- zeichnen.version1_simple: Linien, Rechtecke, Kreisbögen, Polygone, Strings
+-> Integrierte Aufgaben als TODO-Kommentare 
+
+
+2. Tag (kurzer Tag!)
+--------------------
+- Clipping-Bereiche
+- zeichnen.version2_clipping
+-> aufgaben.clipping & aufgaben.point_gui mit Observer-Pattern und Clipping-Bereichen!
+- Bilder laden: ImageIcon und ImageIO, siehe  (PPT, Folie 31-32)
+  zeichnen.version3_images
+
+
+3. Tag
+------
+Warmup: 1.) Smiley ein Kleeblatt an den Hut stecken
+		  2.) aufgaben.zeichnen.uhrzeit
+
+Farben:
+- Folien 33 bis 36
+- zeichnen.version4_color - Zufallsfarben zusammen machen!
+-> aufgaben.color.regenbogen
+-> aufgaben.color.farbkreis
+
+Java2D:
+- Folien 37 ff
+- zeichnen.version5_graphics2D
+-> Wenn genug Zeit: Aufgabe Smiley mit wechselndem Mund in Graphics2D - aufgaben.smiley
+
+Komponenten:
+- Folien 55 - 76
+- JComponent: Tooltips, Rahmen, Fokus - components.border
+
+JFrame: 
+- Größenangaben: min, max, preferred - 
+- pack() auf Container: Größe so wählen, dass Kinder mit preferredSize passen!
+- RootPane: GlassPane & LayeredPane (ContentPane , JMenuBar)
+
+JLabel: 
+- Befreiung von paint(), AWT übernimmt Zeichnen!
+- Mehrzeilig - components.jlabel.SimpleLabelsFrame.java
+- Zeichensatz ändern: Größenangaben: components.jlabel.LabelsFrame.java
+		 
+
+4. Tag - 5.11.13 - Grundlagen Eventhandling (Folien 77 - 90)
+------------------------------------------------------------
+- Lowlevel / Highlevel-Events
+- Überblick über Events in Klasse Component
+- Listener: WindowListener, Action, Mouse...
+- Beispiele: events.version1 - 4
+	1. WindowListener in Frame integriert
+	2. WindowListener in eigener Klasse
+	3. Als Adapter-Variante
+	4. Als innere Klasse (einmal anonym, einmal als private Klasse)
+Aufgaben:
+- Uhr mit Tick-Tack-Sound, wenn Fenster aktiv
+
+Buttons:
+- ActionListener
+- Folien 91-94
+- buttons.version1_actionlistener
+-> Aufgabe: Colorview mit Buttons!
+-> Aufgabe: Zeichenprogramm: zwei Textfelder, ok-Button, x,y-Eingabe 
+			(ähnlich: aufaben.mvc.mouse_events)
+- SwingActions - Folien 96-			
+- buttons.version2_eigenschaften
+
+
+5. Tag - Eventhandling & Swing-Komponenten intensiviert
+-------------------------------------------------------
+Keyevents (Folie 101 - 
+- events.keyyevents
+-> aufgaben.events.snake
+
+- MouseEvents Folie 95
+- events.mouseevents
+-> Aufgabe Zeichenprogramm: Linksklicken erzeugt Punkt, Rechts löscht
+
+Swing-Komponenten:
+- components.version3_controls
+
+- components.scrollpane - danach erwähnen: TabbedPane, SplitPane
+	Ein Panel ist 'richtig' leer, eine Pane dagegen enthält bereits
+	Funktionalität (z. B. TabbedPane die Tabs, ScrollPane die Scrollbars,
+	SplitPane den Splitter, ...).
+
+- components.colorchooser - mit MVC!!!
+  Das ganze gibts dann noch etwas durchdachter (und hübscher) unter aufgaben.mvc.colorchooser_optimized
+
+
+
+6. Tag
+------
+- MVC-Refresher - Fortsetzung colorchooser
+  Dabei immer wieder mal neue Komponenten reinmischen
+  
+-> aufgaben.mvc.mouse_events
+-> Aufgabe: Tic-Tac-Toe
+
+MVC-Info-Tool: (ist eigentlich zu trivial)
+10 MVC/infotool
+
+
+7. Tag (kurzer Tag)
+-------------------
+Layout-Manager:
+- layout.AllLayoutManagers.java
+- CardLayout nur wenn unbedingt gewünscht!
+- GroupLayout und SpringLayout (nur) für GUI-Builder
+
+Look & Feel:
+ - Cross-Plattform L&F ("Metal")
+ - System L&F 
+ - Synth (Basis für eigene L&F mit Hilfe von XML)
+ - Nimbus seit Java 1.6
+ - layout.look_and_feel
+
+8. Tag
+------
+Dialoge:
+- http://openbook.galileocomputing.de/java7/1507_09_020.html#dodtpc2793ed4-4e25-47d1-9fae-62d5bbe72828
+- simpler Dialog ohne Inhalt: dialoge.dialog1
+	- modal: nur ein Dialog offen
+- Eigenes Dialog Objekt mit Eingabeelementen: dialoge.dialog2
+- Vorgefertigte Standarddialoge (Öffnen, Speichern, Drucken, Farbauswahl): dialoge.dialog3
+	
+
+
+Tabellen:
+	- http://openbook.galileocomputing.de/java7/1507_09_017.html#dodtpee762f20-bf3f-47e6-b298-bfb5dfdc3baa
+	- 
+	
+Bäume:
+	- http://openbook.galileocomputing.de/java7/1507_09_018.html#dodtpd5e91f68-7577-43f7-981e-2411f01f5aff
+	- 
+
+High-Level-Komponenten: JTree, JTable 

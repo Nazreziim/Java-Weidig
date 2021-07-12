@@ -1,0 +1,17 @@
+Ablauf Themeneinheit Exception:
+1.) Begriffe:
+		Notwendigkeit
+		Abfangen mit try-catch
+		finally (v. a. Dateien und Streams etc.)
+		Unterscheidung von Exceptions
+		eigene Exceptions erstellen
+
+2.) Threads erstellen (extends Thread / implements Runnable): 
+		package exceptions
+		Übungsblatt 26: Aufgabe 1
+			Lösung: package aufgaben.exceptions - Aufgabe 1
+
+3.) Assertions
+		package assertions
+		Übungsblatt 26: Aufgabe 2
+			Lösung: package aufgaben.assertions - Aufgabe 2

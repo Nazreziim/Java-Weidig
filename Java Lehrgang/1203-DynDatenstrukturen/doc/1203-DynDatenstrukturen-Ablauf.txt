@@ -1,0 +1,137 @@
+STAND: 22.06.2017
+=================
+
+
+1. Tag
+bestes Beispiel:
+Schnecken-Aufgabe aus OOP aufgreifen.
+==>  Lösung mit Array( Verwalten von Schnecken) mit Hindernissen 
+
+Wiederholung Zeiger an der Tafel Möglichkeiten  (Reihung auf INTEGER)
+-- Programm soll Zahlen in einer dyn. Reihung (Heap) verwalten
+    Es soll über eine Abfrage, eine weitere Zahl aufgenommen werden, => die Reihung dyn. erweitert
+    und die Zahl vorne angehängt werden. Nach erfolgter Eingabe sollen alle Zahlen ausgegeben werden.
+    als Grundlagen: Listen vermittelt , Problem mit Liste anlegen vorne einfügen und ausgeben realisieren.
+Beispiel: Schulverwaltung: Verwalten von Personen (Menschen) in einer Verwaltungsklasse => zur Zeit nur mit Array loesbar
+-- Implemtierung mit Array machen lassen. Kreativität der LT testen
+-- -- feste Länge des Arrays vorgeben. Anzahl gueltiger Einträge festhalten oder Array auf null-Einträge prüfen. (mit max-Beschränkug)
+-- -- Erweiterung ermöglichen, wenn Anzahl erreicht ein doppel zu grosses Array anlegen und die ersten Einträge hineinkopieren.
+Exkurs: String => StringBuffer und StringBuilder( nicht synchronisiert).
+==> template_StringBuffer.java
+ 
+Sinn erkannt?
+Tafel 
+Listenelement
+
+==> Template01Listen.java mit ListenElement.java und Liste01.java  => iterative Loesung
+
+parallel Schnecken-Programm Klasse: Rennen -> Verwaltung von Schnecken umbauen 
+
+Listen
+--  1. Durchlaufen einer Liste
+--  2. Einfügen in eine Liste
+-- -- 2.1 Leere Liste
+-- -- 2.2 vorne Einfügen in einer Liste
+-- -- 2.3 hinten Einfügen in einer Liste
+-- -- 2.4 Sortiert einfügen in eine Liste (als Analyse-Aufgabe an Tafel schreiben)
+-- -- -- 2.4.1 Einfügestelle suchen -> Weiterschalten mit nachschleppen
+-- -- -- 2.4.2 Einfügen des Elementes
+-- Alle Elemente besuchen
+--  3. Element löschen aus einer Liste (an Tafel gemeinsam erarbeiten, nach dem gleichen Prinzip, wie sortiert einfuegen)
+-- -- 3.1 Das zulöschende Element suchen -> Weiterschalten mit nachschleppen
+-- -- 3.2 Das zulöschende Element ausketten
+
+Problem: beim Schnecken-Programm: Zugriff auf alle Schnecken (Durchlaufen) aus Klasse: Rennen,
+da jetzt eine Listen-Klasse den direkten Zugriff unterbindet.
+Mögliche Lösungen:
+--In ListenKlasse sich einen Getter- auf den ListenAnfang geben lassen!
+-- Mehrere Durchlaufen-Methoden in Listen-Klasse integrieren
+-- Eine Durchlaufen-Methode mit Übergabeparameter für die Unterscheidung mitgeben, welche Aktion intern 
+   durchlaufen werden soll.
+-- Iterable/ Iterator - Interface in Listen-KLasse implementieren
+--> siehe Paket: listen.durchlaufen
+-- oder durchlaufen-Methode mit Interface für die jeweilige Aktion übergeben, keine Änderung in Listen-Klasse notwendig
+--> siehe Paket: listen.durchlaufen
+
+
+Übung Aufgabe1: aus Dynamische Datenstrukturen.docx
+
+--- Zusatzaufgabe eine Liste kopieren (Tiefe Kopie) Funktion schreiben (Tiefe Kopie)
+
+==> Template02Listen.java mit ListenElement.java und Liste02Rek.java  => rekursive Loesung
+ -- Auf das Zählen von Elementen eingehen
+ -- Liste durchlaufen vorwärts und rückwärts
+
+Foliensatz bis Seite 52 [optional]
+-- zusätzl. 
+-- -- Wiederholtes Löschen in einer Liste (Elemente mit dem gleichen Schlüssel)
+-- -- Rekursives Durchlaufen einer Liste
+-- -- Rekursives Einfügen eines Elements in eine Liste
+      (vielleicht als rekursive Funktion ausführen, leichter verständlich)
+-- -- Rekursives Entfernen eines Elementes aus einer Liste
+
+
+Übungen 
+-- Aufgaben 2,3  und  wenn Zeit Aufgabe 4
+
+
+ENDE 1. Tag
+==========================================================================
+
+2.Tag
+
+Wiederholung Listen, Aufgaben besprechen
+
+bis 9:00 Uhr
+
+Bäume [optional, wenn noch Zeit ist]
+=====
+Tafel Definition erklären 
+-- nur ein Knoten hat k e i n e n  Vorgänger  => Wurzel
+-- jeder weiterer Knoten hat genau e i n e n  Vorgänger
+-- jeder Knoten ist von der Wurzel aus nur auf genau  e i n e m  Weg erreichbar
+
+Was ist ein Baum -> Knoten mit Beziehungen (Beschränkungen) Binärbaum
+-- Wurzel
+-- -- Ast
+-- -- Tiefe
+-- -- Teilbaum
+-- -- Blatt
+-- -- leerer Baum
+
+Geordneter Binärbaum -> Sortiert abgelegt links kleiner rechts größeres Element (Schlüssel)
+
+==> Template01Baum.java mit Knoten01.java und Baum01.java (rekursive Loesung)
+
+Operationen auf Binärbäume
+==========================
+Rekursiv:  An der Tafel erarbeiten
+
+-- Durchlaufen, Wann wird die Aktion ausgeführt? besuchen der Knoten im Baum
+-- -- In-Order   mit LT durchspielen
+-- -- Pre-Order
+-- -- Post-Order
+
+-- Einfügen im Binärbaum
+
+-- Löschen im Binärbaum
+-- -- hat keinen Nachfolger
+-- -- hat einen Nachfolger
+-- -- hat zwei Nachfolger
+
+Übung: Aufgabe 5 (nur Zeichnen)
+	   Aufgabe 6 Anzahl Blätter zählen
+	   Aufgabe 7 Tiefe eines Baumes bestimmen
+	   Aufgabe 8 printPretty (siehe Baum01- ausgabeInfo)
+
+[OPTION]
+(siehe Ada-DynDatenStrukturen: template_baeume.adb)
+-- 1. 20 Zufallswerte zwischen 1 - 1000 sortiert in Baum einfuegen
+      (keine doppelten Werte aufnehmen)
+-- 2. Ausgabe der Baumstruktur (Ausgabe_Info - Pre-Order-Durchlauf)
+-- 3. kleinsten und grössten Wert aus Baum ermitteln
+-- 4. gesamten Baum löschen (Post-Order-Durchlauf) 
+      -> nur Blätter werden gelöscht
+
+
+

@@ -1,0 +1,3 @@
+Das Repo Java-2020_Training für alle Programmierlösungen nutzen.
+
+Docs alle aus dem aktuellen Java Lehrgang Ordner entnehmen

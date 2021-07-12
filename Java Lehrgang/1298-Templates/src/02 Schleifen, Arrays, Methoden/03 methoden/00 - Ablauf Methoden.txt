@@ -1,0 +1,220 @@
+Ablauf Methoden
+
+TAG 1 ---------------------------------------------------------------------------------------------------
+
+- Motivation
+-- Wiederkehrende Programmteile:
+--- Sollten nicht mehrmals implementiert werden
+--- sondern an einer Stelle angeboten werden
+---> Änderungen sind einfacher (man vergisst keine Stelle, wo noch zusätzlich Änderungen durchgeführt werden müssen)
+---> Fehlersuche ist einfacher (der Ort des Fehlers lässt sich leichter einschränken)
+
+- Komplexe Programme
+-- resultieren aus komplexen Problemen,
+-- sollten nicht an einem Stück implementiert werden (Lesbarkeit / zu komplex zum verstehen)
+-- Probleme sollten in Teilprobleme zerlegt werden um die Komplexität zu reduzieren
+--> Anschließend als atomare Methoden implementieren und in "höheren" Methoden weiter nutzen
+--> Lesbarkeit steigt / der Kontrollfluss ist leichter zu erkennen
+
+- OOP
+-- Objekte / Klassen kommunizieren über Nachrichten
+-- Damit Nachrichten genutzt werden können, müssen diese erst definiert werden 
+--> Methoden stellen die definition der Nachrichten dar
+--> Methoden stellen also Funktionalität und damit Kommunikationsmöglichkeiten in der OOP zur Verfügung
+
+- Syntax (an die Tafel schreiben)
+-- Methodenkopf:
+--- [Sichtbarkeit] [Modifikator] Rückgabetyp Bezeichner( [Parameterliste] ) [throws Ausnahmenliste]
+-- Methodenrumpf:
+	{
+		[Anweisungen]
+	}
+
+-- Methodenkopf
+# Sichtbarkeit (an Tafel unter die Syntax schreiben)
+- public:
+-- für alle Objekte/Klassen sichtbar
+- "package":
+-- innerhalb des selben Pakets sichtbar
+- protected:
+-- innerhalb des selben Pakets sichtbar + sichtbar für Unterklassen (Vererbung -> nächste Woche)
+- private:
+-- NUR für die eigene Klasse sichtbar
+
+# Modifikatoren (an Tafel unter die Syntax schreiben)
+- static:
+-- Statische Methode:	Methode ist ohne Objekt nutzbar ( siehe main() )
+- final:
+-- unveränderliche Methode ( kann durch Vererbung nicht verändert werden -> nächste Woche )
+-> weitere Modifikatoren kommen später
+
+# Rückgabetyp (an Tafel unter die Syntax schreiben)
+- primitive Typen:
+-- byte, short, int, long, float, double, char, boolean
+- Referenztypen:
+-- String, Point, ...
+-- Wrapper Klassen ( Byte, Short, Integer, Long, Float, Double, Character, Boolean ),
+-- Arrays ( primitive: int[], long[] char[]; Referenztypen: String[], ... )
+- void
+-- die "Leere" = steht für keinen Rückgabewert
+
+# Bezeichner (an Tafel unter die Syntax schreiben)
+- lowerCamelCase:
+-- beginnt mit einem kleinen Buchstaben / jedes folgende Wort mit einem großen Buchstaben
+-- Sonderzeichen nur benutzen, wenn diese Sinn ergeben
+-- Methodennamen stellen grundsätzlich Verben dar oder beginnen mit einem Verb
+
+# Paramterliste (an Tafel unter die Syntax schreiben)
+- kein Parameter
+-- ()
+--> PrintStream.println();
+- >0 Parameter (feste Anzahl)
+-- ( int i, String s, Point p, int[] iarr )
+--> Math.pow( double a, double b )
+- >=0 Parameter (variable Anzahl)
+-- ( Object... o) entspricht Object[] o und muss am Ende der Parameterliste stehen!
+--> PrintStream.printf( String format, Object... args )
+--> Alle Parameter, welche nach dem ersten String übergeben werden, landen dabei in einem Array vom Typ Object[].
+- Call-by-Value
+-- Java kennt nur Call-By-Value für Primitive sowie für Referenztypen
+---> Primitive werden auf den Stack der Methode kopiert!
+---> Die Adressen der Referenztypen werden auf den Stack kopiert
+---> Man kann die übergebenen Werte nicht (nach außen sichtbar) verändern
+	
+# Ausnahmebehandlung
+- throws [Ausnahme]
+-- weißt den Compiler daraufhin, dass in dieser Methode eine Ausnahme verursacht werden kann,
+-- welche nicht abgefangen/behandelt wird
+---> Programmierer muss sich darum kümmern
+---> sehen wir später im Lehrgang detaillierter
+
+----------> MethodenUebungen.pdf Aufgabe 25
+				
+## Methodenrumpf
+beliebige Anzahl an Anweisungen, welche imperativ ausgeführt werden
+- vgl. main(String[] args)-Methode
+
+# return
+Besitzt die Methode einen Rückgabetyp != void
+- muss mindestens einmal am Ende der Methode eine return Anweisung auftreten
+- diese return Anweisung muss ein Exemplar des Rückgabetyps an die aufrufende Methode zurück geben
+-> z.B. return 0; return (byte) 0; return 0L; return "Teststring"; return new Point( 2, 2 ); return;
+CODE:	public class Test{
+			public static void main(String[] args){
+				test();
+			}
+			public static void ausgabe( int i ){
+				System.out.println( i );
+			}
+			public static int addieren( int a, int b ){
+				int c = a + b;
+				return c;
+			}
+			public static int multiplizieren( int a, int b ){
+				return a * b;
+			}
+		}
+
+# Unerreichbarer Code
+Sollte der Compiler feststellen, dass Code in einer Methode nicht erreicht werden kann
+-> Compilation Error
+CODE:	public static void test(){
+			return;
+			System.out.println();
+		}
+
+----------> Template_Methoden_lang.java durchsprechen
+----------> MethodenUebungen.pdf 26 
+
+TAG 2 ---------------------------------------------------------------------------------------------------
+
+WIEDERHOLUNG:
+- Motivation für Methoden:
+-- Wiederverwendbarkeit,
+-- Komplexität
+-- Lesbarkeit / Wartbarkeit
+-- OOP
+- Syntax
+-- Methodenkopf
+--- Sichtbarkeit
+--- Modifikatoren
+--- Rückgabetyp
+--- Bezeichner
+--- Parameterliste
+--- throws-Klausel
+-- Methodenrumpf
+--- return <- Rückgabetyp
+--- Unereichbarer Code
+
+----------> MethodenUebungen.pdf 27
+
+### Methoden überladen
+- Überladen bedeutet, dass mehrere Methoden mit dem gleichen Bezeichner innerhalb des gleichen Namensraumes (hier: Klasse) existieren
+- Dazu muss sich die Signatur der Methoden unterscheiden
+## Signatur
+Methodenkopf:
+	[Sichtbarkeit] [Modifikator] Rückgabetyp Bezeichner( [Parameterliste] ) [throws Ausnahmenliste]
+Signatur: 
+	Bezeichner( [Parameterliste] )
+-> Das bedeutet, bei gleichem Bezeichner müssen sich die Parameterlisten der Methoden unterscheiden
+public class Test{
+	public static void main(String[] args){
+		test();
+	}
+	public static int addieren( int a, int b ){
+		return a + b;
+	}
+	public static long addieren( long a, long b ){
+		return a + b;
+	}
+	public static double addieren( double a, double b ){
+		return a + b;
+	}
+}
+
+## Defaultparameter
+- Existieren bei Java nicht
+-> Methoden überladen
+-> Eine "Haupt-Methode" mit allen in frage kommenden Parametern implementieren
+-> Weitere Methoden mit eingeschränkter Parameterliste definieren 
+---> und darin die "Haupt-Methode" aufrufen mit Standardwerten für die fehlenden Parameter
+---> Achtung: Dabei sollte keine weitere Funktionalität in die Hilfsmethoden gesteckt werden 
+		um Fehlersuche und Lesbarkeit nicht unnötig zu erschweren
+public class Test{
+	public static void main(String[] args){
+		test();
+	}
+	// "Haupt-Methode"
+	public static int addieren( int a, int b, int c, int d ){
+		return a + b + c + d;
+	}
+	// Hilfsmethode ruft Haupt-Methode auf -> implementiert die Lösung nicht selbst!
+	public static int addieren( int a, int b, int c ){
+		return addieren(a, b, c, 0);
+	}
+	// Hilfsmethode ruft Haupt-Methode auf -> implementiert die Lösung nicht selbst!
+	public static int addieren( int a, int b ){
+		return addieren(a, b, 0, 0);
+	}
+}
+----------> Template_Methoden_Ueberladen.java
+----------> MethodenUebungen.pdf 28 - 29
+
+
+wahrscheinlich nach Mittag TAG 2 ---------------------------------------------------------------------------------------------------
+
+### Rekursive Methoden
+Rekursive Methoden zeichnen sich dadurch aus, dass sie sich selbst aufrufen z.B.:
+int sum( int n ){
+	return n + sum( n - 1 );
+}
+-> Dabei müssen die Parameter auf akzeptanz geprüft werden.
+-- Alle Probleme lassen sich iterativ UND rekursiv lösen
+--- meist ist der rekursive Ansatz kürzer (eleganter) zu programmieren
+--- der iterative Ansatz ist aber im allgemeinen Ressourcen schonender
+---> Endrekursion, das heißt Methoden, bei denen der Rekursive Aufruf die letzte Anweisung ist lässt sich direkt in while Schleifen umformen,
+     Die Java VM tut das allerdings nicht selbständig (im Gegensatz zu anderen Compilern).
+
+
+----------> Template Methoden rekursiv
+----------> Übungen Methoden Rekursiv pdf

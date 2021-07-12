@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="605.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.271" fx:controller="praesi.WindowController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.0" minWidth="10.0" prefWidth="301.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.0" minWidth="10.0" prefWidth="299.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="182.0" minHeight="10.0" prefHeight="166.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="152.0" minHeight="10.0" prefHeight="151.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Pane fx:id="colorPickBg" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ColorPicker fx:id="colorPick" layoutX="84.0" layoutY="79.0" />
+         </children>
+      </Pane>
+      <Pane prefHeight="243.0" prefWidth="299.0" GridPane.columnIndex="1">
+         <children>
+            <Pagination fx:id="pageIn" layoutX="8.0" layoutY="6.0" maxPageIndicatorCount="3" pageCount="3" prefHeight="148.0" prefWidth="284.0" />
+            <Line endX="-15.0" endY="-178.0" layoutX="15.0" layoutY="128.0" startX="-15.0" startY="188.0" />
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <Line endX="500.0" layoutX="101.0" startX="-100.0" />
+            <Spinner fx:id="spinTestSpin" layoutX="14.0" layoutY="93.0" />
+            <Label fx:id="lblSpin" layoutX="178.0" layoutY="97.0" text="Label" />
+            <Spinner fx:id="spinListSpin" editable="true" layoutX="14.0" layoutY="26.0" />
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <ProgressIndicator fx:id="progInd" layoutX="232.0" layoutY="87.0" progress="0.0" />
+            <ProgressBar fx:id="progBar" layoutX="21.0" layoutY="98.0" prefWidth="200.0" progress="0.0" />
+            <Spinner fx:id="spinner" layoutX="21.0" layoutY="32.0" />
+         </children>
+      </Pane>
+   </children>
+</GridPane>
